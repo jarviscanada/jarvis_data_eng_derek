@@ -6,4 +6,5 @@
 <h2>Architecture
 <h4>The diagram below shows the overview of the project:
   
-![m](https://raw.githubusercontent.com/jarviscanada/jarvis_data_eng_derek/feature_linux_sql/linux_sql/Picture/1.png)
+![image](https://raw.githubusercontent.com/jarviscanada/jarvis_data_eng_derek/feature_linux_sql/linux_sql/Picture/1.png)
+<h4>The bash agent  
