@@ -31,6 +31,5 @@ The bash agent collects server usage data, then insert into PostgreSQL instance.
   4. Run command: `bash scripts/host_usage.sh localhost 5432 host_agent postgres password`\
      to collect usage and insert into host_usage table.
   5. Run command: `crontab -e`\
-     and type: `* * * * * bash /scripts/hostusage.sh localhost 5432 host_agent postgres password > /tmp/host_usage.log`\
-     to trigger `host_uage.sh` every minute.
+     and type: `* * * * * bash /scripts/hostusage.sh localhost 5432 host_agent postgres password > /tmp/host_usage.log` to trigger `host_uage.sh` every minute.
   
