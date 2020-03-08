@@ -1,7 +1,7 @@
-# <h1>Linux Cluster Monitoring Agent
+<h1>Linux Cluster Monitoring Agent
 
 <h2>Introduction
-Linux Cluster Monitoring Agent aims to collect server hardware specifications and monitor node resource usages, such as CPU and Memory, and store data in PostgreSQL database.
+<h4>Linux Cluster Monitoring Agent aims to collect server hardware specifications and monitor node resource usages, such as CPU and Memory, and store data in PostgreSQL database.
 
 Architecture
 The diagram below shows the overview of the project:
