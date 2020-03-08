@@ -22,7 +22,7 @@ The bash agent collects server usage data, then insert into postgres instance. T
 + **queries.sql:** collects and process data that is stored in host_agent database for Linux Cluster Administration team.
  
  ## <h2>Instructions
-  1. Run command: `./scripts/psql_docker.sh start|stop|delete [db_password]`\
+  1. Run command: `./scripts/psql_docker.sh start|stop|delete [db_password]`
      to start, stop or delete psql in Docker.\
   2. Run command: `psql -h localhost -U postgres -W -f sql/ddl.sql`\
      to create host_agent database and create host_info, host_usage tables in this database.
