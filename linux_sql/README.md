@@ -1,7 +1,7 @@
 # <h1>Linux Cluster Monitoring Agent
 
 ## <h2>Introduction
-Linux Cluster Monitoring Agent aims to collect server hardware specifications and monitor node resource usages, such as CPU and Memory, and store data in PostgreSQL database.
+Linux Cluster Monitoring Agent aims to collect server hardware specifications and monitor node resource usages, such as CPU and Memory, and store data in postgres database.
 
 ## <h2>Architecture
 The diagram below shows the overview of the project:
@@ -10,7 +10,7 @@ The diagram below shows the overview of the project:
 
 ## <h3>*scripts:*
 
-The bash agent collects server usage data, then insert into PostgreSQL instance. The agent is installed to all the hosts/servers/nodes, and it consists of two bash scripts:
+The bash agent collects server usage data, then insert into postgres instance. The agent is installed to all the hosts/servers/nodes, and it consists of two bash scripts:
 
 + **host_info.sh:** collects server hardware specifications and insert into database, and it is only run once when installing.
 + **host_usage.sh:** collect current host usage and insert into database, and crontab job will make it run every minute.
