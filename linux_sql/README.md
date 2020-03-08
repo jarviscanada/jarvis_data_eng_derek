@@ -24,13 +24,13 @@ The bash agent collects server usage data, then insert into PostgreSQL instance.
  ## <h2>Instructions
   1. Run command: `./scripts/psql_docker.sh start|stop|delete [db_password]`\
      to start, stop or delete psql in Docker.\
-  2. Run command: psql -h localhost -U postgres -W -f sql/ddl.sql\
+  2. Run command: `psql -h localhost -U postgres -W -f sql/ddl.sql`\
      to create host_agent database and create host_info, host_usage tables in this database.
-  3. Run command: bash scripts/host_info.sh localhost 5432 host_agent postgres password\
+  3. Run command: `bash scripts/host_info.sh localhost 5432 host_agent postgres password`\
      to collect hardware specification and insert into host_info table.
-  4. Run command: bash scripts/host_usage.sh localhost 5432 host_agent postgres password\
+  4. Run command: `bash scripts/host_usage.sh localhost 5432 host_agent postgres password`\
      to collect usage and insert into host_usage table.
-  5. Run command: crontab -e\
-     and type: * * * * * bash /scripts/hostusage.sh localhost 5432 host_agent postgres password > /tmp/host_usage.log\
-     to trigger host_uage.sh every minute.
+  5. Run command: `crontab -e`\
+     and type: `* * * * * bash /scripts/hostusage.sh localhost 5432 host_agent postgres password > /tmp/host_usage.log`\
+     to trigger `host_uage.sh` every minute.
   
