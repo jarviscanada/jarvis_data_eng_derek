@@ -5,4 +5,4 @@
 
 <h2>Architecture
 <h4>The diagram below shows the overview of the project:
- 
+ !(https://github.com/jarviscanada/jarvis_data_eng_derek/blob/feature_linux_sql/linux_sql/Picture/1.png)
