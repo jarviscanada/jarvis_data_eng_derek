@@ -3,12 +3,12 @@
 ## Introduction
 Linux Cluster Monitoring Agent aims to collect server hardware specifications and monitor node resource usages, such as CPU and Memory, and store data in postgres database.
 
-## <h2>Architecture
+## Architecture
 The diagram below shows the overview of the project:
   
 ![image](https://raw.githubusercontent.com/jarviscanada/jarvis_data_eng_derek/feature_linux_sql/linux_sql/Picture/1.png)
 
-## <h3>*scripts:*
+## *scripts:*
 
 The bash agent collects server usage data, then insert into postgres instance. The agent is installed to all the hosts/servers/nodes, and it consists of two bash scripts:
 
@@ -16,12 +16,12 @@ The bash agent collects server usage data, then insert into postgres instance. T
 + **host_usage.sh:** collect current host usage and insert into database, and crontab job will make it run every minute.
 + Besides,**psql_docker.sh:** starts,stops or delete psql container in Docker.
 
-## <h3>*sql:*
+## *sql:*
  
 + **ddl.sql:** creates host_agent database if not exists, and create host_info and host_usage tables in this database. 
 + **queries.sql:** collects and process data that is stored in host_agent database for Linux Cluster Administration team.
  
- ## <h2>Instructions
+ ## Instructions
   1. Run command: `./scripts/psql_docker.sh start|stop|delete [db_password]`
      to start, stop or delete psql in Docker.\
   2. Run command: `psql -h localhost -U postgres -W -f sql/ddl.sql`\
@@ -32,7 +32,7 @@ The bash agent collects server usage data, then insert into postgres instance. T
      to collect usage and insert into host_usage table.
   5. Run command: `crontab -e`\
      and type: `* * * * * bash /scripts/host_usage.sh localhost 5432 host_agent postgres password > /tmp/host_usage.log` to trigger `host_uage.sh` every minute.
-## <h2> Improvemetns
+## Improvemetns
 + Add "delete" option in `./scripts/psql_docker.sh start|stop|delete [db_password]`\, so administrator can easily delete psql container easily.
 + The project can be more automated, so some steps can be run by one script.
 + An usage alert can be set up and inform administrator automaticaly 
