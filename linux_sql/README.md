@@ -24,19 +24,19 @@ The bash agent collects server usage data, then insert into postgres instance. T
  ## Instructions
   1. Creating PostgreSQL instance by creating and starting Docker container.You can also stop and delete it by
      specifying "stop" and "delete" option in  the following command:\
-     `./scripts/psql_docker.sh start|stop|delete [db_password]`
+    `./scripts/psql_docker.sh start|stop|delete [db_password]`
     
   2. Initiallizing host_agent database and host_info, host_usage tables:\
-     `psql -h localhost -U postgres -W -f sql/ddl.sql`
+    `psql -h localhost -U postgres -W -f sql/ddl.sql`
     
-  3. Run host_info.sh only ONCE to collect hardware specifications and insert into host_info table:
+  3. Run host_info.sh only ONCE to collect hardware specifications and insert into host_info table:\
      `bash scripts/host_info.sh localhost 5432 host_agent postgres password`
      
   4. Run host_usage.sh to collect usage data and insert into host_usage table:\
-     `bash scripts/host_usage.sh localhost 5432 host_agent postgres password`
+    `bash scripts/host_usage.sh localhost 5432 host_agent postgres password`
     
   5. crontab job is used to trigger `host_uage.sh` every minute in order to collect usage data every minute:\
-    `crontab -e`\
+   `crontab -e`\
      and type: `* * * * * bash /scripts/host_usage.sh localhost 5432 host_agent postgres password > /tmp/host_usage.log'
 ## Improvemetns
 + Add "delete" option in `./scripts/psql_docker.sh start|stop|delete [db_password]`\, so administrator can easily delete psql container easily.
