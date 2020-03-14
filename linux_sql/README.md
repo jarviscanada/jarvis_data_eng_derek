@@ -37,7 +37,7 @@ The bash agent collects server usage data, then insert into postgres instance. T
     
   5. crontab job is used to trigger `host_uage.sh` every minute in order to collect usage data every minute:\
    `crontab -e`\
-   `* * * * * bash /scripts/host_usage.sh localhost 5432 host_agent postgres password > /tmp/host_usage.log'
+   `* * * * * bash /scripts/host_usage.sh localhost 5432 host_agent postgres password > /tmp/host_usage.log '
 ## Improvemetns
 + Add "delete" option in `./scripts/psql_docker.sh start|stop|delete [db_password]`\, so administrator can easily delete psql container easily.
 + The project can be more automated, so some steps can be run by one script.
