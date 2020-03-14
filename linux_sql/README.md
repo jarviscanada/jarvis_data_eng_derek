@@ -49,10 +49,10 @@ The host_agent includes two tables, host_info and host_usage. host_info table st
   2. Initiallizing host_agent database and host_info, host_usage tables:\
     `psql -h localhost -U postgres -W -f sql/ddl.sql`
     
-  3. Run host_info.sh only ONCE to collect hardware specifications and insert into host_info table:\
+  3. Running host_info.sh only ONCE to collect hardware specifications and insert into host_info table:\
      `bash scripts/host_info.sh localhost 5432 host_agent postgres password`
      
-  4. Run host_usage.sh to collect usage data and insert into host_usage table:\
+  4. Running host_usage.sh to collect usage data and insert into host_usage table:\
     `bash scripts/host_usage.sh localhost 5432 host_agent postgres password`
     
   5. crontab job is used to trigger `host_uage.sh` every minute in order to collect usage data every minute:\
