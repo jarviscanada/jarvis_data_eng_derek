@@ -4,13 +4,11 @@
 Linux Cluster Monitoring Agent is a tool that aims to collect server hardware specifications and monitor node resource usages, such as CPU and Memory, and store all the data in Docker-provisioned PostgreSQL database. Linux Cluster Monitoring Agent allows administrators to efficiently track, analyze, diagnose, review data and repsond to any non-comformance.
 
 ## Architecture
-Every node in Linux cluster runs Bash Agent, and the collected data is inserted into PostgreSQL database in Node 1, as shown in the diagram below:
+Every node in Linux cluster runs Bash Agent, and the collected data is inserted into PostgreSQL database, which is installed in Node 1, as shown in the diagram below:
   
 ![image](./asset/diagram.png)
 
 ## *The scripts description:*
-
-The bash agent collects server usage data, then insert into postgres instance. The agent is installed to all the hosts/servers/nodes, and it consists of two bash scripts:
 
 + **host_info.sh:** collects server hardware specifications and insert into database, and it is only run once when installing.
 + **host_usage.sh:** collect current host usage and insert into database, and crontab job will make it run every minute.
