@@ -14,7 +14,7 @@ The bash agent collects server usage data, then insert into postgres instance. T
 
 + **host_info.sh:** collects server hardware specifications and insert into database, and it is only run once when installing.
 + **host_usage.sh:** collect current host usage and insert into database, and crontab job will make it run every minute.
-+ Besides,**psql_docker.sh:** starts,stops or delete psql container in Docker.
++ **psql_docker.sh:** starts,stops or delete psql container in Docker.
 
 ## *The sql description:*
  
