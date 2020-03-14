@@ -1,7 +1,7 @@
 # Linux Cluster Monitoring Agent
 
 ## Introduction
-Linux Cluster Monitoring Agent aims to collect server hardware specifications and monitor node resource usages, such as CPU and Memory, and store all the data by Docker-provisioned PostgreSQL database. Linux Cluster Monitoring Agent allows administrators to efficiently track information diagnose and repsond to any non-comformance.
+Linux Cluster Monitoring Agent is a tool that aims to collect server hardware specifications and monitor node resource usages, such as CPU and Memory, and store all the data in Docker-provisioned PostgreSQL database. Linux Cluster Monitoring Agent allows administrators to efficiently track, analyze, diagnose, review information and repsond to any non-comformance.
 
 ## Architecture
 The diagram below shows the overview of the project:
