@@ -12,16 +12,24 @@ Every node in Linux cluster runs Bash Agent, and the collected data is inserted 
 ## Data Collection
 
 The host_agent includes two tables, host_info and host_usage. host_info table stores server hardware specifications, and host_usage stores resource usages.
-+ **host_info  table:** 
++ **host_info  table:** \
   id: unique id in each node, used as primary key of the table\
   hostname: hostname of the node\
   cpu_number: amount of cpu cores\
   cpu_model: cpu model\
   cpu_mhz: cpu performance\
   l2_cache: Level 2 cache, in kB\
-  "timestamp": current time in UTC time zone\
+  "timestamp": current time of data collection in UTC time zone\
   total_mem: memory size, in kB
 
++ **host_usage  table:** \
+  timestamp: current time of data collection in UTC time zone\
+  host_id: host id of the table, used as foreigh key referring to host_info.id
+  memory_free: in MB\
+  cpu_idle: percentage of idle cpu\
+  cpu_kernel: percentage of cpu time spent idle\
+  disk_io: number of disk I/O\
+  dis_available: root directory available disk, in MB\
 ## *The scripts description:*
 
 + **host_info.sh:** collects server hardware specifications and insert into database, and it is only run once when installing.
