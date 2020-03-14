@@ -24,7 +24,7 @@ The host_agent includes two tables, host_info and host_usage. host_info table st
 
 + **host_usage  table:** \
   timestamp: current time of data collection in UTC time zone\
-  host_id: host id of the table, used as foreigh key referring to host_info.id
+  host_id: host id of the table, used as foreigh key referring to host_info.id\
   memory_free: in MB\
   cpu_idle: percentage of idle cpu\
   cpu_kernel: percentage of cpu time spent idle\
