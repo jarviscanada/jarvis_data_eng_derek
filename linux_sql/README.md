@@ -61,4 +61,4 @@ The host_agent includes two tables, host_info and host_usage. host_info table st
 ## Improvemetns
 + Add "delete" option in `./scripts/psql_docker.sh start|stop|delete [db_password]`\, so administrator can easily delete psql container easily.
 + The project can be more automated, so some steps can be run by one script.
-+ An usage alert can be set up and inform administrator automaticaly 
++ An usage alert can be set up and inform administrator automaticaly. 
