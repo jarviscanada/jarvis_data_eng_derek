@@ -22,8 +22,8 @@ The bash agent collects server usage data, then insert into postgres instance. T
 + **queries.sql:** collects and process data that is stored in host_agent database for Linux Cluster Administration team.
  
  ## Instructions
-  1. Creating PostgreSQL instance by creating and starting Docker container.You can also stop and delete it by
-     specifying "stop" and "delete" option in  the following command:
+  1. Creating PostgreSQL instance by creating and starting Docker container.You can also stop and delete it by\
+     specifying "stop" and "delete" option in  the following command:\
      command: `./scripts/psql_docker.sh start|stop|delete [db_password]`
     
   2. Initiallizing host_agent database and host_info, host_usage tables:
@@ -35,7 +35,7 @@ The bash agent collects server usage data, then insert into postgres instance. T
   4. Run host_usage.sh to collect usage data and insert into host_usage table:
      Run command: `bash scripts/host_usage.sh localhost 5432 host_agent postgres password`\
     
-  5. crontab job is used to trigger `host_uage.sh` every minute in order to collect usage data every minute:
+  5. crontab job is used to trigger `host_uage.sh` every minute in order to collect usage data every minute:\
      command: `crontab -e`\
      and type: `* * * * * bash /scripts/host_usage.sh localhost 5432 host_agent postgres password > /tmp/host_usage.log'
 ## Improvemetns
