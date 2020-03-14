@@ -6,7 +6,7 @@ Linux Cluster Monitoring Agent aims to collect server hardware specifications an
 ## Architecture
 The diagram below shows the overview of the project:
   
-![image](https://raw.githubusercontent.com/jarviscanada/jarvis_data_eng_derek/feature_linux_sql/linux_sql/Picture/1.png)
+![image](./asset/diagram.png)
 
 ## *scripts:*
 
