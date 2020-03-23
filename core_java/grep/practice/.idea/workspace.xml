@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="75b1472e-a78d-4dfa-84ea-dc1d815ba345" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ca/jrvs/apps/practice/src/main/java/ca/jrvs/apps/practice/HelloWorld.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ca/jrvs/apps/practice/src/main/java/ca/jrvs/apps/practice/LambdaStreamExc.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ca/jrvs/apps/practice/src/main/java/ca/jrvs/apps/practice/LambdaStreamExcImp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ca/jrvs/apps/practice/src/main/java/ca/jrvs/apps/practice/RegexExc.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ca/jrvs/apps/practice/src/main/java/ca/jrvs/apps/practice/RegexExcImp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ca/jrvs/apps/practice/src/test/java/ca/jrvs/apps/practice/LambdaStreamExcImpTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ca/jrvs/apps/practice/src/test/java/ca/jrvs/apps/practice/RegexExcImpTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ca/jrvs/apps/practice/target/classes/ca/jrvs/apps/practice/HelloWorld.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ca/jrvs/apps/practice/target/classes/ca/jrvs/apps/practice/LambdaStreamExc.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ca/jrvs/apps/practice/target/classes/ca/jrvs/apps/practice/LambdaStreamExcImp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ca/jrvs/apps/practice/target/classes/ca/jrvs/apps/practice/RegexExc.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ca/jrvs/apps/practice/target/classes/ca/jrvs/apps/practice/RegexExcImp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ca/jrvs/apps/practice/target/test-classes/ca/jrvs/apps/practice/LambdaStreamExcImpTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ca/jrvs/apps/practice/target/test-classes/ca/jrvs/apps/practice/RegexExcImpTest.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="JUnit5 Test Class" />
+        <option value="JUnit4 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1ZEDN4YMO3timm3cYTmeE82szcr" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="ca.jrvs.apps.practice" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="ca.jrvs.apps.practice" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.RegexExcImpTest.isEmptyLine">
+    <configuration name="LambdaStreamExcImpTest.flatNestedInt" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="practice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ca.jrvs.apps.practice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ca.jrvs.apps.practice" />
+      <option name="MAIN_CLASS_NAME" value="ca.jrvs.apps.practice.LambdaStreamExcImpTest" />
+      <option name="METHOD_NAME" value="flatNestedInt" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LambdaStreamExcImpTest.printMessage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="practice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ca.jrvs.apps.practice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ca.jrvs.apps.practice" />
+      <option name="MAIN_CLASS_NAME" value="ca.jrvs.apps.practice.LambdaStreamExcImpTest" />
+      <option name="METHOD_NAME" value="printMessage" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RegexExcImpTest.isEmptyLine" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="practice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ca.jrvs.apps.practice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ca.jrvs.apps.practice" />
+      <option name="MAIN_CLASS_NAME" value="ca.jrvs.apps.practice.RegexExcImpTest" />
+      <option name="METHOD_NAME" value="isEmptyLine" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RegexExcImpTest.matchIp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="practice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ca.jrvs.apps.practice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ca.jrvs.apps.practice" />
+      <option name="MAIN_CLASS_NAME" value="ca.jrvs.apps.practice.RegexExcImpTest" />
+      <option name="METHOD_NAME" value="matchIp" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RegexExcImpTest.matchJpeg" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="practice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ca.jrvs.apps.practice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ca.jrvs.apps.practice" />
+      <option name="MAIN_CLASS_NAME" value="ca.jrvs.apps.practice.RegexExcImpTest" />
+      <option name="METHOD_NAME" value="matchJpeg" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.RegexExcImpTest.isEmptyLine" />
+        <item itemvalue="JUnit.RegexExcImpTest.matchIp" />
+        <item itemvalue="JUnit.RegexExcImpTest.matchJpeg" />
+        <item itemvalue="JUnit.LambdaStreamExcImpTest.flatNestedInt" />
+        <item itemvalue="JUnit.LambdaStreamExcImpTest.printMessage" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="75b1472e-a78d-4dfa-84ea-dc1d815ba345" name="Default Changelist" comment="" />
+      <created>1584395316381</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1584395316381</updated>
+      <workItem from="1584395318448" duration="20411000" />
+      <workItem from="1584559352535" duration="10446000" />
+      <workItem from="1584628279852" duration="650000" />
+      <workItem from="1584899284883" duration="4332000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="395" y="28" width="374" height="552" key="#com.intellij.ide.util.MemberChooser" timestamp="1584561274589">
+      <screen x="0" y="28" width="1174" height="817" />
+    </state>
+    <state x="395" y="28" width="374" height="552" key="#com.intellij.ide.util.MemberChooser/0.28.1174.552@0.28.1174.552" timestamp="1584467983883" />
+    <state x="395" y="28" key="#com.intellij.ide.util.MemberChooser/0.28.1174.817@0.28.1174.817" timestamp="1584561274589" />
+    <state x="486" y="91" width="360" height="725" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1584564755040">
+      <screen x="0" y="28" width="1420" height="917" />
+    </state>
+    <state x="402" y="85" width="360" height="725" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/0.28.1174.833@0.28.1174.833" timestamp="1584557325733" />
+    <state x="486" y="91" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/0.28.1420.917@0.28.1420.917" timestamp="1584564755040" />
+    <state x="320" y="52" width="524" height="511" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584466224203">
+      <screen x="0" y="28" width="1174" height="552" />
+    </state>
+    <state x="320" y="52" width="524" height="511" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.28.1174.552@0.28.1174.552" timestamp="1584466224203" />
+    <state width="1372" height="244" key="GridCell.Tab.0.bottom" timestamp="1584627232226">
+      <screen x="0" y="28" width="1420" height="917" />
+    </state>
+    <state width="1126" height="244" key="GridCell.Tab.0.bottom/0.28.1174.817@0.28.1174.817" timestamp="1584562459512" />
+    <state width="1372" height="244" key="GridCell.Tab.0.bottom/0.28.1420.917@0.28.1420.917" timestamp="1584627232226" />
+    <state width="1372" height="244" key="GridCell.Tab.0.center" timestamp="1584627232226">
+      <screen x="0" y="28" width="1420" height="917" />
+    </state>
+    <state width="1126" height="244" key="GridCell.Tab.0.center/0.28.1174.817@0.28.1174.817" timestamp="1584562459511" />
+    <state width="1372" height="244" key="GridCell.Tab.0.center/0.28.1420.917@0.28.1420.917" timestamp="1584627232226" />
+    <state width="1372" height="244" key="GridCell.Tab.0.left" timestamp="1584627232226">
+      <screen x="0" y="28" width="1420" height="917" />
+    </state>
+    <state width="1126" height="244" key="GridCell.Tab.0.left/0.28.1174.817@0.28.1174.817" timestamp="1584562459511" />
+    <state width="1372" height="244" key="GridCell.Tab.0.left/0.28.1420.917@0.28.1420.917" timestamp="1584627232226" />
+    <state width="1372" height="244" key="GridCell.Tab.0.right" timestamp="1584627232226">
+      <screen x="0" y="28" width="1420" height="917" />
+    </state>
+    <state width="1126" height="244" key="GridCell.Tab.0.right/0.28.1174.817@0.28.1174.817" timestamp="1584562459511" />
+    <state width="1372" height="244" key="GridCell.Tab.0.right/0.28.1420.917@0.28.1420.917" timestamp="1584627232226" />
+    <state width="1372" height="244" key="GridCell.Tab.1.bottom" timestamp="1584627232227">
+      <screen x="0" y="28" width="1420" height="917" />
+    </state>
+    <state width="1126" height="244" key="GridCell.Tab.1.bottom/0.28.1174.817@0.28.1174.817" timestamp="1584562460801" />
+    <state width="1372" height="244" key="GridCell.Tab.1.bottom/0.28.1420.917@0.28.1420.917" timestamp="1584627232227" />
+    <state width="1372" height="244" key="GridCell.Tab.1.center" timestamp="1584627232227">
+      <screen x="0" y="28" width="1420" height="917" />
+    </state>
+    <state width="1126" height="244" key="GridCell.Tab.1.center/0.28.1174.817@0.28.1174.817" timestamp="1584562460800" />
+    <state width="1372" height="244" key="GridCell.Tab.1.center/0.28.1420.917@0.28.1420.917" timestamp="1584627232227" />
+    <state width="1372" height="244" key="GridCell.Tab.1.left" timestamp="1584627232226">
+      <screen x="0" y="28" width="1420" height="917" />
+    </state>
+    <state width="1126" height="244" key="GridCell.Tab.1.left/0.28.1174.817@0.28.1174.817" timestamp="1584562460800" />
+    <state width="1372" height="244" key="GridCell.Tab.1.left/0.28.1420.917@0.28.1420.917" timestamp="1584627232226" />
+    <state width="1372" height="244" key="GridCell.Tab.1.right" timestamp="1584627232227">
+      <screen x="0" y="28" width="1420" height="917" />
+    </state>
+    <state width="1126" height="244" key="GridCell.Tab.1.right/0.28.1174.817@0.28.1174.817" timestamp="1584562460800" />
+    <state width="1372" height="244" key="GridCell.Tab.1.right/0.28.1420.917@0.28.1420.917" timestamp="1584627232227" />
+    <state x="110" y="28" width="1024" height="852" key="SettingsEditor" timestamp="1584982572449">
+      <screen x="0" y="28" width="1853" height="919" />
+    </state>
+    <state x="70" y="28" width="1024" height="833" key="SettingsEditor/0.28.1174.833@0.28.1174.833" timestamp="1584557964081" />
+    <state x="110" y="28" width="1024" height="852" key="SettingsEditor/0.28.1853.919@0.28.1853.919" timestamp="1584982572449" />
+    <state x="306" y="284" key="com.intellij.ide.util.TipDialog" timestamp="1584629147641">
+      <screen x="0" y="28" width="1420" height="873" />
+    </state>
+    <state x="253" y="272" key="com.intellij.ide.util.TipDialog/0.28.1174.833@0.28.1174.833" timestamp="1584559351262" />
+    <state x="306" y="284" key="com.intellij.ide.util.TipDialog/0.28.1420.873@0.28.1420.873" timestamp="1584629147641" />
+    <state x="428" y="28" width="443" height="634" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1584568394933">
+      <screen x="0" y="28" width="1420" height="917" />
+    </state>
+    <state x="354" y="28" width="456" height="552" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.28.1174.552@0.28.1174.552" timestamp="1584479445539" />
+    <state x="354" y="28" width="456" height="833" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.28.1174.833@0.28.1174.833" timestamp="1584560772182" />
+    <state x="428" y="28" width="443" height="634" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.28.1420.917@0.28.1420.917" timestamp="1584568394933" />
+    <state x="32" y="123" width="1345" height="690" key="new project wizard" timestamp="1584629488101">
+      <screen x="0" y="28" width="1420" height="917" />
+    </state>
+    <state x="32" y="123" width="1345" height="690" key="new project wizard/0.28.1420.917@0.28.1420.917" timestamp="1584629488101" />
+    <state x="589" y="226" width="672" height="678" key="search.everywhere.popup" timestamp="1584982790813">
+      <screen x="0" y="28" width="1853" height="919" />
+    </state>
+    <state x="589" y="226" width="672" height="678" key="search.everywhere.popup/0.28.1853.919@0.28.1853.919" timestamp="1584982790813" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ca/jrvs/apps/practice/RegexExcImpTest.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ca/jrvs/apps/practice/RegexExcImpTest.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
