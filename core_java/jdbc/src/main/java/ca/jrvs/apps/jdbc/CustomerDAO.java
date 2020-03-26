@@ -1,6 +1,7 @@
 package ca.jrvs.apps.jdbc;
 
 import ca.jrvs.apps.jdbc.util.DataAccessObject;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,20 +14,21 @@ public class CustomerDAO extends DataAccessObject<Customer> {
 
     private static final String GET_ONE = "SELECT customer_id, first_name, last_name, " +
             "email, phone, address, city, state, zipcode FROM customer WHERE customer_id=?";
+    private static final String UPDATE = "UPDATE customer SET first_name = ?, last_name=?, " +
+            "email = ?, phone = ?, address = ?, city = ?, state = ?, zipcode = ? WHERE customer_id = ?";
+    private static final String DELETE = "DELETE FROM customer WHERE customer_id =?";
+
     public CustomerDAO(Connection connection) {
         super(connection);
     }
 
-    private static final String UPDATE = "UPDATE customer SET first_name = ?, last_name=?, " +
-            "email = ?, phone = ?, address = ?, city = ?, state = ?, zipcode = ? WHERE customer_id = ?";
-
     @Override
     public Customer findById(long id) {
         Customer customer = new Customer();
-        try(PreparedStatement statement = this.connection.prepareStatement(GET_ONE);){
+        try (PreparedStatement statement = this.connection.prepareStatement(GET_ONE);) {
             statement.setLong(1, id);
             ResultSet rs = statement.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 customer.setId(rs.getLong("customer_id"));
                 customer.setFirstName(rs.getString("first_name"));
                 customer.setLastName(rs.getString("last_name"));
@@ -37,7 +39,7 @@ public class CustomerDAO extends DataAccessObject<Customer> {
                 customer.setState(rs.getString("state"));
                 customer.setZipCode(rs.getString("zipcode"));
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
@@ -52,7 +54,7 @@ public class CustomerDAO extends DataAccessObject<Customer> {
     @Override
     public Customer update(Customer dto) {
         Customer customer = null;
-        try(PreparedStatement statement = this.connection.prepareStatement(UPDATE);){
+        try (PreparedStatement statement = this.connection.prepareStatement(UPDATE);) {
             statement.setString(1, dto.getFirstName());
             statement.setString(2, dto.getLastName());
             statement.setString(3, dto.getEmail());
@@ -64,7 +66,7 @@ public class CustomerDAO extends DataAccessObject<Customer> {
             statement.setLong(9, dto.getId());
             statement.execute();
             customer = this.findById(dto.getId());
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
@@ -73,7 +75,7 @@ public class CustomerDAO extends DataAccessObject<Customer> {
 
     @Override
     public Customer create(Customer dto) {
-        try(PreparedStatement statement = this.connection.prepareStatement(INSERT);){
+        try (PreparedStatement statement = this.connection.prepareStatement(INSERT);) {
             statement.setString(1, dto.getFirstName());
             statement.setString(2, dto.getLastName());
             statement.setString(3, dto.getEmail());
@@ -85,14 +87,20 @@ public class CustomerDAO extends DataAccessObject<Customer> {
             statement.execute();
             int id = this.getLastVal(CUSTOMER_SEQUENCE);
             return this.findById(id);
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public void delete(long id) {
-
+    public void delete(long id){
+        try (PreparedStatement statement = this.connection.prepareStatement(DELETE);) {
+            statement.setLong(1, id);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 }

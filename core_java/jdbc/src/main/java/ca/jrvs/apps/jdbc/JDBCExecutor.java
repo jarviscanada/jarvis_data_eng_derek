@@ -12,14 +12,9 @@ public class JDBCExecutor {
                 "hplussport", "postgres", "password");
         try{
             Connection connection = dcm.getConnection();
-            CustomerDAO customerDAO = new CustomerDAO(connection);
-            Customer customer = customerDAO.findById(10000);
-            System.out.println(customer.getFirstName() + " " + customer.getLastName() + " " +
-                    customer.getEmail());
-            customer.setEmail("gwashington@wh.gov");
-            customer = customerDAO.update(customer);
-            System.out.println(customer.getFirstName() + " " + customer.getLastName() + " " +
-                    customer.getEmail());
+            OrderDAO orderDAO = new OrderDAO(connection);
+            Order order = orderDAO.findById(1000);
+            System.out.println(order);
         }catch(SQLException e){
             e.printStackTrace();
         }
