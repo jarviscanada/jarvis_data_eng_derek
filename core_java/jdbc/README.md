@@ -1,12 +1,11 @@
 # Grep App 
 
 ## Introduction
-Grep App aims to search for a text pattern recursively in a given directory and sub-directory, and output matched lineds to a file.
-This app is similar to Linux command `egrep -r {regex} {rootPath} > {outFile}`.Java I/O and Lambda will be used in this app.
-The app also takes above three arguments: regex, rootPath, outFile.
-+ regex: a special text string for describing a search pattern
-+ rootPath: root directory path
-+ outFile: output file name
+
+![image](./Assets/image.png)
+
+
+
 
 ## Instruction
 The three arguments need to be specified in `Program arguments` in Intellij following the format:
