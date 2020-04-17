@@ -1,0 +1,86 @@
+package ca.jrvs.apps.twitter.controller;
+
+import ca.jrvs.apps.twitter.model.Coordinates;
+import ca.jrvs.apps.twitter.model.Tweet;
+import ca.jrvs.apps.twitter.service.Service;
+import oauth.signpost.exception.OAuthCommunicationException;
+import oauth.signpost.exception.OAuthExpectationFailedException;
+import oauth.signpost.exception.OAuthMessageSignerException;
+import org.springframework.util.StringUtils;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class TwitterController implements Controller {
+
+    private static final String COORD_SEP = ":";
+    private static final String COMMA = ",";
+
+    private Service service;
+
+    //@Autowired
+    public TwitterController(Service service) {
+        this.service = service;
+    }
+
+    @Override
+    public Tweet postTweet(String[] args) throws Exception {
+        if (args.length != 3) {
+            throw new IllegalArgumentException("USAGE: TwitterCLIApp post \"tweet_text\" \"latitude:longitude\"");
+        }
+        String tweet_txt = args[1];
+        String coord = args[2];
+        String[] coordArray = coord.split(COORD_SEP);
+        if (coordArray.length != 2 || StringUtils.isEmpty(tweet_txt)) {
+            throw new IllegalArgumentException(
+                    "Invalid location format\nUSAGE: TwitterCLIAPP post \"tweet_text\" \"latitude:longitude\"");
+        }
+        Double lat = null;
+        Double lon = null;
+        try {
+            lat = Double.parseDouble(coordArray[0]);
+            lon = Double.parseDouble(coordArray[1]);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(
+                    "Invalid location format\nUSAGE: TwitterCLIApp post \"tweet_text\" \"latitude:longitude\"", e);
+        }
+        Tweet postTweet = buildTweet(tweet_txt, lon, lat);
+        return service.postTweet(postTweet);
+    }
+
+    public Tweet buildTweet(String tweet_txt, Double lon, Double lat){
+        Tweet tweet = new Tweet();
+        tweet.setText(tweet_txt);
+        List<Double> list = new ArrayList<>();
+        list.add(lon);
+        list.add(lat);
+        Coordinates coordinates = new Coordinates();
+        coordinates.setCoordinates(list);
+        tweet.setCoordinates(coordinates);
+        return tweet;
+    }
+
+    @Override
+    public Tweet showTweet(String[] args) throws URISyntaxException, OAuthExpectationFailedException, OAuthCommunicationException, OAuthMessageSignerException, IOException {
+        if(args.length!=3){
+            throw new IllegalArgumentException("USAGE: TwitterCLIApp show \"tweet_id\" \"[field1, field2]\"");
+        }
+        String tweet_id = args[1];
+        String field = args[2];
+        String[] fields = field.split(COMMA);
+        return service.showTweet(tweet_id, fields);
+    }
+
+    @Override
+    public List<Tweet> deleteTweet(String[] args) throws IOException, OAuthCommunicationException, OAuthExpectationFailedException, OAuthMessageSignerException {
+        if(args.length!=3){
+            throw new IllegalArgumentException("USAGE: TwitterCLIApp delete \"[id1,id2,..]\"");
+        }
+        String id = args[1];
+        String[] ids = id.split(COMMA);
+        return service.deleteTweets(ids);
+    }
+}
+
