@@ -11,7 +11,7 @@ Coordinates, Entities, Hashtag, Tweet, UserMention\
 
 Controller Layer: It interacts and parases user input (CLI args in this APP). It also calls service layer and return tweet.\
 
-Service Lay: It handles business logic and calls DAO layer and return tweet. If the tweet text is longer than 140 characters, and if longitude or latitude is out of range, errors will show up.\
+Service Lay: It handles business logic and calls DAO layer and return tweet. If the tweet text is longer than 140 characters, and if longitude or latitude is out of range, errors will show up.
 
 Data Access Layer: It handles models, and post, show and delete tweets.
 
