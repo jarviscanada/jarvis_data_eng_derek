@@ -32,7 +32,9 @@ Coordinates, Entities, Hashtag, Tweet, UserMention. For example,
 + Data Access Layer(DAL/DA)): It handles models, and post, show and delete tweets. This layer calls HttpHelper class and return results. HttpHelper is responsible for executing HTTP with URI, and authorizes the HTTP request using Twitter secrets.
 
 ![image](./asset/diagram.png)
+Class Dependency Diagram
 ![image](./asset/TwitterDao.png)
+UML Diagram
 
 ## Instruction
 + To post Twitter: `post "tweet_text" "latitude:longitude", e.g. post "Hello Twitter!" "20:20"`
