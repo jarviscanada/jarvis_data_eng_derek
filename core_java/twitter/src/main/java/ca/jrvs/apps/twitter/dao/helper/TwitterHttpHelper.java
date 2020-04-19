@@ -19,70 +19,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-//public class TwitterHttpHelper implements HttpHelper {
-//    /**
-//     * Dependencies are specified as private member variables
-//     * /
-//     *
-//     * @param uri
-//     * @return
-//     */
-//    private OAuthConsumer consumer;
-//    private HttpClient httpClient;
-//
-//    public TwitterHttpHelper(String consumerKey, String consumerSecret,
-//                             String accessToken, String tokenSecret) {
-//        consumer = new CommonsHttpOAuthConsumer(consumerKey, consumerSecret);
-//        consumer.setTokenWithSecret(accessToken, tokenSecret);
-//        httpClient = new DefaultHttpClient();
-//    }
-//
-//    @Override
-//    public HttpResponse httpPost(URI uri) {
-//        try {
-//            return executeHttpRequest(HttpMethod.POST, uri, null);
-//        } catch (OAuthException | IOException e) {
-//            throw new RuntimeException("Failed to execute", e);
-//        }
-//    }
-//
-//    private HttpResponse executeHttpRequest(HttpMethod method, URI uri, StringEntity stringEntity) throws IOException, OAuthCommunicationException, OAuthExpectationFailedException, OAuthMessageSignerException {
-//        if (method ==HttpMethod.GET){
-//            HttpGet request = new HttpGet(uri);
-//            consumer.sign(request);
-//            return httpClient.execute(request);
-//        }   else if (method == HttpMethod.POST){
-//            HttpPost request = new HttpPost(uri);
-//            if(stringEntity != null){
-//                request.setEntity(stringEntity);
-//            }
-//            consumer.sign(request);
-//            return httpClient.execute(request);
-//        }   else {
-//            throw new IllegalArgumentException("Unknown HTTP method:" + method.name());
-//        }
-//    }
-//
-//    @Override
-//    public HttpResponse httpGet(URI uri) {
-//        try {return executeHttpRequest(HttpMethod.GET, uri, null);}
-//        catch (OAuthException | IOException e){
-//            throw new RuntimeException("Failed to execute:" + e);
-//        }
-//    }
-//
-//    public static void main(String[] args) throws URISyntaxException, IOException {
-//        String consumerKey = System.getenv("consumerKey");
-//        String consumerSecret = System.getenv("consumerSecret");
-//        String accessToken = System.getenv("accessToken");
-//        String tokenSecret = System.getenv("tokenSecret");
-//        System.out.println(consumerKey + "|" + consumerSecret + "|" + accessToken + "|" + tokenSecret);
-//        HttpHelper httpHelper  = new TwitterHttpHelper(consumerKey,consumerSecret,accessToken,tokenSecret);
-//        HttpResponse httpResponse = httpHelper.httpPost(new URI("https://api.twitter.com//1.1/statuses/update.json?status=first_tweet2"));
-//        System.out.println(EntityUtils.toString(httpResponse.getEntity()));
-//
-//    }
-//}
 public class TwitterHttpHelper implements HttpHelper {
     public static void main(String[] args) throws IOException, URISyntaxException, OAuthCommunicationException, OAuthExpectationFailedException, OAuthMessageSignerException {
         String consumerKey = System.getenv("consumerKey");
@@ -95,6 +31,7 @@ public class TwitterHttpHelper implements HttpHelper {
         HttpHelper httpHelper = new TwitterHttpHelper(consumerKey,consumerSecret,accessToken,tokenSecret);
         HttpResponse response = httpHelper.httpPost(new URI("https://api.twitter.com/1.1/statuses/update.json?status=first_tweet2"));
         System.out.println(EntityUtils.toString(response.getEntity()));
+
     }
     private OAuthConsumer consumer;
     private HttpClient httpClient;

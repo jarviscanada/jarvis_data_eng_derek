@@ -29,4 +29,5 @@ public interface CrdDao<T, ID> {
    * @return deleted entity
    */
   T deleteById(ID id) throws IOException, OAuthCommunicationException, OAuthExpectationFailedException, OAuthMessageSignerException;
-}
+
+    }

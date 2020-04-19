@@ -1,6 +1,7 @@
 package ca.jrvs.apps.twitter.dao;
 
 import ca.jrvs.apps.twitter.dao.helper.HttpHelper;
+import ca.jrvs.apps.twitter.dao.helper.TwitterHttpHelper;
 import ca.jrvs.apps.twitter.model.Tweet;
 import ca.jrvs.apps.twitter.util.JsonUtil;
 import com.google.gdata.util.common.base.PercentEscaper;
@@ -15,13 +16,15 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import static ca.jrvs.apps.twitter.util.TwitterUtil.buildTweet;
+
 public class TwitterDao implements CrdDao<Tweet, String> {
 
     //URI constants
     private static final String API_BASE_URI = "https://api.twitter.com";
     private static final String POST_PATH = "/1.1/statuses/update.json";
-    private static final String SHOW_PATH = "1.1/statuses/show.json";
-    private static final String DELETE_PATH = "1.1/statuses/destroy";
+    private static final String SHOW_PATH = "/1.1/statuses/show.json";
+    private static final String DELETE_PATH = "/1.1/statuses/destroy";
     //URI symbols
     private static final String QUERY_SYM = "?";
     private static final String AMPERSAND = "&";
@@ -37,7 +40,8 @@ public class TwitterDao implements CrdDao<Tweet, String> {
     }
 
     @Override
-    public Tweet create(Tweet tweet) throws URISyntaxException, IOException, OAuthCommunicationException, OAuthExpectationFailedException, OAuthMessageSignerException {
+    public Tweet create(Tweet tweet) throws URISyntaxException, IOException, OAuthCommunicationException,
+            OAuthExpectationFailedException, OAuthMessageSignerException {
         URI uri;
         try {
             uri = getPostUri(tweet);
@@ -51,9 +55,7 @@ public class TwitterDao implements CrdDao<Tweet, String> {
     }
 
     private URI getPostUri(Tweet tweet) throws URISyntaxException {
-//        String str = API_BASE_URI + POST_PATH + QUERY_SYM + "status" + EQUAL + tweet.getId_str();
-//        URI uri = new URI(str);
-//        return uri;
+
         String status = tweet.getText();
         Double longitude = tweet.getCoordinates().getCoordinates().get(0);
         Double latitude = tweet.getCoordinates().getCoordinates().get(1);
@@ -65,7 +67,7 @@ public class TwitterDao implements CrdDao<Tweet, String> {
     /**
      * Checck response status code Convert Response Entity to Tweet
      */
-    private Tweet parseResponseBody(HttpResponse response, Integer expectedStatusCode) {
+    Tweet parseResponseBody(HttpResponse response, Integer expectedStatusCode) {
         Tweet tweet = null;
         //Check response status
         int status = response.getStatusLine().getStatusCode();
@@ -75,7 +77,7 @@ public class TwitterDao implements CrdDao<Tweet, String> {
             } catch (IOException e) {
                 System.out.println("Response has no entity");
             }
-            throw new RuntimeException("Unexpected HTTP status" + status);
+            throw new RuntimeException("Unexpected HTTP status " + status);
         }
         if (response.getEntity() == null) {
             throw new RuntimeException("Empty response body");
@@ -123,6 +125,37 @@ public class TwitterDao implements CrdDao<Tweet, String> {
     }
 
     private URI removeById(String s) throws URISyntaxException {
-        return new URI(API_BASE_URI + DELETE_PATH + "/" + "id" + ".json");
+        return new URI(API_BASE_URI + DELETE_PATH + "/" + s + ".json");
     }
+
+    public static void main(String[] args) throws IOException, OAuthExpectationFailedException, OAuthCommunicationException, OAuthMessageSignerException, URISyntaxException {
+
+        String consumerKey = System.getenv("consumerKey");
+        String consumerSecret = System.getenv("consumerSecret");
+        String accessToken = System.getenv("accessToken");
+        String tokenSecret = System.getenv("tokenSecret");
+        System.out.println("consumerKey:" + consumerKey + "|" + "consumerSecret:" + consumerSecret + "|" +
+                "accessToken:" + accessToken + "|" + "tokenSecret:" + tokenSecret);
+        HttpHelper httpHelper = new TwitterHttpHelper(consumerKey, consumerSecret, accessToken, tokenSecret);
+        TwitterDao dao = new TwitterDao(httpHelper);
+        //test create()
+        String hashTag = "#happycoding";
+        String text = "@Hello April" + hashTag + " " + System.currentTimeMillis();
+        Double lat = 15d;
+        Double lon = -10d;
+        Tweet postTweet = buildTweet(text, lon, lat);
+        System.out.println(JsonUtil.toJson(postTweet,true,true));
+        Tweet createTweet = dao.create(postTweet);
+        System.out.println(JsonUtil.toJson(createTweet,true,true));
+        //test findbyId()
+        String testId = "1251655382537244675";
+        Tweet findTweet= dao.findById(testId);
+        System.out.println(JsonUtil.toJson(findTweet, true, true));
+        System.out.println("Successfully find tweet!");
+//        //test deleteById()
+//        String testId2 = "1251497856957112320";
+//        Tweet deleteTweet = dao.deleteById(testId2);
+//        System.out.println(JsonUtil.toJson(deleteTweet,true,true));
+//        System.out.println("Successfully delete tweet");
+   }
 }

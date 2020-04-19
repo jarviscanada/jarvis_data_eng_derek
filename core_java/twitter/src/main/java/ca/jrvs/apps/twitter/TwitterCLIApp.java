@@ -9,9 +9,8 @@ import ca.jrvs.apps.twitter.dao.helper.TwitterHttpHelper;
 import ca.jrvs.apps.twitter.model.Tweet;
 import ca.jrvs.apps.twitter.service.Service;
 import ca.jrvs.apps.twitter.service.TwitterService;
+import ca.jrvs.apps.twitter.util.JsonUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
-
-import static ca.jrvs.apps.twitter.example.JsonParser.toJson;
 
 public class TwitterCLIApp {
     public static final String USAGE = "USAGE: TwitterCLIApp post|show|delete [options]";
@@ -31,7 +30,6 @@ public class TwitterCLIApp {
         Service service = new TwitterService(dao);
         Controller controller = new TwitterController(service);
         TwitterCLIApp app = new TwitterCLIApp(controller);
-
         //start app
         app.run(args);
     }
@@ -57,7 +55,7 @@ public class TwitterCLIApp {
 
     private void printTweet(Tweet tweet) {
         try {
-            System.out.println(toJson(tweet, true, false));
+            System.out.println(JsonUtil.toJson(tweet, true, false));
         } catch (JsonProcessingException e) {
             throw new RuntimeException("Unable to convert tweet object to string", e);
         }

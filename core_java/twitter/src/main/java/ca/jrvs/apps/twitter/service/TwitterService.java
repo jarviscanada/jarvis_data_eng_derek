@@ -33,18 +33,17 @@ public class TwitterService implements Service {
 
     private void validatePostTweet(Tweet tweet) throws Exception {
         int textLength = tweet.getText().length();
-        double longitude = tweet.getCoordinates().getCoordinates().get(0);
-        double latitude = tweet.getCoordinates().getCoordinates().get(1);
-        if (textLength <= 140 && longitude >= (-180) &&
-                longitude <= 180 && latitude >= (-90) && latitude <= 90) {
+        double lon = tweet.getCoordinates().getCoordinates().get(0);
+        double lat = tweet.getCoordinates().getCoordinates().get(1);
+        if (textLength <= 140 && lon >= (-180) &&
+                lon <= 180 && lat >= (-90) && lat <= 90) {
             System.out.println("Tweet is valid.");
         } else {
             if (tweet.getText().length() > 140) {
                 throw new IllegalArgumentException("Text length is over 140!");
-            } else if (tweet.getCoordinates().getCoordinates().get(1) < (-90) ||
-                    tweet.getCoordinates().getCoordinates().get(1) > 90) {
+            } if (lat < (-90) || lat > 90) {
                 throw new IllegalArgumentException("Latitude is out of range!");
-            } else {
+            } if(lon < (-180) || lon >180){
                 throw new IllegalArgumentException("Longitude is out of range!");
             }
         }
@@ -60,11 +59,14 @@ public class TwitterService implements Service {
     }
 
     private void validateId(String id) {
-        try {
-            int validId = Integer.parseInt(id);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Invalid id");
+        if(id.length()!=19){
+            throw new IllegalArgumentException("Invalid id!");
         }
+//        try {
+//            int validId = Integer.parseInt(id);
+//        } catch (NumberFormatException e) {
+//            throw new IllegalArgumentException("Invalid id");
+//        }
     }
 
     private void validateFields(String fields) {
@@ -75,11 +77,43 @@ public class TwitterService implements Service {
 
     @Override
     public List<Tweet> deleteTweets(String[] ids) throws IOException, OAuthCommunicationException, OAuthExpectationFailedException, OAuthMessageSignerException {
-        List<Tweet> delete = new ArrayList<Tweet>();
+        List<Tweet> delete = new ArrayList<>();
         for (String f : ids) {
             validateId(f);
             delete.add((Tweet) dao.deleteById(f));
         }
         return delete;
     }
+
+//    public static void main(String[] args) throws Exception {
+//        String consumerKey = System.getenv("consumerKey");
+//        String consumerSecret = System.getenv("consumerSecret");
+//        String accessToken = System.getenv("accessToken");
+//        String tokenSecret = System.getenv("tokenSecret");
+//        HttpHelper httpHelper = new TwitterHttpHelper(consumerKey, consumerSecret, accessToken, tokenSecret);
+//        TwitterDao dao = new TwitterDao(httpHelper);
+//        TwitterService service = new TwitterService(dao);
+//
+//        String hashTag = "#happycoding";
+//        String text = "@Hello April" + hashTag + " " + System.currentTimeMillis();
+//        Double lat = 10d;
+//        Double lon = 10d;
+//        Tweet postTweet = TwitterUtil.buildTweet(text, lon, lat);
+//        Tweet testPostTweet = service.postTweet(postTweet);
+//        System.out.println(JsonUtil.toJson(testPostTweet, true, true));
+//        System.out.println("Successfully post tweet!");
+//
+//        //test showTweet
+//        String[] fields = {"id_str"};
+//        Tweet testShowTweet = service.showTweet("1251658310891208704", fields);
+//        System.out.println(JsonUtil.toJson(testShowTweet, true, true));
+//        System.out.println("Successfully show tweet!");
+//
+//        //test deleteTweets
+//        String[] ids = {"1251658310891208704"};
+//        List<Tweet> list = new ArrayList<>();
+//        List<Tweet> testDeleteTweets = service.deleteTweets(ids);
+//        System.out.println(JsonUtil.toJson(testDeleteTweets, true, true));
+//        System.out.println("Successfully delete tweet!");
+//    }
 }
