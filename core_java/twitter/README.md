@@ -6,14 +6,14 @@ TwitterCLI App aims to post, search, and delete Twitter posts by Twitter REST AP
 ## MVC architecture
 This TwitterCLI app is based on MVC architecture, and it consists of the following components:
 
-Models: it is implemented with POJOs and encapsulates Tweet Objects, which consists of 5 classes:
++Models: it is implemented with POJOs and encapsulates Tweet Objects, which consists of 5 classes:
 Coordinates, Entities, Hashtag, Tweet, UserMention.
 
-Controller Layer: It interacts and parases user input (CLI args in this APP). It also calls service layer and return tweet.
++Controller Layer: It interacts and parases user input (CLI args in this APP). It also calls service layer and return tweet.
 
-Service Lay: It handles business logic and calls DAO layer and return tweet. If the tweet text is longer than 140 characters, and if longitude or latitude is out of range, errors will show up.
++Service Lay: It handles business logic and calls DAO layer and return tweet. If the tweet text is longer than 140 characters, and if longitude or latitude is out of range, errors will show up.
 
-Data Access Layer(DAL/DA)): It handles models, and post, show and delete tweets. This layer calls HttpHelper class and return results. HttpHelper is responsible for executing HTTP with URI, and authorizes the HTTP request using Twitter secrets.
++Data Access Layer(DAL/DA)): It handles models, and post, show and delete tweets. This layer calls HttpHelper class and return results. HttpHelper is responsible for executing HTTP with URI, and authorizes the HTTP request using Twitter secrets.
 
 ![image](./asset/diagram.png)
 ![image](./asset/TwitterDao.png)
