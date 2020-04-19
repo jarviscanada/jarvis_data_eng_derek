@@ -9,7 +9,9 @@ The app also takes above three arguments: regex, rootPath, outFile.
 + outFile: output file name
 
 ## Instruction
-The three arguments need to be specified in `Program arguments` in Intellij following the format:
+Post Twitter: '"post" "tweet_text" "latitude:longitude"', e.g. '"post" "Hello Twitter!" "20:20"'
+Show Twitter: "show" "tweet_id" "field1, field2", e.g. "show" "tweet_id" "text,coordinates"n 
+`Program arguments` in Intellij following the format:
 ```.*regex.* ./rootPath /outFile``` in order to search `.*regex.*` pattern from `./rootPath` directory recursively and output the result to `/rootPath` file.
 In order to achieve the goal, the workflow is defined as below:
 
