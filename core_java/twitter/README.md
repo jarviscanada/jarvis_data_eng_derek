@@ -24,22 +24,7 @@ Coordinates, Entities, Hashtag, Tweet, UserMention.
                225
             ]
          },
-         {
-            "text":"parsingJSON",
-            "indices":[
-               226,
-               238
-            ]
-         },
-         {
-            "text":"GeoTagged",
-            "indices":[
-               239,
-               249
-            ]
-         }
-      ],
-      "user_mentions":[
+       "user_mentions":[
          {
             "name":"Twitter API",
             "indices":[
@@ -63,7 +48,7 @@ Coordinates, Entities, Hashtag, Tweet, UserMention.
    "favorite_count":0,
    "favorited":false,
    "retweeted":false
-}\
+}
 ```
 
 + Controller Layer: It interacts and parases user input (CLI args in this APP). It also calls service layer and return tweet.
