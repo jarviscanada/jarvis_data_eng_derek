@@ -37,12 +37,13 @@ Coordinates, Entities, Hashtag, Tweet, UserMention. For example,
 ![image](./asset/TwitterDao.png)\
                                                          UML Diagram
 
-## Instruction
+## Quick Start Instruction
 + To post Twitter: `post "tweet_text" "latitude:longitude", e.g. post "Hello Twitter!" "20:20"`
 + To show Twitter: `show "tweet_id" "field1, field2", e.g. show "1251952635629928448" "text,coordinates"`
 + To delete Twitter: `delete "id", e.g. delete "1251952635629928448"`
 
 ## Improvements
-Grep App can add new feature such as counting the frequency of the regex in given directory.\
-Grep App can add line numbers to each line to make it more user-friendly.
+Retweet funcion can be implmented.
+Images can be posted/shown/deleted by this app.
+
 
