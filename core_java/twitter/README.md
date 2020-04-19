@@ -15,11 +15,8 @@ Service Lay: It handles business logic and calls DAO layer and return tweet. If 
 
 Data Access Layer: It handles models, and post, show and delete tweets.
 
-
-
-![image](./asset/TwitterDao.png)
 ![image](./asset/diagram.png)
-
+![image](./asset/TwitterDao.png)
 This app is similar to Linux command `egrep -r {regex} {rootPath} > {outFile}`.Java I/O and Lambda will be used in this app.
 The app also takes above three arguments: regex, rootPath, outFile.
 + regex: a special text string for describing a search pattern
