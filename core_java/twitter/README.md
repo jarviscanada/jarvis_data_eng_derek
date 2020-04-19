@@ -2,6 +2,23 @@
 
 ## Introduction
 TwitterCLI App aims to post, search, and delete Twitter posts by Twitter REST API. By completing this app, I get familiar with REST API, Twitter API, HTTP Client, JSON serializer/deserializer, JUnit & Mockito(testing) libraries, DTO, DAO, CRUD, MVC design patterns, and Spring Ioc, etc.
+
+## MVC architecture
+This TwitterCLI app is based on MVC architecture, and it consists of the following components:\
+
+Models: it is implemented with POJOs and encapsulates Tweet Objects, which consists of 5 classes:\
+Coordinates\
+Entities\
+Hashtag\
+Tweet\
+UserMention\
+
+Controller Layer: It interacts and parases user input (CLI args in this APP). It also calls service layer and return tweet.\
+Service Lay: It handles business logic and calls DAO layer and return tweet. If the tweet text is longer than 140 characters, and if longitude or latitude is out of range, errors will show up.\
+Data Access Layer: It handles models, and post, show and delete tweets.
+
+
+
 ![image](./asset/TwitterDao.png)
 ![image](./asset/diagram.png)
 
@@ -14,7 +31,7 @@ The app also takes above three arguments: regex, rootPath, outFile.
 ## Instruction
 To post Twitter: "post" "tweet_text" "latitude:longitude"', e.g. "post" "Hello Twitter!" "20:20"\
 To show Twitter: "show" "tweet_id" "field1, field2", e.g. "show" "1251952635629928448" "text,coordinates"\
-To delete Twitter: "delete" "id", e.g."delete" "1251952635629928448"\
+To delete Twitter: "delete" "id", e.g."delete" "1251952635629928448"
 
 ```
 matchedLines = []
