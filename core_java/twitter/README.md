@@ -13,7 +13,7 @@ The app also takes above three arguments: regex, rootPath, outFile.
 
 ## Instruction
 To post Twitter: "post" "tweet_text" "latitude:longitude"', e.g. "post" "Hello Twitter!" "20:20"\
-To show Twitter: "show" "tweet_id" "field1, field2", e.g. "show" "1251952635629928448" "text,coordinates"\ 
+To show Twitter: "show" "tweet_id" "field1, field2", e.g. "show" "1251952635629928448" "text,coordinates"\
 To delete Twitter: "delete" "id", e.g."delete" "1251952635629928448"\
 
 ```
