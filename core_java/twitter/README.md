@@ -6,8 +6,64 @@ TwitterCLI App aims to post, search, and delete Twitter posts by Twitter REST AP
 ## MVC architecture
 This TwitterCLI app is based on MVC architecture, and it consists of the following components:
 
-+ Models: it is implemented with POJOs and encapsulates Tweet Objects. Tweet Object consists of 5 classes:
++ Models:\
+Models are implemented with POJOs and encapsulates Tweet Objects. Tweet Object consists of 5 classes:
 Coordinates, Entities, Hashtag, Tweet, UserMention.
+{
+   "created_at":"Mon Feb 18 21:24:39 +0000 2019",
+   "id":
+,
+   "id_str":"1097607853932564480",
+   "text":"test with loc223",
+   "entities":{
+      "hashtags":[
+         {
+            "text":"documentation",
+            "indices":[
+               211,
+               225
+            ]
+         },
+         {
+            "text":"parsingJSON",
+            "indices":[
+               226,
+               238
+            ]
+         },
+         {
+            "text":"GeoTagged",
+            "indices":[
+               239,
+               249
+            ]
+         }
+      ],
+      "user_mentions":[
+         {
+            "name":"Twitter API",
+            "indices":[
+               4,
+               15
+            ],
+            "screen_name":"twitterapi",
+            "id":6253282,
+            "id_str":"6253282"
+         }
+      ]
+   },
+   "coordinates":{
+      "coordinates":[
+         -75.14310264,
+         40.05701649
+      ],
+      "type":"Point"
+   },
+   "retweet_count":0,
+   "favorite_count":0,
+   "favorited":false,
+   "retweeted":false
+}
 
 + Controller Layer: It interacts and parases user input (CLI args in this APP). It also calls service layer and return tweet.
 
