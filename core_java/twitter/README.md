@@ -13,7 +13,7 @@ Controller Layer: It interacts and parases user input (CLI args in this APP). It
 
 Service Lay: It handles business logic and calls DAO layer and return tweet. If the tweet text is longer than 140 characters, and if longitude or latitude is out of range, errors will show up.
 
-Data Access Layer: It handles models, and post, show and delete tweets.
+Data Access Layer(DAL/DA)): It handles models, and post, show and delete tweets. This layer calls HttpHelper class and return results. HttpHelper is responsible for executing HTTP with URI, and authorizes the HTTP request using Twitter secrets.
 
 ![image](./asset/diagram.png)
 ![image](./asset/TwitterDao.png)
