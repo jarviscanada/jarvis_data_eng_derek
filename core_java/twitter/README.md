@@ -34,7 +34,7 @@ Coordinates, Entities, Hashtag, Tweet, UserMention. For example,
 ![image](./asset/diagram.png)
                                                    Class Dependency Diagram
                                                    
-![image](./asset/TwitterDao.png)
+![image](./asset/TwitterDao.png)\
                                                          UML Diagram
 
 ## Instruction
