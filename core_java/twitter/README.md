@@ -8,42 +8,17 @@ This TwitterCLI app is based on MVC architecture, and it consists of the followi
 
 + Models:\
 Models are implemented with POJOs and encapsulates Tweet Objects. Tweet Object consists of 5 classes:
-Coordinates, Entities, Hashtag, Tweet, UserMention.
+Coordinates, Entities, Hashtag, Tweet, UserMention. For example,
 ```{
-   "created_at":"Mon Feb 18 21:24:39 +0000 2019",
-   "id":
-,
-   "id_str":"1097607853932564480",
-   "text":"test with loc223",
+   "created_at":"Sun April 19 21:24:09 +0000 2020",
+   "id":1097607853342564556,
+   "id_str":"1097607853342564556",
+   "text":"Hello Twitter!",
    "entities":{
-      "hashtags":[
-         {
-            "text":"documentation",
-            "indices":[
-               211,
-               225
-            ]
-         },
-       "user_mentions":[
-         {
-            "name":"Twitter API",
-            "indices":[
-               4,
-               15
-            ],
-            "screen_name":"twitterapi",
-            "id":6253282,
-            "id_str":"6253282"
-         }
-      ]
+      "hashtags":[],      
+      "user_mentions":[]  
    },
-   "coordinates":{
-      "coordinates":[
-         -75.14310264,
-         40.05701649
-      ],
-      "type":"Point"
-   },
+   "coordinates":null,    
    "retweet_count":0,
    "favorite_count":0,
    "favorited":false,
