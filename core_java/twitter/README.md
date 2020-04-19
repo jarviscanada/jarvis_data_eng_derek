@@ -1,7 +1,7 @@
-# Grep App 
+# TwitterCLI App 
 
 ## Introduction
-Grep App aims to search for a text pattern recursively in a given directory and sub-directory, and output matched lineds to a file.
+TwitterCLI App aims to post, search, and delete Twitter posts by Twitter REST API. By completing this app, I get familiar with REST API, Twitter API, HTTP Client, JSON serializer/deserializer, JUnit & Mockito(testing) libraries, DTO, DAO, CRUD, MVC design patterns, and Spring Ioc.  
 This app is similar to Linux command `egrep -r {regex} {rootPath} > {outFile}`.Java I/O and Lambda will be used in this app.
 The app also takes above three arguments: regex, rootPath, outFile.
 + regex: a special text string for describing a search pattern
@@ -9,9 +9,9 @@ The app also takes above three arguments: regex, rootPath, outFile.
 + outFile: output file name
 
 ## Instruction
-The three arguments need to be specified in `Program arguments` in Intellij following the format:
-```.*regex.* ./rootPath /outFile``` in order to search `.*regex.*` pattern from `./rootPath` directory recursively and output the result to `/rootPath` file.
-In order to achieve the goal, the workflow is defined as below:
+To post Twitter: "post" "tweet_text" "latitude:longitude"', e.g. "post" "Hello Twitter!" "20:20"\
+To show Twitter: "show" "tweet_id" "field1, field2", e.g. "show" "1251952635629928448" "text,coordinates"\ 
+To delete Twitter: "delete" "id", e.g."delete" "1251952635629928448"\
 
 ```
 matchedLines = []
