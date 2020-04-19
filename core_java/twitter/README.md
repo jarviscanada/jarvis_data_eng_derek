@@ -17,16 +17,11 @@ Coordinates, Entities, Hashtag, Tweet, UserMention.
 
 ![image](./asset/diagram.png)
 ![image](./asset/TwitterDao.png)
-This app is similar to Linux command `egrep -r {regex} {rootPath} > {outFile}`.Java I/O and Lambda will be used in this app.
-The app also takes above three arguments: regex, rootPath, outFile.
-+ regex: a special text string for describing a search pattern
-+ rootPath: root directory path
-+ outFile: output file name
 
 ## Instruction
-+ To post Twitter: `post "tweet_text" "latitude:longitude", e.g. "post" "Hello Twitter!" "20:20"`
-+ To show Twitter: `show "tweet_id" "field1, field2", e.g. "show" "1251952635629928448" "text,coordinates"`
-+ To delete Twitter: `delete "id", e.g."delete" "1251952635629928448"`
++ To post Twitter: `post "tweet_text" "latitude:longitude", e.g. post "Hello Twitter!" "20:20"`
++ To show Twitter: `show "tweet_id" "field1, field2", e.g. show "1251952635629928448" "text,coordinates"`
++ To delete Twitter: `delete "id", e.g. delete "1251952635629928448"`
 
 ## Improvements
 Grep App can add new feature such as counting the frequency of the regex in given directory.\
