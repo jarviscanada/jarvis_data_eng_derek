@@ -9,7 +9,7 @@ This TwitterCLI app is based on MVC architecture, and it consists of the followi
 + Models:\
 Models are implemented with POJOs and encapsulates Tweet Objects. Tweet Object consists of 5 classes:
 Coordinates, Entities, Hashtag, Tweet, UserMention.
-```{
+`{
    "created_at":"Mon Feb 18 21:24:39 +0000 2019",
    "id":
 ,
@@ -63,7 +63,7 @@ Coordinates, Entities, Hashtag, Tweet, UserMention.
    "favorite_count":0,
    "favorited":false,
    "retweeted":false
-}```\
+}`\
 
 + Controller Layer: It interacts and parases user input (CLI args in this APP). It also calls service layer and return tweet.
 
