@@ -38,7 +38,7 @@ Coordinates, Entities, Hashtag, Tweet, UserMention. For example,
                                                          UML Diagram
 
 ## Setup Intellij Environment Variables
-There are four environment varialbes to be set up in Intellij, and they are:
+There are four environment variables to be set up in Intellij, and they are:
 + consumerKey
 + consumerSecret
 + accessToken
