@@ -1,7 +1,7 @@
 # JDBC Project 
 
 ## Introduction
-
+JDBC project allows a connection between a Java application and an RDBMS. DAO and Repository design patterns 
 ![image](./Assets/image.png)
 
 
