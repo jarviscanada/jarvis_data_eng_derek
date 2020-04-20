@@ -43,7 +43,7 @@ Coordinates, Entities, Hashtag, Tweet, UserMention. For example,
 + To delete Twitter: `delete "id", e.g. delete "1251952635629928448"`
 
 ## Improvements
-+ Retweet funcion can be implmented.
++ Retweet funcion can be added to this app.
 + Images can be posted/shown/deleted by this app.
 
 
