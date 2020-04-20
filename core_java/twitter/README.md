@@ -38,7 +38,7 @@ Coordinates, Entities, Hashtag, Tweet, UserMention. For example,
                                                          UML Diagram
 
 ## Quick Start Instruction
-+ To post Twitter: `post "tweet_text" "latitude:longitude", e.g. post "Hello Twitter!" "20:20"`
++ To post Twitter: `post "tweet_text" "latitude:longitude", e.g. post "Hello Twitter!" "20.0:20.0"`
 + To show Twitter: `show "tweet_id" "field1, field2", e.g. show "1251952635629928448" "text,coordinates"`
 + To delete Twitter: `delete "id", e.g. delete "1251952635629928448"`
 
