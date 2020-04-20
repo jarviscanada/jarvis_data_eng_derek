@@ -54,5 +54,5 @@ You can find this information in logging in twitter developer account, and selec
 ## Improvements
 + Retweet funcion can be added to this app.
 + Images can be posted/shown/deleted by this app.
-
++ This app can be modified to use on cell phone, or integrate into a mobile app.
 
