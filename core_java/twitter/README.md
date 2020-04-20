@@ -42,7 +42,7 @@ There are four environment varialbes to be set up in Intellij, and they are:
 + consumerKey
 + consumerSecret
 + accessToken
-+ tokenSecret\
++ tokenSecret
 
 You can find this information in logging in twitter developer account, and select `Apps\twitterPipeline\Keys and tokens`,
 `consumerKey` value is`API key`, `consumerSecret` is `API secret key`, `accessToken` is `Access token`, `tokenSecret` is `Access token secret` correspondingly.
