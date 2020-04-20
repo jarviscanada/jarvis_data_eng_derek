@@ -43,8 +43,9 @@ There are four environment varialbes to be set up in Intellij, and they are:
 + consumerSecret
 + accessToken
 + tokenSecret\
+
 You can find this information in logging in twitter developer account, and select `Apps\twitterPipeline\Keys and tokens`,
-`consumerKey` value is`API key`, `consumerSecret` is `API secret key`, `accessToken` is `Access token`, `tokenSecret` is `Access token secret`.
+`consumerKey` value is`API key`, `consumerSecret` is `API secret key`, `accessToken` is `Access token`, `tokenSecret` is `Access token secret` correspondingly.
 ## Quick Start Instruction
 + To post Twitter: `post "tweet_text" "latitude:longitude", e.g. post "Hello Twitter!" "20.0:20.0"`
 + To show Twitter: `show "tweet_id" "field1, field2", e.g. show "1251952635629928448" "text,coordinates"`
