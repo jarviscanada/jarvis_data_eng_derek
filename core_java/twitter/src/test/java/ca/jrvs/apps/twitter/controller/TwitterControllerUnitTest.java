@@ -39,19 +39,18 @@ public class TwitterControllerUnitTest {
 
     @Test
     public void showTweet() throws IOException, OAuthExpectationFailedException, OAuthCommunicationException, OAuthMessageSignerException, URISyntaxException {
-        when(service.showTweet(any(),any())).thenReturn(new Tweet());
-        String[] text = {"test", "1251900576075481090","id_str"};
+        when(service.showTweet(any())).thenReturn(new Tweet());
+        String[] text = {"test", "1251900576075481090"};
         Tweet testShowTweet = controller.showTweet(text);
         assertEquals(null, testShowTweet.getText());
-        assertEquals(null, testShowTweet.getId_str());
     }
 
     @Test
     public void deleteTweet() throws OAuthExpectationFailedException, OAuthCommunicationException, OAuthMessageSignerException, IOException {
         when(service.deleteTweets(any())).thenReturn(new ArrayList<>());
-        String[] testDelete = {"test","1251900576075481090, 1251658310891208704"};
+        String[] testDelete = {"test", "1251900576075481090, 1251658310891208704"};
         List<Tweet> testDeleteTweet = controller.deleteTweet(testDelete);
-        for (Tweet t: testDeleteTweet){
+        for (Tweet t : testDeleteTweet) {
             assertEquals(null, t.getText());
             assertEquals(null, t.getId_str());
         }
