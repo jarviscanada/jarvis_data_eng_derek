@@ -12,7 +12,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.util.EntityUtils;
 import org.springframework.http.HttpMethod;
 
 import java.io.IOException;
@@ -20,6 +19,15 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class TwitterHttpHelper implements HttpHelper {
+    private OAuthConsumer consumer;
+    private HttpClient httpClient;
+
+    public TwitterHttpHelper(String consumerKey, String consumerSecret, String accessToken, String tokenSecret) {
+        consumer = new CommonsHttpOAuthConsumer(consumerKey, consumerSecret);
+        consumer.setTokenWithSecret(accessToken, tokenSecret);
+        httpClient = HttpClientBuilder.create().build();
+    }
+
     public static void main(String[] args) throws IOException, URISyntaxException, OAuthCommunicationException, OAuthExpectationFailedException, OAuthMessageSignerException {
         String consumerKey = System.getenv("consumerKey");
         String consumerSecret = System.getenv("consumerSecret");
@@ -28,19 +36,8 @@ public class TwitterHttpHelper implements HttpHelper {
         System.out.println("consumerKey:" + consumerKey + "|" + "consumerSecret:" + consumerSecret + "|" +
                 "accessToken:" + accessToken + "|" + "tokenSecret:" + tokenSecret);
         //create component
-        HttpHelper httpHelper = new TwitterHttpHelper(consumerKey,consumerSecret,accessToken,tokenSecret);
+        HttpHelper httpHelper = new TwitterHttpHelper(consumerKey, consumerSecret, accessToken, tokenSecret);
         HttpResponse response = httpHelper.httpPost(new URI("https://api.twitter.com/1.1/statuses/update.json?status=first_tweet2"));
-        System.out.println(EntityUtils.toString(response.getEntity()));
-
-    }
-    private OAuthConsumer consumer;
-    private HttpClient httpClient;
-
-    public TwitterHttpHelper(String consumerKey, String consumerSecret, String accessToken, String tokenSecret) {
-        consumer = new CommonsHttpOAuthConsumer(consumerKey, consumerSecret);
-        consumer.setTokenWithSecret(accessToken, tokenSecret);
-        HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
-        httpClient = httpClientBuilder.build();
     }
 
     @Override

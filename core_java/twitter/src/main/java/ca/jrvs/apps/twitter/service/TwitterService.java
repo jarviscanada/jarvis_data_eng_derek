@@ -41,9 +41,11 @@ public class TwitterService implements Service {
         } else {
             if (tweet.getText().length() > 140) {
                 throw new IllegalArgumentException("Text length is over 140!");
-            } if (lat < (-90) || lat > 90) {
+            }
+            if (lat < (-90) || lat > 90) {
                 throw new IllegalArgumentException("Latitude is out of range!");
-            } if(lon < (-180) || lon >180){
+            }
+            if (lon < (-180) || lon > 180) {
                 throw new IllegalArgumentException("Longitude is out of range!");
             }
         }
@@ -57,16 +59,17 @@ public class TwitterService implements Service {
         }
         return (Tweet) dao.findById(id);
     }
+    //Overload
+    public Tweet showTweet(String id) throws URISyntaxException, OAuthExpectationFailedException, OAuthCommunicationException, OAuthMessageSignerException, IOException {
+        validateId(id);
+        return (Tweet) dao.findById(id);
+    }
+
 
     private void validateId(String id) {
-        if(id.length()!=19){
+        if (id.length() != 19) {
             throw new IllegalArgumentException("Invalid id!");
         }
-//        try {
-//            int validId = Integer.parseInt(id);
-//        } catch (NumberFormatException e) {
-//            throw new IllegalArgumentException("Invalid id");
-//        }
     }
 
     private void validateFields(String fields) {
@@ -84,6 +87,7 @@ public class TwitterService implements Service {
         }
         return delete;
     }
+}
 
 //    public static void main(String[] args) throws Exception {
 //        String consumerKey = System.getenv("consumerKey");
@@ -116,4 +120,4 @@ public class TwitterService implements Service {
 //        System.out.println(JsonUtil.toJson(testDeleteTweets, true, true));
 //        System.out.println("Successfully delete tweet!");
 //    }
-}
+

@@ -23,20 +23,6 @@ public class TwitterServiceIntTest {
     Double lat1 = 15d;
     Double lon1 = -10d;
     Tweet postTweet = TwitterUtil.buildTweet(text1, lon1, lat1);
-//    @Before
-//    public void setUp() throws Exception {
-//
-//
-//        String hashTag = "#happycoding";
-//        String text = "@Hello April" + hashTag + " " + System.currentTimeMillis();
-//        Double lat = 15d;
-//        Double lon = -10d;
-//        Tweet postTweet = TwitterUtil.buildTweet(text, lon, lat);
-//
-//        Tweet testTweet = service.postTweet(postTweet);
-//        System.out.println(JsonUtil.toJson(testTweet, true, true));
-//    }
-
     @Test
     public void postTweet() throws Exception {
         Tweet testPostTweet = service.postTweet(postTweet);

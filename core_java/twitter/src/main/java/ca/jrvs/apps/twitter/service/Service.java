@@ -43,4 +43,5 @@ public interface Service {
    */
   List<Tweet> deleteTweets(String[] ids) throws IOException, OAuthCommunicationException, OAuthExpectationFailedException, OAuthMessageSignerException;
 
+    Tweet showTweet(String tweet_id) throws URISyntaxException, OAuthExpectationFailedException, OAuthCommunicationException, OAuthMessageSignerException, IOException;
 }
