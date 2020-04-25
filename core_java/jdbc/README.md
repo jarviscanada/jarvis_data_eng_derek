@@ -1,7 +1,7 @@
 # JDBC Project 
 
 ## Introduction
-JDBC allows a connection between a Java application and an RDBMS, such as PostgreSql. This app can create, update, read and delete (CRUD) data from PostgreSql database. By implementing this project, I have learnt about the concepts of Data Transfer Object(DTO), Data Access Object(DAO), and Repository design patterns, and how to build the connection between Java and RDBMS.\
+JDBC allows a connection between a Java application and an RDBMS, such as PostgreSql. This app can create, update, read and delete (CRUD) data from PostgreSql database. By implementing this project, I have learnt about the concepts of Data Transfer Object(DTO), Data Access Object(DAO), and Repository design patterns, and how to build the connection between Java and RDBMS.
 ## ER Diagram
 ![image](./Assets/image.png)
 
