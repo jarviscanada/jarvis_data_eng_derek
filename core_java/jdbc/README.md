@@ -1,11 +1,9 @@
 # JDBC Project 
 
 ## Introduction
-JDBC project allows a connection between a Java application and an RDBMS. DAO and Repository design patterns 
+JDBC allows a connection between a Java application and an RDBMS, such as PostgreSql. This app can create, update, read and delete (CRUD) data from PostgreSql database. By implementing this project, I have learnt about the concepts of Data Transfer Object(DTO), Data Access Object(DAO), and Repository design patterns, and how to build the connection between Java and RDBMS.
 ![image](./Assets/image.png)
-
-
-
+ER Diagram
 
 ## Instruction
 The three arguments need to be specified in `Program arguments` in Intellij following the format:
