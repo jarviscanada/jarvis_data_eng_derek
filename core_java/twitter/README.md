@@ -44,7 +44,7 @@ There are four environment variables to be set up in Intellij, and they are:
 + accessToken
 + tokenSecret
 
-You can find this information in logging in twitter developer account, and select `Apps\twitterPipeline\Keys and tokens`,
+You can find this information by logging in twitter developer account, and select `Apps\twitterPipeline\Keys and tokens`,
 `consumerKey` value is`API key`, `consumerSecret` is `API secret key`, `accessToken` is `Access token`, `tokenSecret` is `Access token secret` correspondingly.
 ## Quick Start Instruction
 + To post Twitter: `post "tweet_text" "latitude:longitude", e.g. post "Hello Twitter!" "20.0:20.0"`
