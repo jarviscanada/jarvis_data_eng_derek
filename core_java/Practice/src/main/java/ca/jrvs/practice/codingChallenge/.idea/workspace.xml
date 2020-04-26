@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c03b29ab-f0ab-4016-bf7e-6d435f4655ad" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../twitter/src/main/java/ca/jrvs/apps/twitter/TwitterCLIApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../twitter/src/main/java/ca/jrvs/apps/twitter/TwitterCLIApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../twitter/src/main/java/ca/jrvs/apps/twitter/controller/TwitterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../twitter/src/main/java/ca/jrvs/apps/twitter/controller/TwitterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../twitter/src/main/java/ca/jrvs/apps/twitter/dao/TwitterDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../twitter/src/main/java/ca/jrvs/apps/twitter/dao/TwitterDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../twitter/src/main/java/ca/jrvs/apps/twitter/dao/helper/TwitterHttpHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../twitter/src/main/java/ca/jrvs/apps/twitter/dao/helper/TwitterHttpHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../twitter/src/main/java/ca/jrvs/apps/twitter/service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../twitter/src/main/java/ca/jrvs/apps/twitter/service/Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../twitter/src/main/java/ca/jrvs/apps/twitter/service/TwitterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../twitter/src/main/java/ca/jrvs/apps/twitter/service/TwitterService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../twitter/src/test/java/ca/jrvs/apps/twitter/dao/helper/TwitterHttpHelperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../twitter/src/test/java/ca/jrvs/apps/twitter/dao/helper/TwitterHttpHelperTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../twitter/src/test/java/ca/jrvs/apps/twitter/service/TwitterServiceIntTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../twitter/src/test/java/ca/jrvs/apps/twitter/service/TwitterServiceIntTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../twitter/target/classes/ca/jrvs/apps/twitter/controller/TwitterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../twitter/target/classes/ca/jrvs/apps/twitter/controller/TwitterController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../twitter/target/classes/ca/jrvs/apps/twitter/dao/TwitterDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../twitter/target/classes/ca/jrvs/apps/twitter/dao/TwitterDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../twitter/target/classes/ca/jrvs/apps/twitter/dao/helper/TwitterHttpHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../twitter/target/classes/ca/jrvs/apps/twitter/dao/helper/TwitterHttpHelper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../twitter/target/classes/ca/jrvs/apps/twitter/service/Service.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../twitter/target/classes/ca/jrvs/apps/twitter/service/Service.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../twitter/target/classes/ca/jrvs/apps/twitter/service/TwitterService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../twitter/target/classes/ca/jrvs/apps/twitter/service/TwitterService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../twitter/target/test-classes/ca/jrvs/apps/twitter/dao/helper/TwitterHttpHelperTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../twitter/target/test-classes/ca/jrvs/apps/twitter/dao/helper/TwitterHttpHelperTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../twitter/target/test-classes/ca/jrvs/apps/twitter/service/TwitterServiceIntTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../twitter/target/test-classes/ca/jrvs/apps/twitter/service/TwitterServiceIntTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../../springboot/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../../springboot/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../../springboot/src/main/java/ca/jrvs/apps/trading/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../../springboot/src/main/java/ca/jrvs/apps/trading/Application.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../../../../../.." />
+  </component>
+  <component name="ProjectId" id="1aucH6pgsjvXhJj5htUHbSG8xZR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c03b29ab-f0ab-4016-bf7e-6d435f4655ad" name="Default Changelist" comment="" />
+      <created>1587588828430</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1587588828430</updated>
+      <workItem from="1587588830058" duration="27000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="simpleUML.UMLToolWindowPlugin">
+    <General>
+      <option name="birdViewUpdateDelay" value="2000" />
+      <option name="defaultFileLocation" value="file://$PROJECT_DIR$/.." />
+    </General>
+    <Classdiagram>
+      <option name="diagramTitleFont" value="SansSerif,1,12" />
+      <option name="diagramFont" value="SansSerif,0,10" />
+      <option name="defaultFieldsExpanded" value="false" />
+      <option name="defaultContructorsExpanded" value="false" />
+      <option name="defaultMethodsExpanded" value="false" />
+      <option name="showParameters" value="true" />
+      <option name="showTooltip" value="true" />
+      <option name="showReturnValues" value="true" />
+      <option name="longModifier" value="true" />
+      <option name="implementsBehaviour" value="1" />
+      <option name="extendsBehaviour" value="1" />
+      <option name="compartmentBehaviour" value="1" />
+      <option name="interfaceBackgroundColor" value="-6494306" />
+      <option name="abstractClassBackgroundColor" value="-1580132" />
+      <option name="classBackgroundColor" value="-6508057" />
+      <option name="diagramBackgroundColor" value="-1" />
+      <option name="useAntialiasedConnectors" value="true" />
+      <option name="quickSourceLinkColor" value="-16776961" />
+      <option name="quickDiagramLinkColor" value="-8454144" />
+      <option name="drawDecorations" value="false" />
+      <option name="hideFieldList" value="" />
+      <option name="showFieldList" value="" />
+      <option name="hideConstructorList" value="" />
+      <option name="showConstructorList" value="" />
+      <option name="hideMethodList" value="" />
+      <option name="showMethodList" value="" />
+      <option name="minimumFigureSize" value="0,0" />
+    </Classdiagram>
+    <Dependencydiagram>
+      <option name="diagramTitleFont" value="SansSerif,1,12" />
+      <option name="diagramFont" value="SansSerif,0,10" />
+      <option name="diagramBackgroundColor" value="-1" />
+      <option name="useAntialiasedConnectors" value="true" />
+      <option name="packageNameCompressionLevel" value="0" />
+    </Dependencydiagram>
+    <Packagediagram>
+      <option name="diagramTitleFont" value="SansSerif,0,12" />
+      <option name="diagramFont" value="SansSerif,0,10" />
+      <option name="packageBackgroundColor" value="-4144960" />
+      <option name="diagramBackgroundColor" value="-1" />
+      <option name="useAntialiasedConnectors" value="true" />
+      <option name="packageNameCompressionLevel" value="2" />
+    </Packagediagram>
+  </component>
+</project>
