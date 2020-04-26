@@ -33,6 +33,6 @@ JavaGrepImp class(JavaGrepImp.java) implements JavaGrep interface.
 ListFiles() and readLines() methods leaverage collections data structure, and data resides in memory, so when processing large files, it will consume lots of memory resource. In order to overcome the drawback of collections, streams are introduced to override listFiles() and readLines() methods because stream is not a data structure that stores data; instead, it conveys elements from a source such as data structure through a pipeline of computational operations.
 
 ## Improvements
-+ Grep App can add new feature such as counting the frequency of the regex in given directory.\
++ Grep App can add new feature such as counting the frequency of the regex in given directory.
 + Grep App can add line numbers to each line to make it more user-friendly.
 
