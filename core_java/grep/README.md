@@ -35,4 +35,4 @@ ListFiles() and readLines() methods leaverage collections data structure, and da
 ## Improvements
 + Grep App can add new feature such as counting the frequency of the regex in given directory.
 + Grep App can add line numbers to each line to make it more user-friendly.
-+ Grep App  can add function of inputting wildcard of the text to be searched for.
++ Grep App  can add function of inputting wildcard of the text to be searched for instead of exact text.
