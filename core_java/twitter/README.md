@@ -25,7 +25,7 @@ Coordinates, Entities, Hashtag, Tweet, UserMention. For example,
    "retweeted":false
 }
 ```
-+ Controller Layer: It interacts and parases user input (CLI args in this APP). It also calls service layer and return tweet.
++ Controller Layer: It interacts and parases user input (CLI args in this APP). It also calls service layer and returns tweet.
 
 + Service Layer: It handles business logic and calls DAO layer and return tweet. If the tweet text is longer than 140 characters, and if longitude or latitude is out of range, errors will show up.
 
