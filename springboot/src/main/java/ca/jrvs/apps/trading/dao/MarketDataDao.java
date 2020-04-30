@@ -209,6 +209,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
 
     @Override
     public void deleteAll() {
+        throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
