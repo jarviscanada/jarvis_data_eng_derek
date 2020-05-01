@@ -56,7 +56,7 @@ public class QuoteService {
         List<Quote> updateQuotes = null;
         Optional<IexQuote> iexQuote;
         for (Quote q : allQuotes) {
-            iexQuote = marketDataDao.findById(q.getTicker());
+            iexQuote = marketDataDao.findById(q.getId());
             updateQuotes.add(buildQuoteFromIexQuote(iexQuote.get()));
         }
         quoteDao.saveAll(updateQuotes);

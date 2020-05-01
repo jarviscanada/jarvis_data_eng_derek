@@ -39,7 +39,7 @@ public class QuoteDao implements CrudRepository<Quote, String> {
 
     @Override
     public Quote save(Quote quote) {
-        if (existsById(quote.getTicker())) {
+        if (existsById(quote.getId())) {
             int updatedRowNo = updateOne(quote);
             if (updatedRowNo != 1) {
                 throw new DataRetrievalFailureException("Unable to update quote");

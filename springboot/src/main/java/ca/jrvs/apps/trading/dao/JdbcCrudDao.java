@@ -27,7 +27,7 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
 
     @Override
     public <S extends T> S save(S entity) {
-        if (existsById(entity.getTicker())) {
+        if (existsById(entity.getId())) {
             if (updateOne(entity) != 1) {
                 throw new DataRetrievalFailureException("Unable to update quote");
             }

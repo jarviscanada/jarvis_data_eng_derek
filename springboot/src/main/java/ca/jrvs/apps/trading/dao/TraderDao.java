@@ -1,5 +1,6 @@
 package ca.jrvs.apps.trading.dao;
 
+import ca.jrvs.apps.trading.model.domain.Trader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import javax.sql.DataSource;
+import java.util.Optional;
 
 public class TraderDao extends JdbcCrudDao<Trader> {
 
@@ -42,6 +44,16 @@ public class TraderDao extends JdbcCrudDao<Trader> {
     @Override
     public int updateOne(Trader entity){
         throw new UnsupportedOperationException("Not implemented");
+    }
+
+    @Override
+    public <S extends Trader> Iterable<S> saveAll(Iterable<S> iterable) {
+        return null;
+    }
+
+    @Override
+    public Optional<Trader> findById(Integer integer) {
+        return Optional.empty();
     }
 
     @Override
