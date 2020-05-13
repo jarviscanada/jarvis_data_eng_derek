@@ -41,7 +41,7 @@ public class QuoteController {
     }
 
     @ApiOperation(value = "Update quote table using iex data", notes = "Update " +
-            "all quotes in the quote table. Use IEX trading API as markete data source.")
+            "all quotes in the quote table. Use IEX trading API as market data source.")
     @PutMapping(path = "/iexMarketData")
     @ResponseStatus(HttpStatus.OK)
     public void updateMarketData() {

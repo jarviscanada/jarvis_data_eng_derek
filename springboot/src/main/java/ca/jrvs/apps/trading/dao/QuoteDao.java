@@ -134,7 +134,7 @@ public class QuoteDao implements CrudRepository<Quote, String> {
 
     @Override
     public void delete(Quote quote) {
-        throw new UnsupportedOperationException("Not implemented");
+        deleteById(quote.getId());
     }
 
     @Override
@@ -144,7 +144,7 @@ public class QuoteDao implements CrudRepository<Quote, String> {
 
     @Override
     public void deleteAll() {
-        String delteAllSql = "DELETE FROM " + TABLE_NAME;
-        jdbcTemplate.update(delteAllSql);
+        String deleteAllSql = "DELETE FROM " + TABLE_NAME;
+        jdbcTemplate.update(deleteAllSql);
     }
 }

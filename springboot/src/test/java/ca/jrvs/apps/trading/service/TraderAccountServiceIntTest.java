@@ -1,11 +1,12 @@
 package ca.jrvs.apps.trading.service;
 
 import ca.jrvs.apps.trading.TestConfig;
+import ca.jrvs.apps.trading.dao.AccountDao;
 import ca.jrvs.apps.trading.dao.TraderDao;
+import ca.jrvs.apps.trading.model.view.TraderAccountView;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springfamework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 

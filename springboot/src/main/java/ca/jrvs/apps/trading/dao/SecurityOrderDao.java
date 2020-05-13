@@ -1,6 +1,6 @@
 package ca.jrvs.apps.trading.dao;
 
-import ca.jrvs.apps.trading.model.domain.Trader;
+import ca.jrvs.apps.trading.model.domain.SecurityOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,19 +9,21 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-@Repository
-public class TraderDao extends JdbcCrudDao<Trader> {
+import java.util.ArrayList;
+import java.util.List;
 
+@Repository
+public class SecurityOrderDao extends JdbcCrudDao<SecurityOrder> {
     private static final Logger logger = LoggerFactory.getLogger(TraderDao.class);
 
-    private final String TABLE_NAME = "trader";
+    private final String TABLE_NAME = "security_order";
     private final String ID_COLUMN = "id";
 
     private JdbcTemplate jdbcTemplate;
     private SimpleJdbcInsert simpleInsert;
 
     @Autowired
-    public TraderDao(DataSource dataSource) {
+    public SecurityOrderDao(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
         this.simpleInsert = new SimpleJdbcInsert(dataSource).withTableName(TABLE_NAME).usingGeneratedKeyColumns(ID_COLUMN);
     }
@@ -47,22 +49,33 @@ public class TraderDao extends JdbcCrudDao<Trader> {
     }
 
     @Override
-    Class<Trader> getEntityClass() {
-        return Trader.class;
+    Class<SecurityOrder> getEntityClass() {
+        return SecurityOrder.class;
     }
 
     @Override
-    public int updateOne(Trader entity) {
+    public int updateOne(SecurityOrder securityOrder) {
+        String updateSecurityOrderSql = "UPDATE security_order SET status=?, size=?, price=?, notes =? WHERE ticker =?";
+        return jdbcTemplate.update(updateSecurityOrderSql, makeUpdateValues(securityOrder));
+    }
+
+    private Object[] makeUpdateValues(SecurityOrder securityOrder) {
+        List list = new ArrayList();
+        list.add(securityOrder.getStatus());
+        list.add(securityOrder.getSize());
+        list.add(securityOrder.getPrice());
+        list.add(securityOrder.getNotes());
+        Object[] obj = list.toArray();
+        return obj;
+    }
+
+    @Override
+    public <S extends SecurityOrder> Iterable<S> saveAll(Iterable<S> iterable) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public <S extends Trader> Iterable<S> saveAll(Iterable<S> iterable) {
-        throw new UnsupportedOperationException("Not implemented");
-    }
-
-    @Override
-    public void deleteAll(Iterable<? extends Trader> entities) {
+    public void deleteAll(Iterable<? extends SecurityOrder> iterable) {
         throw new UnsupportedOperationException("Not implemented");
     }
 }

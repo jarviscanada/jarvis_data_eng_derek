@@ -4,13 +4,18 @@ import ca.jrvs.apps.trading.model.domain.Entity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataRetrievalFailureException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepository<T, Integer> {
     private static final Logger logger = LoggerFactory.getLogger(JdbcCrudDao.class);
@@ -26,6 +31,11 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
     abstract Class<T> getEntityClass();
 
     @Override
+    public void delete(T t) {
+        deleteById(t.getId());
+    }
+
+    @Override
     public <S extends T> S save(S entity) {
         if (existsById(entity.getId())) {
             if (updateOne(entity) != 1) {
@@ -37,8 +47,8 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
         return entity;
     }
 
-    private <S extends T> void addOne(S entity){
-        Object object;
+    private <S extends T> void addOne(S entity) {
+        //Object object;
         SqlParameterSource parameterSource = new BeanPropertySqlParameterSource(entity);
 
         Number newId = getSimpleJdbcInsert().executeAndReturnKey(parameterSource);
@@ -48,30 +58,66 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
     abstract public int updateOne(T entity);
 
     @Override
+    public Optional<T> findById(Integer id) {
+        Optional<T> entity = Optional.empty();
+        String selectSql = "SELECT * FROM " + getTableName() + " WHERE " + getIdColumnName() + " =?";
+        try {
+            entity = Optional.ofNullable((T) getJdbcTemplate().queryForObject(selectSql, BeanPropertyRowMapper.newInstance(getEntityClass()), id));
+        } catch (IncorrectResultSizeDataAccessException e) {
+            logger.debug("Can't find trader id:" + id, e);
+        }
+        return entity;
+    }
+
+    @Override
     public boolean existsById(Integer id) {
-        return false;
+        String existsByIdSql = "SELECT * FROM " + getTableName() + " WHERE " + id + " =?";
+        if (getJdbcTemplate().update(existsByIdSql) != 0) {
+            return true;
+        } else return false;
+
     }
 
     @Override
     public List<T> findAll() {
-        return null;
+        String findAllByIdSql = "SELECT * FROM " + getTableName();
+        List<T> t = getJdbcTemplate().query(findAllByIdSql, BeanPropertyRowMapper.newInstance(getEntityClass()));
+        return t;
     }
 
     @Override
-    public List<T> findAllById(Iterable<Integer> iterable) {
-        return null;
+    public List<T> findAllById(Iterable<Integer> ids) {
+        List<T> t = new ArrayList<>();
+
+        for (Integer i : ids) {
+            try {
+                existsById(i);
+                t.add(findById(i).get());
+            } catch (EmptyResultDataAccessException e) {
+                logger.debug("Cannot find given ticker:" + i, e);
+            }
+        }
+        return t;
     }
 
     @Override
     public long count() {
-        return 0;
+        String countSql = "SELECT COUNT(*) FROM " + getTableName();
+        return getJdbcTemplate().queryForObject(countSql, Long.class);
     }
 
     @Override
     public void deleteById(Integer id) {
-
+        if(id==null){
+            throw new IllegalArgumentException("Ticker cannot be null!");
+        }
+        String deleteByIdSql = "DELETE FROM " + getTableName() + " WHERE " + id + " =?";
+        getJdbcTemplate().update(deleteByIdSql);
     }
 
     @Override
-    public void deleteAll(){}
+    public void deleteAll() {
+        String deleteAllSql = "DELETE FROM " + getTableName();
+        getJdbcTemplate().update(deleteAllSql);
+    }
 }

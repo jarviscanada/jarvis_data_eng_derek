@@ -1,5 +1,7 @@
 package ca.jrvs.apps.trading.controller;
 
+import ca.jrvs.apps.trading.model.domain.MarketOrderDto;
+import ca.jrvs.apps.trading.model.domain.SecurityOrder;
 import ca.jrvs.apps.trading.service.OrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
