@@ -1,5 +1,5 @@
 
-# Derek Song . Jarvis Consulting
+# DEREK_SONG . Jarvis Consulting
 
 My name is Derek Song, and I am currently working with Jarvis as a data engineer. My role is to utilize Java and Scala programming languages to build applications. I am proficient in Java, Linux, Bash, SQL, RDBMS, JDBC and DAO design pattern. Before that, I have achieved a Master's Degree and Bachelor's Degree in Engineering, and I have strong programming fundamentals and learning skills. Besides, I worked in TS Tech Canada Inc. for three years, where I built very good communication skills and achieved hands-on experience of working with team and contractors. I really enjoyed my work with Jarvis, and I would love to dig much deeper into this area.
 
