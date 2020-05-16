@@ -43,7 +43,7 @@ public class DashboardService {
     public PortfolioView getProfileViewByTraderId(Integer traderId) {
         validateTraderID(traderId);
         Account account = findAccountByTraderId(traderId);
-        Position position = positionDao.findById(account.getId()).get();.
+        Position position = positionDao.findById(account.getId()).get();
         PortfolioView portfolioView = new PortfolioView();
         portfolioView.setAccount(account);
         portfolioView.setPosition(position);

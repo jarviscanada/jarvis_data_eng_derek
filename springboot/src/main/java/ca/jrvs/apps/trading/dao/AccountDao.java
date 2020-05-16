@@ -92,7 +92,7 @@ public class AccountDao extends JdbcCrudDao<Account> {
     }
 
     public Account findByTraderId(Integer trader_id) {
-        String selectSql = "SELECT * FROM " + getTableName() + " WHERE " + getIdColumnName() + " =?";
+        String selectSql = "SELECT * FROM " + getTableName() + " WHERE " + "trader_id" + " =?";
         Account account = new Account();
         try {
             account = getJdbcTemplate().queryForObject(selectSql, BeanPropertyRowMapper.newInstance(getEntityClass()), trader_id);            ;
