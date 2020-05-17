@@ -16,7 +16,7 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_derek](htt
 
 - **[Cluster Monitor](./linux_sql)**: Implemented a Cluster Monitor Agent which is a tool to collect server hardware specifications and monitor node resource usages (such as CPU and Memory) in real-time, and store all of the data in PostgreSQL database for Linux Cluster Administration Team. 
 - **[Core Java Apps](./core_java)**: Implemented all three apps in this project. Created Grep application which is used to search for a text pattern recursively in a given directory and output matched lines to a file. Implemented JDBC application that utilized JDBC to connect Java application and PostgreSQL database. Created TwitterCLI application that can create, read, and delete tweets from CLI. MVC architecture is invoked to split the application into multiple layers. 
-- **[SpringBoot App](./springboot)**: Implemented SpringBoot application which allows users to buy/sell stocks, check the latest quotes, etc. SpringBoot app consists of three tiers based on MVC architecture: Client tier, Application tier, and Database tier. The Client tier allows users to use HTTP clients to consume the REST, such as postman, curl, or Java. The Application tier is a SpringBoot Java program to process data only. The Database tier ensures that application data is stored in a database instance to avoid data loss. Springboot, Maven, Mockito, and PostgreSQL are utilized in the application.
+- **[SpringBoot App](./springboot)**: Implemented SpringBoot application which allows users to buy/sell stocks, check the latest quotes, etc. SpringBoot app consists of three tiers based on MVC architecture: Client tier, Application tier, and Database tier. The Client tier allows users to use HTTP clients to consume the REST, such as Postman, curl, or Java. The Application tier is a SpringBoot Java program to process data only. The Database tier ensures that application data is stored in a database instance to avoid data loss. Springboot, Maven, Mockito, and PostgreSQL are utilized in the application.
 - **[Cloud & DevOps](./cloud_devops)**: Not started
 - **[Hadoop](./hadoop)**: Not started
 - **[Spark/Scala](./spark)**:  Not started
@@ -33,7 +33,7 @@ Developed applications, optimized performance, wrote documents, planned and coor
 
 **Beijing Jiaotong University (2009-2011)**, Master of Electrical Engineering and Automation
 
-- **Ultrasound flaw detector project:** Designed the software of an ultrasound flaw detector, which was used to detect flaws and cracks on the railway. The detector emits, receives and processes ultrasound and displays flaws on screen
+- **Ultrasound flaw detector project:** Designed an ultrasound flaw detector, which was used to detect flaws and cracks on the railway. The detector emits, receives and processes ultrasound and displays flaws on screen
 
 **Beijing Jiaotong University (2005-2009)**, Bachelor of Electrical Engineering and Automation
 
