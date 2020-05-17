@@ -39,4 +39,3 @@ Developed applications, optimized performance, wrote documents, planned and coor
 
 ## Certificates & Awards & Activities
 - Patents Awarded: worked with the research team to develop plasma technology to process wastewater and air pollutant, and successfully awarded two patents
-
