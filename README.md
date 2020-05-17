@@ -38,4 +38,4 @@ Developed applications, optimized performance, wrote documents, planned and coor
 **Beijing Jiaotong University (2005-2009)**, Bachelor of Electrical Engineering and Automation
 
 ## Certificates & Awards & Activities
-- Patents Awarded: worked with the research team to develop plasma technology to process wastewater and air pollutant, and successfully awarded two patents
+- Patents Awarded: Developed plasma technology to process wastewater and air pollutant, and successfully awarded two patents
