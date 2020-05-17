@@ -1,7 +1,11 @@
 
 # Derek Song . Jarvis Consulting
 
+<<<<<<< HEAD
 My name is Derek Song, and I am currently working with Jarvis as a data engineer. My role is to utilize Java and Scala programming languages to build applications. I am proficient in Java, Linux, Bash, SQL, RDBMS, JDBC, and DAO design pattern. Before that, I have achieved a Master's Degree and Bachelor's Degree in Engineering, and I have strong programming fundamentals and learning skills. Besides, I worked in TS Tech Canada Inc. for three years, where I built very good communication skills and achieved the hands-on experience of working with team and contractors. I really enjoyed my work with Jarvis, and I would love to dig much deeper into this area.
+=======
+My name is Derek Song, and I am currently working with Jarvis as a data engineer. My role is to utilize Java and Scala programming languages to build applications. I am proficient in Java, Linux, Bash, SQL, RDBMS, JDBC and DAO design pattern. Before that, I have achieved a Master's Degree and Bachelor's Degree in Engineering, and I have strong programming fundamentals and learning skills. Besides, I worked in TS Tech Canada Inc. for three years, where I built very good communication skills and achieved hands-on experience of working with team and contractors. I really enjoyed my work with Jarvis, and I would love to dig much deeper into this area.
+>>>>>>> 5047d5176289ed1d22e88006c6ea8ac0411777b1
 
 ## Skills
 **Proficient:** Java, Maven, Bash, SQL, Agile/Scrum, Docker, RDBMS, JDBC, DAO, Git/GitHub, Microservice, Postman
@@ -14,9 +18,15 @@ My name is Derek Song, and I am currently working with Jarvis as a data engineer
 
 Project source code: [https://github.com/jarviscanada/jarvis_data_eng_derek](https://github.com/jarviscanada/jarvis_data_eng_derek)
 
+<<<<<<< HEAD
 - **[Cluster Monitor](./linux_sql)**: Implemented a Cluster Monitor Agent which is a tool to collect server hardware specifications and monitor node resource usages (such as CPU and Memory) in real-time, and store all of the data in the PostgreSQL database for Linux Cluster Administration Team. 
 - **[Core Java Apps](./core_java)**: Implemented all three apps in this project. Created Grep application which is used to search for a text pattern recursively in a given directory and output matched lines to a file. Implemented JDBC application that utilized JDBC to connect Java application and PostgreSQL database. Created TwitterCLI application that can create, read, and delete tweets from CLI. MVC architecture is invoked to split the application into multiple layers. 
 - **[SpringBoot App](./springboot)**: Implemented SpringBoot application which allows users to buy/sell stocks, check the latest quotes, etc. SpringBoot app consists of three tiers based on MVC architecture: Client tier, Application tier,  and Database tier. The Client tier allows users to use HTTP clients to consume the REST, such as postman, curl, or Java. The Application tier is a SpringBoot Java program to process data only. The Database tier ensures that application data is stored in a database instance to avoid data loss. Springboot, Maven, Mockito, and PostgreSQL are utilized in the application.
+=======
+- **[Cluster Monitor](./linux_sql)**: Implemented a Cluster Monitor Agent which is a tool to collect server hardware specifications and monitor node resource usages (such as CPU and Memory) in real time, and store all of the data in PostgreSQL database for Linux Cluster Administration Team. 
+- **[Core Java Apps](./core_java)**: Implemented all three apps in this project. Created Grep application which is used to search for a text pattern recursively in a given directory, and output matched lines to a file. Implemented JDBC application which utilized JDBC to connect Java application and PostgreSql database. Created TwitterCLI application which can create, read and delete tweets from CLI. MVC architecture is invoked to split the application into multiple layers. 
+- **[SpringBoot App](./springboot)**: Implemented SpringBoot application which allows users to buy/sell stocks, check the latest quotes, etc. SpringBoot app consists of three tiers based on MVC architecutre: Client tier, Application tier and Database tier. Client tier allows users to use HTTP clients to consume the REST, such as postman, curl, or Java. Application tier is a SpringBoot Java program to process data only. Database tier ensures that application data is stored in a database instance to avoid data loss. Springboot, Maven, Mockito, and PostgreSQL are utilized in the application.
+>>>>>>> 5047d5176289ed1d22e88006c6ea8ac0411777b1
 - **[Cloud & DevOps](./cloud_devops)**: Not started
 - **[Hadoop](./hadoop)**: Not started
 - **[Spark/Scala](./spark)**:  Not started
@@ -33,10 +43,13 @@ Developed applications, optimized performance, wrote documents, planned and coor
 
 **Beijing Jiaotong University (2009-2011)**, Master of Electrical Engineering and Automation
 
+<<<<<<< HEAD
 - **Ultrasound flaw detector project:** Designed the software of an ultrasound flaw detector, which was used to detect flaws and cracks on the railway. The detector emits, receives and processes ultrasound and displays flaws on screen
+=======
+- **Ultrasound flaw detector project:** Designed the software of ultrasound flaw detector, which was used to detect flaws and cracks on railway. The detector emits, receives and processes ultrasound and displays flaws on screen
+>>>>>>> 5047d5176289ed1d22e88006c6ea8ac0411777b1
 
 **Beijing Jiaotong University (2005-2009)**, Bachelor of Electrical Engineering and Automation
 
 ## Certificates & Awards & Activities
-- Patents Awarded: worked with the research team to develop plasma technology to process wastewater and air pollutant, and successfully awarded two patents
-
+- Patents Awarded: worked with research team to develop plasma technology to process wastewater and air pollutant, and successfully awarded two patents
