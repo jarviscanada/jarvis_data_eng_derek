@@ -48,8 +48,8 @@ public class TraderAccountService {
         validateTraderId(traderId);
         //get trader by traderID
         Trader trader = traderDao.findById(traderId).get();
-        Account account = accountDao.findById(traderId).get();
-        Position position = positionDao.findById(traderId).get();
+        Account account = accountDao.findByTraderId(traderId);
+        Position position = positionDao.findById(account.getId()).get();
         //check account balance
         validateAccountBalance(account);
         //how  to check position
@@ -63,7 +63,7 @@ public class TraderAccountService {
     public Account deposit(Integer traderId, Double fund) {
         validateTraderId(traderId);
         Account account = accountDao.findById(traderId).get();
-        return accountDao.updateAmount(account, fund);
+        return accountDao.deposit(account, fund);
     }
 
     public Account withdraw(Integer traderId, Double fund) {

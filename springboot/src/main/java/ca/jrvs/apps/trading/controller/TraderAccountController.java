@@ -26,7 +26,7 @@ public class TraderAccountController {
     private TraderAccountService traderAccountService;
 
     @Autowired
-    public TraderAccountController(TraderAccountService traderAccountService){
+    public TraderAccountController(TraderAccountService traderAccountService) {
         this.traderAccountService = traderAccountService;
     }
 
@@ -39,9 +39,9 @@ public class TraderAccountController {
             produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
     public TraderAccountView createTrader(@PathVariable String firstname,
                                           @PathVariable String lastname,
-                                          @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate dob,
-                                          @PathVariable String country, @PathVariable String email){
-        try{
+                                          @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dob,
+                                          @PathVariable String country, @PathVariable String email) {
+        try {
             Trader trader = new Trader();
             trader.setFirst_name(firstname);
             trader.setLast_name(lastname);
@@ -49,7 +49,7 @@ public class TraderAccountController {
             trader.setEmail(email);
             trader.setDob(Date.valueOf(dob));
             return traderAccountService.createTraderAndAccount(trader);
-        } catch (Exception e){
+        } catch (Exception e) {
             throw ResponseExceptionUtil.getResponseStatusException(e);
         }
     }
@@ -59,10 +59,10 @@ public class TraderAccountController {
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     @PostMapping(path = "/", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
-    public TraderAccountView createTrader(@RequestBody Trader trader){
-        try{
+    public TraderAccountView createTrader(@RequestBody Trader trader) {
+        try {
             return traderAccountService.createTraderAndAccount(trader);
-        } catch (Exception e){
+        } catch (Exception e) {
             throw ResponseExceptionUtil.getResponseStatusException(e);
         }
     }
@@ -72,10 +72,10 @@ public class TraderAccountController {
     @ApiResponses(value = {@ApiResponse(code = 400, message = "Unable to delete the user")})
     @DeleteMapping(path = "/traderId/{traderId}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteTrader(@PathVariable Integer traderId){
-        try{
+    public void deleteTrader(@PathVariable Integer traderId) {
+        try {
             traderAccountService.deleteTraderById(traderId);
-        } catch (Exception e){
+        } catch (Exception e) {
             throw ResponseExceptionUtil.getResponseStatusException(e);
         }
     }
@@ -88,10 +88,10 @@ public class TraderAccountController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     @PutMapping(path = "/deposit/traderId/{traderId}/amount/{amount}")
-    public Account depositFund(@PathVariable Integer traderId, @PathVariable Double amount){
-        try{
-            return traderAccountService.deposit(traderId,amount);
-        } catch (Exception e){
+    public Account depositFund(@PathVariable Integer traderId, @PathVariable Double amount) {
+        try {
+            return traderAccountService.deposit(traderId, amount);
+        } catch (Exception e) {
             throw ResponseExceptionUtil.getResponseStatusException(e);
         }
     }
@@ -103,11 +103,11 @@ public class TraderAccountController {
             @ApiResponse(code = 400, message = "Unable to withdraw due to user input. (e.g. insufficient fund")})
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    @PutMapping(path = "withdraw/traderid/{traderId}/amount/{amount}")
-    public Account withdrawFund(@PathVariable Integer traderId, @PathVariable Double amount){
-        try{
-            return traderAccountService.withdraw(traderId,amount);
-        } catch (Exception e){
+    @PutMapping(path = "withdraw/traderId/{traderId}/amount/{amount}")
+    public Account withdrawFund(@PathVariable Integer traderId, @PathVariable Double amount) {
+        try {
+            return traderAccountService.withdraw(traderId, amount);
+        } catch (Exception e) {
             throw ResponseExceptionUtil.getResponseStatusException(e);
         }
     }

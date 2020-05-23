@@ -2,9 +2,8 @@ package ca.jrvs.apps.trading.dao;
 
 import ca.jrvs.apps.trading.model.config.MarketDataConfig;
 import ca.jrvs.apps.trading.model.domain.IexQuote;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.conn.HttpClientConnectionManager;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -20,6 +19,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -33,8 +33,9 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
 
     private Logger logger = LoggerFactory.getLogger(MarketDataDao.class);
     private HttpClientConnectionManager httpClientConnectionManager;
+    //private PoolingHttpClientConnectionManager httpClientConnectionManager;
 
-    private String[] tickerFileds = {"GOOGL", "FB", "AAPL", "MMM", "AMD", "APA"};
+    private String[] tickerFields = {"GOOGL", "FB", "AAPL", "MMM", "AMD", "APA"};
 
     @Autowired
     public MarketDataDao(HttpClientConnectionManager httpClientConnectionManager, MarketDataConfig marketDataConfig) {
@@ -54,7 +55,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
         IexQuote iexQuote = dao.findById(ticker).get();
         //System.out.println(iexQuote.getSymbol());
         List<IexQuote> quoteList = dao.findAllById(Arrays.asList("AAPL", "FB"));
-        for(int i=0;i<quoteList.size();i++){
+        for (int i = 0; i < quoteList.size(); i++) {
             System.out.println(quoteList.get(i).getSymbol());
         }
     }
@@ -66,8 +67,8 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
      */
     private CloseableHttpClient getHttpClient() {
         return HttpClients.custom().setConnectionManager(httpClientConnectionManager)
-                //prevent connectionManager shutdown when calling httpClient.close()
                 .setConnectionManagerShared(true).build();
+        //prevent connectionManager shutdown when calling httpClient.close()
     }
 
     /**
@@ -80,10 +81,16 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
      * @throws DataRetrievalFailureException if HTTP failed or status code if unexpected
      */
     private Optional<String> executeHttpGet(String url) throws IOException, URISyntaxException {
-
+        HttpClient httpClient = getHttpClient();
         HttpGet request = new HttpGet(url);
-        HttpResponse response = getHttpClient().execute(request);
+        HttpResponse response;
+        try {
+            response = httpClient.execute(request);
+        } catch (IOException e) {
+            throw new MalformedURLException("Invalid URL" + e.getMessage());
+        }
         int status = response.getStatusLine().getStatusCode();
+
         Optional<String> jsonStr;
 
         if (status != 200) {
@@ -107,8 +114,10 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
     }
 
     @Override
-    //This method calls the IEX endpoit and deserializes IEX JSON HTTP response into IexQuote. If the ticker (String s)
-    //is not found, this method returns Optional.empty
+    /**
+     * This method calls the IEX endpoint and deserializes IEX JSON HTTP response into IexQuote. If the ticker (String s)
+     * is not found, this method returns Optional.empty
+     */
     public Optional<IexQuote> findById(String ticker) {
         Optional<IexQuote> iexQuote;
         List<IexQuote> quotes = findAllById(Collections.singletonList(ticker));
@@ -158,7 +167,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
         }
         //construct JSONObject from JSON String
         JSONObject jsonObject = new JSONObject(str.get());
-             for (String s : tickers) {
+        for (String s : tickers) {
             singeJsonStr = jsonObject.getJSONObject(s).getJSONObject("quote").toString();
             try {
                 iexQuote = toObjectFromJson(singeJsonStr, IexQuote.class);
@@ -172,7 +181,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
     }
 
     private void validateTicker(String ticker) {
-        if (!Arrays.asList(tickerFileds).contains(ticker)) {
+        if (!Arrays.asList(tickerFields).contains(ticker)) {
             throw new IllegalArgumentException(ticker + " is invalid!");
         }
     }

@@ -11,6 +11,8 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class AccountDao extends JdbcCrudDao<Account> {
@@ -55,8 +57,15 @@ public class AccountDao extends JdbcCrudDao<Account> {
 
     @Override
     public int updateOne(Account account) {
-        String update_sql = "UPDATE" + TABLE_NAME + " SET amount = ?";
-        return jdbcTemplate.update(update_sql, account.getAmount());
+        String update_sql = "UPDATE " + TABLE_NAME + " SET amount = ? WHERE id=?";
+        return jdbcTemplate.update(update_sql, makeUpdateValues(account));
+    }
+
+    private Object[] makeUpdateValues(Account account) {
+        List<Object> list = new ArrayList<>();
+        list.add(account.getAmount());
+        list.add(account.getId());
+        return list.toArray();
     }
 
     @Override
@@ -69,12 +78,13 @@ public class AccountDao extends JdbcCrudDao<Account> {
         throw new UnsupportedOperationException("Not implemented");
     }
 
-    public Account updateAmount(Account account, Double fund) {
+    public Account deposit(Account account, Double fund) {
         if (fund < 0) {
             throw new IllegalArgumentException("Fund cannot be less than 0!");
         }
         Double newAmount = account.getAmount() + fund;
         account.setAmount(newAmount);
+        updateOne(account);
         return account;
     }
 
@@ -87,6 +97,7 @@ public class AccountDao extends JdbcCrudDao<Account> {
             throw new IllegalArgumentException("You do have enough money!");
         } else {
             account.setAmount(balance);
+           updateOne(account);
             return account;
         }
     }
@@ -95,7 +106,8 @@ public class AccountDao extends JdbcCrudDao<Account> {
         String selectSql = "SELECT * FROM " + getTableName() + " WHERE " + "trader_id" + " =?";
         Account account = new Account();
         try {
-            account = getJdbcTemplate().queryForObject(selectSql, BeanPropertyRowMapper.newInstance(getEntityClass()), trader_id);            ;
+            account = getJdbcTemplate().queryForObject(selectSql, BeanPropertyRowMapper.newInstance(getEntityClass()), trader_id);
+            ;
         } catch (IncorrectResultSizeDataAccessException e) {
             logger.debug("Can't find trader id:" + trader_id, e);
         }

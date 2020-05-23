@@ -1,5 +1,6 @@
 package ca.jrvs.apps.trading.dao;
 
+import ca.jrvs.apps.trading.model.domain.Quote;
 import ca.jrvs.apps.trading.model.domain.Trader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,9 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
+
 @Repository
 public class TraderDao extends JdbcCrudDao<Trader> {
 
@@ -52,8 +56,20 @@ public class TraderDao extends JdbcCrudDao<Trader> {
     }
 
     @Override
-    public int updateOne(Trader entity) {
-        throw new UnsupportedOperationException("Not implemented");
+    public int updateOne(Trader trader) {
+        String update_sql = "UPDATE trader SET first_name=?, last_name=?, dob=?, country=?, email=? WHERE id=?";
+        return jdbcTemplate.update(update_sql, makeUpdateValues(trader));
+    }
+
+    private Object[] makeUpdateValues(Trader trader) {
+        List<Object> list = new ArrayList<>();
+        list.add(trader.getFirst_name());
+        list.add(trader.getLast_name());
+        list.add(trader.getDob());
+        list.add(trader.getCountry());
+        list.add(trader.getEmail());
+        list.add(trader.getId());
+        return list.toArray();
     }
 
     @Override

@@ -1,6 +1,10 @@
 package ca.jrvs.apps.trading.service;
 
+import ca.jrvs.apps.trading.dao.AccountDao;
+import ca.jrvs.apps.trading.dao.PositionDao;
 import ca.jrvs.apps.trading.dao.QuoteDao;
+import ca.jrvs.apps.trading.dao.SecurityOrderDao;
+import ca.jrvs.apps.trading.model.domain.SecurityOrder;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;

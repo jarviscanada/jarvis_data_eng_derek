@@ -12,15 +12,13 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Transactional
 @Service
 public class QuoteService {
     private static final Logger logger = LoggerFactory.getLogger(QuoteService.class);
 
-    private
-    QuoteDao quoteDao;
+    private QuoteDao quoteDao;
     private MarketDataDao marketDataDao;
 
     @Autowired
@@ -54,10 +52,10 @@ public class QuoteService {
     public void updateMarketData() {
         List<Quote> allQuotes = quoteDao.findAll();
         List<Quote> updateQuotes = null;
-        Optional<IexQuote> iexQuote;
+        IexQuote iexQuote;
         for (Quote q : allQuotes) {
-            iexQuote = marketDataDao.findById(q.getId());
-            updateQuotes.add(buildQuoteFromIexQuote(iexQuote.get()));
+            iexQuote = findIndexQuoteByTicker(q.getId());
+            updateQuotes.add(buildQuoteFromIexQuote(iexQuote));
         }
         quoteDao.saveAll(updateQuotes);
     }

@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Configuration;
 import javax.sql.DataSource;
 
 @Configuration
+//@ComponentScan(basePackages = {"ca.jrvs.apps.trading.dao", "ca.jrvs.apps.trading.service"})
+//cannot see difference to comment out @ComponentScan
 @ComponentScan(basePackages = {"ca.jrvs.apps.trading.dao", "ca.jrvs.apps.trading.service"})
 public class TestConfig {
     @Bean
@@ -24,9 +26,12 @@ public class TestConfig {
     @Bean
     public DataSource dataSource() {
         System.out.println("Creating apacheDataSource");
-        String url = System.getenv("PSQL_URL");
-        String user = System.getenv("PSQL_USER");
-        String password = System.getenv("PSQL_PASSWORD");
+//        String url = System.getenv("PSQL_URL");
+//        String user = System.getenv("PSQL_USER");
+//        String password = System.getenv("PSQL_PASSWORD");
+        String url = "jdbc:postgresql://localhost:5432/jrvstrading";
+        String user = "postgres";
+        String password = "password";
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setUrl(url);
         basicDataSource.setUsername(user);
@@ -41,6 +46,7 @@ public class TestConfig {
         cm.setDefaultMaxPerRoute(50);
         return cm;
     }
+
 }
 
 

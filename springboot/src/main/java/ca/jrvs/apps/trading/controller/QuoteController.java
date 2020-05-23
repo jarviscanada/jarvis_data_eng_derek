@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,6 +43,7 @@ public class QuoteController {
             "all quotes in the quote table. Use IEX trading API as market data source.")
     @PutMapping(path = "/iexMarketData")
     @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
     public void updateMarketData() {
         try {
             quoteService.updateMarketData();
@@ -57,24 +57,24 @@ public class QuoteController {
     @PutMapping(path = "/")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public Quote putQuote(@RequestBody Quote quote){
-        try{
+    public Quote putQuote(@RequestBody Quote quote) {
+        try {
             return quoteService.saveQuote(quote);
-                    } catch (Exception e){
+        } catch (Exception e) {
             throw ResponseExceptionUtil.getResponseStatusException(e);
         }
     }
 
     @ApiOperation(value = "Add a new ticker to the dailyList (quote table)", notes =
-    "Add a new ticker/symbol to the quote table, so trader can trade this security.")
+            "Add a new ticker/symbol to the quote table, so trader can trade this security.")
     @PostMapping(path = "tickerId/{tickerId}")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiResponses(value = {@ApiResponse(code = 404, message = "ticker is not found in IEX system")})
     @ResponseBody
-    public  Quote createQuote(@PathVariable String tickerId){
+    public Quote createQuote(@PathVariable String tickerId) {
         try {
             return quoteService.saveQuote(tickerId);
-        } catch (Exception e){
+        } catch (Exception e) {
             throw ResponseExceptionUtil.getResponseStatusException(e);
         }
     }
@@ -83,10 +83,10 @@ public class QuoteController {
     @GetMapping(path = "dailyList")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public List<Quote> getDailyList(){
-        try{
+    public List<Quote> getDailyList() {
+        try {
             return quoteService.findAllQuotes();
-        } catch (Exception e){
+        } catch (Exception e) {
             throw ResponseExceptionUtil.getResponseStatusException(e);
         }
     }

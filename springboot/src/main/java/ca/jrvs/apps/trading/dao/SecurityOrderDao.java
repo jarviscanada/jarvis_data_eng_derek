@@ -14,7 +14,7 @@ import java.util.List;
 
 @Repository
 public class SecurityOrderDao extends JdbcCrudDao<SecurityOrder> {
-    private static final Logger logger = LoggerFactory.getLogger(TraderDao.class);
+    private static final Logger logger = LoggerFactory.getLogger(SecurityOrder.class);
 
     private final String TABLE_NAME = "security_order";
     private final String ID_COLUMN = "id";
@@ -55,16 +55,19 @@ public class SecurityOrderDao extends JdbcCrudDao<SecurityOrder> {
 
     @Override
     public int updateOne(SecurityOrder securityOrder) {
-        String updateSecurityOrderSql = "UPDATE security_order SET status=?, size=?, price=?, notes =? WHERE ticker =?";
+        String updateSecurityOrderSql = "UPDATE security_order SET account_id=?, status=?, ticker=?, size=?, price=?, notes =? WHERE id =?";
         return jdbcTemplate.update(updateSecurityOrderSql, makeUpdateValues(securityOrder));
     }
 
     private Object[] makeUpdateValues(SecurityOrder securityOrder) {
         List list = new ArrayList();
+        list.add(securityOrder.getAccount_id());
         list.add(securityOrder.getStatus());
+        list.add(securityOrder.getTicker());
         list.add(securityOrder.getSize());
         list.add(securityOrder.getPrice());
         list.add(securityOrder.getNotes());
+        list.add(securityOrder.getId());
         Object[] obj = list.toArray();
         return obj;
     }

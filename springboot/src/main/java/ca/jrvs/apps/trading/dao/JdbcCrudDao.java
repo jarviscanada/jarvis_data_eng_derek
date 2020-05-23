@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepository<T, Integer> {
+
     private static final Logger logger = LoggerFactory.getLogger(JdbcCrudDao.class);
 
     abstract public JdbcTemplate getJdbcTemplate();
@@ -48,9 +49,7 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
     }
 
     private <S extends T> void addOne(S entity) {
-        //Object object;
         SqlParameterSource parameterSource = new BeanPropertySqlParameterSource(entity);
-
         Number newId = getSimpleJdbcInsert().executeAndReturnKey(parameterSource);
         entity.setId(newId.intValue());
     }
@@ -62,7 +61,8 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
         Optional<T> entity = Optional.empty();
         String selectSql = "SELECT * FROM " + getTableName() + " WHERE " + getIdColumnName() + " =?";
         try {
-            entity = Optional.ofNullable((T) getJdbcTemplate().queryForObject(selectSql, BeanPropertyRowMapper.newInstance(getEntityClass()), id));
+            entity = Optional.ofNullable((T) getJdbcTemplate().queryForObject(selectSql,
+                    BeanPropertyRowMapper.newInstance(getEntityClass()), id));
         } catch (IncorrectResultSizeDataAccessException e) {
             logger.debug("Can't find trader id:" + id, e);
         }
@@ -71,11 +71,9 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
 
     @Override
     public boolean existsById(Integer id) {
-        String existsByIdSql = "SELECT * FROM " + getTableName() + " WHERE " + id + " =?";
-        if (getJdbcTemplate().update(existsByIdSql) != 0) {
-            return true;
-        } else return false;
-
+        String existsByIdSql = "SELECT COUNT (*) FROM " + getTableName() + " WHERE " + getIdColumnName() + " =?";
+        boolean result = getJdbcTemplate().queryForObject(existsByIdSql, Long.class, id) > 0;
+        return result;
     }
 
     @Override
@@ -88,7 +86,6 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
     @Override
     public List<T> findAllById(Iterable<Integer> ids) {
         List<T> t = new ArrayList<>();
-
         for (Integer i : ids) {
             try {
                 existsById(i);
@@ -108,11 +105,11 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
 
     @Override
     public void deleteById(Integer id) {
-        if(id==null){
+        if (id == null) {
             throw new IllegalArgumentException("Ticker cannot be null!");
         }
-        String deleteByIdSql = "DELETE FROM " + getTableName() + " WHERE " + id + " =?";
-        getJdbcTemplate().update(deleteByIdSql);
+        String deleteByIdSql = "DELETE FROM " + getTableName() + " WHERE " + getIdColumnName() + " =?";
+        getJdbcTemplate().update(deleteByIdSql, id);
     }
 
     @Override
