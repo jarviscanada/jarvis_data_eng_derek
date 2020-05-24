@@ -2,8 +2,8 @@ package ca.jrvs.apps.trading.service;
 
 import ca.jrvs.apps.trading.TestConfig;
 import ca.jrvs.apps.trading.dao.QuoteDao;
+import ca.jrvs.apps.trading.model.domain.IexQuote;
 import ca.jrvs.apps.trading.model.domain.Quote;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,9 +12,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {TestConfig.class})
@@ -22,10 +24,11 @@ import static org.junit.Assert.assertArrayEquals;
 public class QuoteServiceIntTest {
 
     @Autowired
-    private QuoteService quoteService;
+    QuoteService quoteService;
 
     @Autowired
-    private QuoteDao quoteDao;
+    QuoteDao quoteDao;
+
     private Quote saveQuoteOne = new Quote();
     private Quote saveQuoteTwo = new Quote();
 
@@ -36,22 +39,22 @@ public class QuoteServiceIntTest {
         saveQuoteOne.setAskSize(10);
         saveQuoteOne.setBidPrice(10.2d);
         saveQuoteOne.setBidSize(10);
-        saveQuoteOne.setTicker("0M");
+        saveQuoteOne.setTicker("AAPL");
         saveQuoteOne.setLastPrice(10.1d);
         quoteDao.save(saveQuoteOne);
         saveQuoteTwo.setAskPrice(30d);
         saveQuoteTwo.setAskSize(10);
         saveQuoteTwo.setBidPrice(10.2d);
         saveQuoteTwo.setBidSize(10);
-        saveQuoteTwo.setTicker("1M");
+        saveQuoteTwo.setTicker("FB");
         saveQuoteTwo.setLastPrice(10.1d);
         quoteDao.save(saveQuoteTwo);
     }
 
-//    @Test
-//    public void findIexQuoteByTicker(){
-//
-//    }
+    @Test
+    public void findIexQuoteByTicker(){
+        IexQuote iexQuote = quoteService.findIndexQuoteByTicker("AAPL");
+           }
 //
 //    @Test
 //    public void updateMarketData(){
@@ -59,16 +62,20 @@ public class QuoteServiceIntTest {
 //
 //    }
 //
-//    @Test
-//    public void saveQuotes(){}
+    @Test
+    public void saveQuotes(){
+        List<String> tickers = new ArrayList<>();
+        tickers.add("AAPL");
+        tickers.add("")
+    }
 //
 //    @Test
 //    public void saveQuote(){}
 
-    @Test
-    public void findAllQuotes(){
-        assertArrayEquals(quoteDao.findAll().toArray(), quoteService.findAllQuotes().toArray());
-    }
+//    @Test
+//    public void findAllQuotes() {
+//        assertArrayEquals(quoteDao.findAll().toArray(), quoteService.findAllQuotes().toArray());
+//    }
 
 //    @After
 //    public void deleteAll() {
