@@ -52,4 +52,10 @@ public class AppConfig {
         cm.setDefaultMaxPerRoute(50);
         return cm;
        }
+
+//    public static void main(String[] args) {
+//        System.out.println(System.getenv("PSQL_URL"));
+//        System.out.println(System.getenv("PSQL_USER"));
+//        System.out.println(System.getenv("PSQL_PASSWORD"));
+//    }
 }

@@ -35,7 +35,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
     private HttpClientConnectionManager httpClientConnectionManager;
     //private PoolingHttpClientConnectionManager httpClientConnectionManager;
 
-    private String[] tickerFields = {"GOOGL", "FB", "AAPL", "MMM", "AMD", "APA"};
+    //private String[] tickerFields = {"GOOGL", "FB", "AAPL", "MMM", "AMD", "APA"};
 
     @Autowired
     public MarketDataDao(HttpClientConnectionManager httpClientConnectionManager, MarketDataConfig marketDataConfig) {
@@ -181,7 +181,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
     }
 
     private void validateTicker(String ticker) {
-        if (!Arrays.asList(tickerFields).contains(ticker)) {
+        if (!ticker.matches("[a-zA-Z]{2,5}")) {
             throw new IllegalArgumentException(ticker + " is invalid!");
         }
     }

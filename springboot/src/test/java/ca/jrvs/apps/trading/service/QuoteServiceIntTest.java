@@ -15,8 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {TestConfig.class})
@@ -42,43 +41,39 @@ public class QuoteServiceIntTest {
         saveQuoteOne.setTicker("AAPL");
         saveQuoteOne.setLastPrice(10.1d);
         quoteDao.save(saveQuoteOne);
-        saveQuoteTwo.setAskPrice(30d);
-        saveQuoteTwo.setAskSize(10);
-        saveQuoteTwo.setBidPrice(10.2d);
-        saveQuoteTwo.setBidSize(10);
-        saveQuoteTwo.setTicker("FB");
-        saveQuoteTwo.setLastPrice(10.1d);
-        quoteDao.save(saveQuoteTwo);
     }
 
     @Test
-    public void findIexQuoteByTicker(){
-        IexQuote iexQuote = quoteService.findIndexQuoteByTicker("AAPL");
-           }
-//
-//    @Test
-//    public void updateMarketData(){
-//        quoteService.updateMarketData();
-//
-//    }
-//
+    public void findIexQuoteByTicker() {
+        IexQuote iexQuote = quoteService.findIndexQuoteByTicker("GOOGL");
+        //System.out.println(iexQuote.getSymbol());
+        assertNotNull(iexQuote);
+    }
+
     @Test
-    public void saveQuotes(){
+    public void updateMarketData() {
+        quoteService.updateMarketData();
+        assertNotEquals(0, quoteDao.count());
+    }
+
+
+    @Test
+    public void saveQuote() {
+        quoteService.saveQuote(saveQuoteOne);
+    }
+
+    @Test
+    public void saveQuotes() {
         List<String> tickers = new ArrayList<>();
         tickers.add("AAPL");
-        tickers.add("")
+        tickers.add("GOOGL");
+        quoteService.saveQuotes(tickers);
+        assertEquals(2, quoteDao.count());
     }
-//
-//    @Test
-//    public void saveQuote(){}
 
-//    @Test
-//    public void findAllQuotes() {
-//        assertArrayEquals(quoteDao.findAll().toArray(), quoteService.findAllQuotes().toArray());
-//    }
-
-//    @After
-//    public void deleteAll() {
-//        quoteDao.deleteAll();
-//    }
+    @Test
+    public void findAllQuotes() {
+        List<Quote> quotes = quoteService.findAllQuotes();
+        assertEquals(1,quoteDao.count());
+    }
 }

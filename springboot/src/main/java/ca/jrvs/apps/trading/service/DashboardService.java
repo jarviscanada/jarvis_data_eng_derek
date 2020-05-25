@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -43,10 +44,10 @@ public class DashboardService {
     public PortfolioView getProfileViewByTraderId(Integer traderId) {
         validateTraderID(traderId);
         Account account = findAccountByTraderId(traderId);
-        Position position = positionDao.findById(account.getId()).get();
+        List<Position> positions = positionDao.findByColumnId("account_id", account.getId());
         PortfolioView portfolioView = new PortfolioView();
         portfolioView.setAccount(account);
-        portfolioView.setPosition(position);
+        portfolioView.setPositions(positions);
         return portfolioView;
     }
 

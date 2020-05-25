@@ -12,6 +12,8 @@ import ca.jrvs.apps.trading.model.view.TraderAccountView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TraderAccountService {
     private TraderDao traderDao;
@@ -33,10 +35,11 @@ public class TraderAccountService {
         //trader cannot be null. All fields cannot be null except for id
         validateTrader(trader);
         //create an account with 0 amount
+        trader.setId(traderDao.save(trader).getId());
         Account account = new Account();
-        account.setId(accountDao.save(account).getId());
         account.setTrader_id(trader.getId());
         account.setAmount(0d);
+        account.setId(accountDao.save(account).getId());
         TraderAccountView traderAccountView = new TraderAccountView();
         traderAccountView.setAccount(account);
         traderAccountView.setTrader(trader);
@@ -49,27 +52,34 @@ public class TraderAccountService {
         //get trader by traderID
         Trader trader = traderDao.findById(traderId).get();
         Account account = accountDao.findByTraderId(traderId);
-        Position position = positionDao.findById(account.getId()).get();
-        //check account balance
+        List<Position> positions = positionDao.findByColumnId("account_id", account.getId());
+        if (positions.size() != 0) {
+            validatePosition(positions);
+        }
         validateAccountBalance(account);
-        //how  to check position
-        validatePosition(position);
-        SecurityOrder securityOrder = securityOrderDao.findById(traderId).get();
-        traderDao.delete(trader);
+        List<SecurityOrder> securityOrder = securityOrderDao.findByColumnId("account_id", account.getId());
+        if (securityOrder.size() != 0) {
+            for (SecurityOrder so : securityOrder) {
+                securityOrderDao.deleteById(so.getId());
+            }
+        }
         accountDao.delete(account);
-        securityOrderDao.delete(securityOrder);
+        traderDao.delete(trader);
+
     }
 
     public Account deposit(Integer traderId, Double fund) {
         validateTraderId(traderId);
-        Account account = accountDao.findById(traderId).get();
+        validateFund(fund);
+        Account account = accountDao.findByTraderId(traderId);
         return accountDao.deposit(account, fund);
     }
 
     public Account withdraw(Integer traderId, Double fund) {
         validateTraderId(traderId);
-        Account account = accountDao.findById(traderId).get();
-        return accountDao.withdraw(account,fund);
+        validateFund(fund);
+        Account account = accountDao.findByTraderId(traderId);
+        return accountDao.withdraw(account, fund);
     }
 
     public void validateTrader(Trader trader) {
@@ -81,22 +91,29 @@ public class TraderAccountService {
     }
 
     public void validateTraderId(Integer traderId) {
-        if (traderId == null) {
-            throw new IllegalArgumentException("TraderID cannot be null");
+        Trader trader = traderDao.findById(traderId).get();
+        if (trader == null) {
+            throw new IllegalArgumentException("Trader cannot be null");
         }
     }
 
     public void validateAccountBalance(Account account) {
         if (account.getAmount() != 0) {
-            throw new IllegalArgumentException("Trader cannot be deleted because balance is not 0.");
+            throw new IllegalArgumentException("Trader cannot be deleted because balance is not 0. The balance is: " + account.getAmount());
         }
     }
 
-    public void validatePosition(Position position) {
-        if (position.getPosition() != 0) {
-            throw new IllegalArgumentException("Error: Position is open");
+    public void validatePosition(List<Position> positions) {
+        for (Position p : positions) {
+            if (p.getPosition() != 0) {
+                throw new IllegalArgumentException("Error: Position is open");
+            }
         }
     }
 
-
+    public void validateFund(Double fund) {
+        if (fund <= 0) {
+            throw new IllegalArgumentException("Fund must be greater or equal to zero!");
+        }
+    }
 }

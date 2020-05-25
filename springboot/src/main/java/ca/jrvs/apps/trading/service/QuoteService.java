@@ -29,12 +29,12 @@ public class QuoteService {
 
     protected static Quote buildQuoteFromIexQuote(IexQuote iexQuote) {
         Quote quote = new Quote();
-        quote.setTicker(iexQuote.getSymbol());
         quote.setLastPrice(iexQuote.getLatestPrice());
         quote.setBidPrice(iexQuote.getIexBidPrice());
         quote.setBidSize(iexQuote.getIexBidSize());
         quote.setAskPrice(iexQuote.getIexAskPrice());
         quote.setAskSize(iexQuote.getIexAskSize());
+        quote.setTicker(iexQuote.getSymbol());
         return quote;
     }
 
@@ -50,14 +50,14 @@ public class QuoteService {
     }
 
     public void updateMarketData() {
-        List<Quote> allQuotes = quoteDao.findAll();
-        List<Quote> updateQuotes = null;
+        List<Quote> allQuotes = findAllQuotes();
+        Quote quote;
         IexQuote iexQuote;
         for (Quote q : allQuotes) {
             iexQuote = findIndexQuoteByTicker(q.getId());
-            updateQuotes.add(buildQuoteFromIexQuote(iexQuote));
+            quote = buildQuoteFromIexQuote(iexQuote);
+            quoteDao.save(quote);
         }
-        quoteDao.saveAll(updateQuotes);
     }
 
     public List<Quote> saveQuotes(List<String> tickers) {
@@ -75,8 +75,7 @@ public class QuoteService {
     public Quote saveQuote(String ticker) {
         IexQuote iexQuote = marketDataDao.findById(ticker).get();
         Quote quote = buildQuoteFromIexQuote(iexQuote);
-        Quote saveQuote = quoteDao.save(quote);
-        return saveQuote;
+        return saveQuote(quote);
     }
 
 

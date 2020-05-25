@@ -3,16 +3,18 @@ package ca.jrvs.apps.trading.model.view;
 import ca.jrvs.apps.trading.model.domain.Account;
 import ca.jrvs.apps.trading.model.domain.Position;
 
+import java.util.List;
+
 public class PortfolioView {
-    private Position position;
+    private List<Position> positions;
     private Account account;
 
-    public Position getPosition() {
-        return position;
+    public List<Position> getPositions() {
+        return positions;
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
+    public void setPositions(List<Position> positions) {
+        this.positions = positions;
     }
 
     public Account getAccount() {

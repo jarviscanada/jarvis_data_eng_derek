@@ -31,9 +31,15 @@ public class MarketDataDaoIntTest {
 
     @Test
     public void findById() {
-        String ticker = "FB";
+        String ticker = "AAPL";
         IexQuote iexQuote = dao.findById(ticker).get();
         assertEquals(ticker, iexQuote.getSymbol());
+//         System.out.println(iexQuote.getLatestPrice());
+//        System.out.println(iexQuote.getIexBidPrice());
+//        System.out.println(iexQuote.getIexBidSize());
+//        System.out.println(iexQuote.getIexAskPrice());
+//        System.out.println(iexQuote.getIexAskSize());
+//        System.out.println(iexQuote.getSymbol());
     }
 
     @Test

@@ -26,12 +26,12 @@ public class TestConfig {
     @Bean
     public DataSource dataSource() {
         System.out.println("Creating apacheDataSource");
-//        String url = System.getenv("PSQL_URL");
-//        String user = System.getenv("PSQL_USER");
-//        String password = System.getenv("PSQL_PASSWORD");
-        String url = "jdbc:postgresql://localhost:5432/jrvstrading";
-        String user = "postgres";
-        String password = "password";
+        String url = System.getenv("PSQL_URL");
+        String user = System.getenv("PSQL_USER");
+        String password = System.getenv("PSQL_PASSWORD");
+//        String url = "jdbc:postgresql://localhost:5432/jrvstrading";
+//        String user = "postgres";
+//        String password = "password";
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setUrl(url);
         basicDataSource.setUsername(user);
@@ -46,7 +46,11 @@ public class TestConfig {
         cm.setDefaultMaxPerRoute(50);
         return cm;
     }
-
+    public static void main(String[] args) {
+        System.out.println(System.getenv("PSQL_URL"));
+        System.out.println(System.getenv("PSQL_USER"));
+        System.out.println(System.getenv("PSQL_PASSWORD"));
+    }
 }
 
 
