@@ -28,7 +28,7 @@ This tier is where data is stored, fetched, and manipulated. In this application
 In the Application tier, the dependency management is done by Spring Boot. It manages the Tomcat Servlet, maps the HTTP request to the corresponding method in the controller, and generates the HTTP response using the output of the method in the controller tier.
 
 + __Controller Layer__
-This layer contains a controller for each service. An HTTP request received by the servelet will map the request to the method in the controller, and the controller is responsible for invoking the corresponding method in the service layer. There are four controllers in this application and all endpoints are described in detail under [REST API Usage](#rest-api-usage) section.
+This layer contains a controller for each service. An HTTP request received by the servelet will map the request to the method in the controller, and the controller is responsible for invoking the corresponding method in the service layer. There are four controllers in this application and all endpoints are described in detail under REST API Usage section.
 
 + __Service Layer__
 This layer is the implementation of the business logic provided. Each implemented method will be invoked by its corresponding controller. Moreover, all methods in this layer are transactional which means it will only invoke the DAO layer only if there is no error.
@@ -104,11 +104,11 @@ Required system to deploy this application successfully:
 - Registration of an account on __IEX cloud__ to get the API token
 
 ### Environmental Variables
-Four environment variables are needed to run the application. \
+Four environment variables are needed to run the application. 
 + `PSQL_URL:` It is the datasource URL of the PostgreSQL database and it is `jdbc:postgresql://localhost:5432/jrvstrading` in this application.
 + `PSQL_USER:` It is user name when creating database, and it is `postgres`.
 + `PSQL_PASSWORD:` It is `password` in this application. 
-+ `IEX_PUB_TOKEN:` It is API token acquired from [IEX cloud](https://iexcloud.io/) account.
++ `IEX_PUB_TOKEN:` It is API token acquired from IEX cloud.
 
 ### Docker setup 
 Make sure docker version is `17.05 or higher`\
@@ -117,41 +117,38 @@ Make sure docker version is `17.05 or higher`\
 Make sure docker is running by the following command:\
 `systemctl status docker || systemctl start docker`
 Create a docker network which allows docker containers to communicate with each otherby the following command:\
-`docker network create --driver bridge trading-net`
+`docker network create --driver bridge trading-net`\
 Verify\
-`docker network ls`\
+`docker network ls`
 
 Build docker image `trading-psql`. It is for PostgreSQL database which contains all market data and user information.\
 `cd ./springboot/psql 
 docker build -t trading-psql .
-docker image ls -f reference=trading-psql`\
+docker image ls -f reference=trading-psql`
 
 Build docker image `trading-app`. It is based on `openjdk:8-alpine` and `maven:3.6-jdk-8-slim`.\
 `cd ..
 docker build -t trading-app . 
 docker image ls -f reference=trading-app`
 
-Build docker container `trading-psql-dev`
-```
-# container for the Postgres SQL database and attach it to the created network
-docker run --name trading-psql-dev \
--e POSTGRES_PASSWORD=password \
--e POSTGRES_DB=jrvstrading \
--e POSTGRES_USER=postgres \
---network trading-net \
--d -p 5432:5432 trading-psql
-```
-Build docker container `trading-app-dev`
-```
-# container for the application and attach it to the created network
-docker run --name trading-app-dev \
--e "PSQL_URL=jdbc:postgresql://trading-psql-dev:5432/jrvstrading" \
--e "PSQL_USER=postgres" \
--e "PSQL_PASSWORD=password" \
--e "IEX_PUB_TOKEN=${IEX_PUB_TOKEN}" \
---network trading-net \
--p 5000:5000 -t trading-app
-```
+Build docker container `trading-psql-dev`\
+`# container for the Postgres SQL database and attach it to the created network`\
+`docker run --name trading-psql-dev \`\
+`-e POSTGRES_PASSWORD=password \`\
+`-e POSTGRES_DB=jrvstrading \`\
+`-e POSTGRES_USER=postgres \`\`
+`--network trading-net \`\
+`-d -p 5432:5432 trading-psql`
+
+Build docker container `trading-app-dev`\
+`# container for the application and attach it to the created network`\
+`docker run --name trading-app-dev \`\
+`-e "PSQL_URL=jdbc:postgresql://trading-psql-dev:5432/jrvstrading" \`\
+`-e "PSQL_USER=postgres" \`
+`-e "PSQL_PASSWORD=password" \`
+`-e "IEX_PUB_TOKEN=${IEX_PUB_TOKEN}" \`\
+`--network trading-net \`\
+`-p 5000:5000 -t trading-app`
 
 # Docker Deployment
 ![Diagram](./Asset/TradingAppDockerDiagram.png)
