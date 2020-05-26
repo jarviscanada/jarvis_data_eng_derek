@@ -155,4 +155,4 @@ In this project, the files under the script folder, the JenkinsFile, and the hea
 3. Separate the function of the order controller into two smaller functions to avoid confusion.
 4. Add a function to let one trader buy security from another trader and make this service transactional to prevent error.
 5. Allow one trader to have multiple accounts so that the trader could open up multiple accounts for different reasons.
-
+ 
