@@ -62,7 +62,7 @@ docker run --name trading-app-dev \
 -p 5000:5000 -t trading-app
 ```
 # Architecture
-![Diagram](./Asset/MVC Architecture Pattern.png)
+![Diagram](./Asset/MVCArchitecturePattern.png)
 As shown in the above diagram, this application is divided into three tiers: client tier, application tier, and database tier. By doing this, the crush of one tier does not affect another tier. For example, if the application is crushed due to some bugs, the data will still be preserved in the database.
 ## Project Design Architecture
 
@@ -112,7 +112,7 @@ __POST__ `/quote/tickerID/{tickerId}`
 __PUT__ `/quote/iexMarketData`
 - This endpoint will pull the most recent market data from the IEX cloud for every quote that exists in the database. It will only update the quotes that are currently in the database instead of creating new ones.
 ### Trader Account Controller
-![Diagram](./Asset/Trader Account Controller.png)
+![Diagram](./Asset/TraderAccountController.png)
 __DELETE__ `/trader/traderId/{traderId}`
 - This endpoint will delete a trader and the account associated with that trader. If the fund balance is not 0 or this trader is still holding securities, it will return bad HTTP status code. If the deletion succeeds, it will return good HTTP status code.
 
@@ -128,12 +128,12 @@ __PUT__`/trader/deposit/traderId/{traderId}/amount/{amount}`
 __PUT__`/trader/withdraw/traderId/{traderId}/amount/{amount}`
 - This endpoint will withdraw the specified amount of fun from the given trader's account. It will return bad HTTP status code if there is an insufficient fund available. If it succeeds, it will return the new account information.
 ### Order controller
-![Diagram](./Asset/Order Controller.png)
+![Diagram](./Asset/OrderController.png)
 __POST__ `/order/marketOrder`
 - This endpoint will submit a market order. Based on the value given for the position of security, it will determine whether to buy or sell the security. In case of buying the security, a bad HTTP status code will be return if the ask size of this security is smaller than the position required or there is an insufficient fund to buy the security. In case of selling the security, a bad HTTP status code will be return if the owned position of this security is smaller than the given position. Otherwise, if the execution of the market order succeeds, it will return the executed security order.
 
 ### Dashboard controller
-![Diagram](./Asset/Dashboard Controller.png)
+![Diagram](./Asset/DashboardController.png)
 __GET__ `/dashboard/portfolio/traderId/{traderId}`
 - This endpoint will return all the securities owned by the given trader. For each security owned, it will show its ticker, position, and current quote. It will return bad HTTP status code if the given trader ID cannot be found.
 
@@ -142,7 +142,7 @@ __GET__ `/dashboard/profile/traderId/{traderId}`
 
 
 # Docker Deployment
-![Diagram](./Asset/Trading App Docker Diagram.png)
+![Diagram](./Asset/TradingAppDockerDiagram.png)
 
 As mentioned before, the database needs to be launched in a docker container to use this application. The above diagram illustrates what is going on by doing that. Initially, it will create a docker network for future use(it is shown at the bottom of the diagram). For the second step, it will build a PostgreSQL using the Dockerfile under `./springboot/psql/` directory. It will execute the `schema.ddl` to set up the database. It will also build an image using Dockerfile under `./springboot/` directory. It will package the java application using maven and build an image from it. The last step would be the creation of the container from the images and attached them to the `trading-net` created before.
 
