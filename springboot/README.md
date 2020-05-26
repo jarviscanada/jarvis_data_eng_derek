@@ -7,7 +7,7 @@
 * [Improvements](#improvements)
 
 # Introduction
-This application aims to develop an online stock trading REST API by using microservice and MVC design architecture. This application extracts stock data from [IEX cloud](https://iexcloud.io/), and store the information into the PostgreSQL database to prevent data loss once the system crashes. Maven and SpringBoot are invoked to manage external and internal dependencies. Postman and Swagger are used to test Trading REST API during development.
+This application aims to develop an online stock trading REST API by using microservice and MVC design architecture. This application extracts stock data from [IEX cloud](https://iexcloud.io/), and store the information into the PostgreSQL database to prevent data loss once the system crashes. Maven and SpringBoot are invoked to manage external and internal dependencies. Postman and Swagger are used to test Trading REST API during development.\
 
 # Architecture
 ![Diagram](./Asset/MVCArchitecturePattern.png)
