@@ -111,28 +111,27 @@ Four environment variables are needed to run the application. \
 + `IEX_PUB_TOKEN:` It is API token acquired from [IEX cloud](https://iexcloud.io/) account.
 
 ### Docker setup 
-Make sure docker version is `17.05 or higher`
+Make sure docker version is `17.05 or higher`\
 `docker -v`
 
-Make sure docker is running by the following command:
+Make sure docker is running by the following command:\
 `systemctl status docker || systemctl start docker`
-Create a docker network which allows docker containers to communicate with each otherby the following command:
+Create a docker network which allows docker containers to communicate with each otherby the following command:\
 `docker network create --driver bridge trading-net`
+Verify\
+`docker network ls`\
 
-The **second step** of docker setup is to build images. There are two images to build in this application. One is for the database which contains all market data and user information and one is for this application.
-At the root directory of this repository, to build an image for Postgres SQL database, enter the following command into the terminal:
-```
-cd ./springboot/psql 
+Build docker image `trading-psql`. It is for PostgreSQL database which contains all market data and user information.\
+`cd ./springboot/psql 
 docker build -t trading-psql .
-docker image ls -f reference=trading-psql
-```
-At the root directory of this repository, to build an image for this application, enter the following command into the terminal:
-```
-cd ./springboot/
+docker image ls -f reference=trading-psql`\
+
+Build docker image `trading-app`. It is based on `openjdk:8-alpine` and `maven:3.6-jdk-8-slim`.\
+`cd ..
 docker build -t trading-app . 
-docker image ls -f reference=trading-app
-```
-The **third** step would be the creation of the Docker containers using the following commands:
+docker image ls -f reference=trading-app`
+
+Build docker container `trading-psql-dev`
 ```
 # container for the Postgres SQL database and attach it to the created network
 docker run --name trading-psql-dev \
@@ -140,8 +139,10 @@ docker run --name trading-psql-dev \
 -e POSTGRES_DB=jrvstrading \
 -e POSTGRES_USER=postgres \
 --network trading-net \
--d -p 8080:8080 trading-psql
-
+-d -p 5432:5432 trading-psql
+```
+Build docker container `trading-app-dev`
+```
 # container for the application and attach it to the created network
 docker run --name trading-app-dev \
 -e "PSQL_URL=jdbc:postgresql://trading-psql-dev:5432/jrvstrading" \
