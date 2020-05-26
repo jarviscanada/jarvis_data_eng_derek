@@ -7,10 +7,10 @@
 * [Improvements](#improvements)
 
 # Introduction
-This application aims to develop an online stock trading REST API by using microservice and MVC design architecture. This application extracts stock data from [IEX cloud](https://iexcloud.io/), and store the information into the PostgreSQL database to prevent data loss once the system crashes. Maven and SpringBoot are invoked to manage external and internal dependencies. Postman and Swagger are used to test Trading REST API during development.\
+This application aims to develop an online stock trading REST API by using microservice and MVC design architecture. This application extracts stock data from [IEX cloud](https://iexcloud.io/), and store the information into the PostgreSQL database to prevent data loss once the system crashes. Maven and SpringBoot are invoked to manage external and internal dependencies. Postman and Swagger are used to test Trading REST API during development.
 
 # Architecture
-![Diagram](./Asset/MVCArchitecturePattern.png)
+![Diagram](./Asset/MVCArchitecturePattern.png)\
 As shown in the above diagram, this application consistss of three layers: Controller Layer, Service Layer, and Data Access Layer based on MVC architecture. Controller Layers Handles HTTP requests, Service Layer handles the business logics, and Data Access Layer persists and extracts data from external database sources.
 
 ## Project Design Architecture
@@ -96,11 +96,11 @@ __GET__ `/dashboard/profile/traderId/{traderId}`
 # Quick Start
 ### System Requirements
 Required system to deploy this application successfully:
-- CentOS __7__
-- Docker (version __17.05__ or higher)
-- JDK (version __1.8__)
+- CentOS 7
+- Docker (version 17.05 or higher)
+- JDK (version 1.8)
 - Maven
-- Registration of an account on [IEX cloud](https://iexcloud.io/) to get the API token
+- Registration of an account on __IEX cloud__ to get the API token
 
 ### Environmental Variables
 Four environment variables are needed to run the application. \
