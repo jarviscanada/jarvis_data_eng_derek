@@ -88,7 +88,7 @@ Swagger is an open-source set of tools and helps developers to design, build, do
 Postman can also be used to interact with Springboot application through HTTP requests. To use Postman, go to `http://localhost:8080/v2/api-docs`, save the page to the local machine, and import it to Postman.
 
 ### Quote Controller
-![Diagram](./Asset/Quote Controller.png)
+![Diagram](./Asset/QuoteController.png)
 
 __GET__ `/quote/dialyList`
 - Return all tickers available on IEX cloud.
