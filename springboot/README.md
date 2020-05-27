@@ -59,8 +59,8 @@ docker image ls -f reference=trading-app`
 `# container for the application and attach it to the created network`\
 `docker run --name trading-app-dev \`\
 `-e "PSQL_URL=jdbc:postgresql://trading-psql-dev:5432/jrvstrading" \`\
-`-e "PSQL_USER=postgres" \`
-`-e "PSQL_PASSWORD=password" \`
+`-e "PSQL_USER=postgres" \`\
+`-e "PSQL_PASSWORD=password" \`\
 `-e "IEX_PUB_TOKEN=${IEX_PUB_TOKEN}" \`\
 `--network trading-net \`\
 `-p 5000:5000 -t trading-app`
