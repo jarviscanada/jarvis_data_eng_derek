@@ -51,7 +51,7 @@ docker image ls -f reference=trading-app`
 `docker run --name trading-psql-dev \`\
 `-e POSTGRES_PASSWORD=password \`\
 `-e POSTGRES_DB=jrvstrading \`\
-`-e POSTGRES_USER=postgres \`\`
+`-e POSTGRES_USER=postgres \`\
 `--network trading-net \`\
 `-d -p 5432:5432 trading-psql`
 
