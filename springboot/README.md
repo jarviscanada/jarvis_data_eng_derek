@@ -1,40 +1,82 @@
 # Trading Application
-* [Introduction](#introduction)
-* [Architecture](#architecture)
-* [REST API usage](#rest-api-usage)
-* [Quick Start](#quick-start)
-* [Docker Deployment](#docker-deployment)
-* [Improvements](#improvements)
+* Introduction
+* Architecture
+* REST API usage
+* Quick Start
+* Docker Deployment
+* Improvements
 
 # Introduction
-This application aims to develop an online stock trading REST API by using microservice and MVC design architecture. This application extracts stock data from __IEX cloud__, and stores the information into the PostgreSQL database to prevent data loss once the system crashes. Maven and SpringBoot are invoked to manage external and internal dependencies. Postman and Swagger are used to test Trading REST API during development.
+This application aims to develop an online stock trading REST API by using Microservice and MVC design architecture. This application extracts stock data from IEX cloud, and stores the information into the PostgreSQL database to prevent data loss once the system crashes. Maven and SpringBoot are invoked to manage external and internal dependencies. Postman and Swagger are used to test Trading REST API during development.
+# Quick Start
+### System Requirements
+Required system to deploy this application successfully:
+- CentOS 7
+- Docker (version 17.05 or higher)
+- JDK (version 1.8)
+- Maven
+- Registration of an account on IEX cloud to get the API token
 
-# Architecture
+### Environmental Variables
+Four environment variables are needed to run the application. 
++ `PSQL_URL:` It is the datasource URL of the PostgreSQL database and it is `jdbc:postgresql://localhost:5432/jrvstrading` in this application.
++ `PSQL_USER:` It is user name when creating database, and it is `postgres`.
++ `PSQL_PASSWORD:` It is `password` in this application. 
++ `IEX_PUB_TOKEN:` It is API token acquired from IEX cloud.
+
+### Docker setup 
+Make sure docker version is `17.05 or higher`\
+`docker -v`
+
+Make sure docker is running by the following command:\
+`systemctl status docker || systemctl start docker`
+Create a docker network which allows docker containers to communicate with each otherby the following command:\
+`docker network create --driver bridge trading-net`\
+Verify\
+`docker network ls`
+
+Build docker image `trading-psql`. It is for PostgreSQL database which contains all market data and user information.\
+`cd ./springboot/psql 
+docker build -t trading-psql .
+docker image ls -f reference=trading-psql`
+
+Build docker image `trading-app`. It is based on `openjdk:8-alpine` and `maven:3.6-jdk-8-slim`.\
+`cd ..
+docker build -t trading-app . 
+docker image ls -f reference=trading-app`
+
+Build docker container `trading-psql-dev`\
+`# container for the Postgres SQL database and attach it to the created network`\
+`docker run --name trading-psql-dev \`\
+`-e POSTGRES_PASSWORD=password \`\
+`-e POSTGRES_DB=jrvstrading \`\
+`-e POSTGRES_USER=postgres \`\`
+`--network trading-net \`\
+`-d -p 5432:5432 trading-psql`
+
+Build docker container `trading-app-dev`\
+`# container for the application and attach it to the created network`\
+`docker run --name trading-app-dev \`\
+`-e "PSQL_URL=jdbc:postgresql://trading-psql-dev:5432/jrvstrading" \`\
+`-e "PSQL_USER=postgres" \`
+`-e "PSQL_PASSWORD=password" \`
+`-e "IEX_PUB_TOKEN=${IEX_PUB_TOKEN}" \`\
+`--network trading-net \`\
+`-p 5000:5000 -t trading-app`
+
+
+# MVC Architecture
 ![Diagram](./Asset/MVCArchitecturePattern.png)\
-As shown in the above diagram, this application consistss of three layers: Controller Layer, Service Layer, and Data Access Layer based on MVC architecture. Controller Layers Handles HTTP requests, Service Layer handles the business logics, and Data Access Layer persists and extracts data from external database sources.
+As shown in the diagram above, this application consistss of three tiers: Client Tier, Application Tier and Database Tier.
++ Client Tier: Users can use HTTP clients to consume the REST (such as Swagger, Chrome, Postman, curl). Tomcat servlet will receive requests from HTTP clients, process requests and send responses back to HTTP client.
++ Application Tier: It is Springboot Java program in this project. Application Tier processes data only, and it consists thress layers: Controller Layer, Service Layer, and Data Access Layer.
++ Database Tier: Application data is stored in a PostgreSQL database instance. The advantage of this tier is that if the Java application failed, the data stored in the database will still be persisted.
 
-## Project Design Architecture
-
-+ __Client Layer__
-This tier is for the consumer of this application. It could either be a trader who is capable of using the REST API or some endpoints. It can be a Swagger UI, Postman, or even using `curl` command from the Linux system. The HTTP request from this tier will be received and handled by the Tomcat Servlet. After the information is processed, the servelet will send HTTP responses back to the client. And it will be the client's responsibility to format the HTTP responses.
-    
-+ __Application Layer__
-This tier contains the application developed and it consists of three layers: controller layer, service layer, and data access layer. The purpose of applying three layers here is to make it easier to adapt to changes. For example, if the database is switched from PostgreSQL to another database, only the data access layer will be modified. 
-
-+ __Database Layer__
-This tier is where data is stored, fetched, and manipulated. In this application, a PostgreSQL database is used for storage of the data generated by the application, and the IEX cloud is used as the source of market data. PSQL database is created in a docker container and it can be accessed by java application through the data source. For the IEX cloud, this application will be able to consume the IEX cloud REST API and store the parsed data into the PSQL database.
-
-## Application Design Architecture
-In the Application tier, the dependency management is done by Spring Boot. It manages the Tomcat Servlet, maps the HTTP request to the corresponding method in the controller, and generates the HTTP response using the output of the method in the controller tier.
-
-+ __Controller Layer__
-This layer contains a controller for each service. An HTTP request received by the servelet will map the request to the method in the controller, and the controller is responsible for invoking the corresponding method in the service layer. There are four controllers in this application and all endpoints are described in detail under REST API Usage section.
-
-+ __Service Layer__
-This layer is the implementation of the business logic provided. Each implemented method will be invoked by its corresponding controller. Moreover, all methods in this layer are transactional which means it will only invoke the DAO layer only if there is no error.
-        
-+ __Data Access Layer__
-This layer will interact with the database tier and its responsibility is to insert, find, update or delete a row in the database. Moreover, it will also be able to pull market data from the IEX cloud. The DAO (data access object) is designed based on a repository pattern. Each DAO is responsible for one table in the database and uses the model created for its corresponding table.
+# Application Architecture
+As stated above, the Application Tier also consists of three layers: Controller Layer, Service Layer, and Data Access Layer. 
++ Controller Layer: This layer contains the controller for each service, and is used to call corresponding method in each service. There are four controllers: Dashboard Controller, TraderAccount Controller, OrderController, and QuoteController.
++ Service Layer: This layer handles the business logics and its methods are called by corresponding controller. It includes Dashboard sercive, TraderAccount service, OrderService, and QuoteService.
++ Data Access Layer: This layer interacts with Database Tier and performs CRUD （create, read, update and delete) operations. In addition, MarketDataDao can retrieve data from IEX Cloud. 
 
 # REST API Usage
 
@@ -94,61 +136,7 @@ __GET__ `/dashboard/portfolio/traderId/{traderId}`
 __GET__ `/dashboard/profile/traderId/{traderId}`
 -  This endpoint will return the trader information along with the associated account information for the given trader ID. It will return bad HTTP status code if the given trader ID cannot be found.
 
-# Quick Start
-### System Requirements
-Required system to deploy this application successfully:
-- CentOS 7
-- Docker (version 17.05 or higher)
-- JDK (version 1.8)
-- Maven
-- Registration of an account on __IEX cloud__ to get the API token
 
-### Environmental Variables
-Four environment variables are needed to run the application. 
-+ `PSQL_URL:` It is the datasource URL of the PostgreSQL database and it is `jdbc:postgresql://localhost:5432/jrvstrading` in this application.
-+ `PSQL_USER:` It is user name when creating database, and it is `postgres`.
-+ `PSQL_PASSWORD:` It is `password` in this application. 
-+ `IEX_PUB_TOKEN:` It is API token acquired from IEX cloud.
-
-### Docker setup 
-Make sure docker version is `17.05 or higher`\
-`docker -v`
-
-Make sure docker is running by the following command:\
-`systemctl status docker || systemctl start docker`
-Create a docker network which allows docker containers to communicate with each otherby the following command:\
-`docker network create --driver bridge trading-net`\
-Verify\
-`docker network ls`
-
-Build docker image `trading-psql`. It is for PostgreSQL database which contains all market data and user information.\
-`cd ./springboot/psql 
-docker build -t trading-psql .
-docker image ls -f reference=trading-psql`
-
-Build docker image `trading-app`. It is based on `openjdk:8-alpine` and `maven:3.6-jdk-8-slim`.\
-`cd ..
-docker build -t trading-app . 
-docker image ls -f reference=trading-app`
-
-Build docker container `trading-psql-dev`\
-`# container for the Postgres SQL database and attach it to the created network`\
-`docker run --name trading-psql-dev \`\
-`-e POSTGRES_PASSWORD=password \`\
-`-e POSTGRES_DB=jrvstrading \`\
-`-e POSTGRES_USER=postgres \`\`
-`--network trading-net \`\
-`-d -p 5432:5432 trading-psql`
-
-Build docker container `trading-app-dev`\
-`# container for the application and attach it to the created network`\
-`docker run --name trading-app-dev \`\
-`-e "PSQL_URL=jdbc:postgresql://trading-psql-dev:5432/jrvstrading" \`\
-`-e "PSQL_USER=postgres" \`
-`-e "PSQL_PASSWORD=password" \`
-`-e "IEX_PUB_TOKEN=${IEX_PUB_TOKEN}" \`\
-`--network trading-net \`\
-`-p 5000:5000 -t trading-app`
 
 # Docker Deployment
 ![Diagram](./Asset/TradingAppDockerDiagram.png)
@@ -162,3 +150,4 @@ As mentioned before, the database needs to be launched in a docker container to 
 4. Add a function to let one trader buy security from another trader and make this service transactional to prevent error.
 5. Allow one trader to have multiple accounts so that the trader could open up multiple accounts for different reasons.
  
+
