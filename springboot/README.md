@@ -1,8 +1,8 @@
 # Trading Application
 * Introduction
-* Architecture
-* REST API usage
 * Quick Start
+* MVC Architecture
+* REST API usage
 * Docker Deployment
 * Improvements
 
