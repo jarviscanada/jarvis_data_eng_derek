@@ -7,7 +7,7 @@
 * Improvements
 
 # Introduction
-This application aims to develop an online stock trading REST API by using Microservice and MVC design architecture. This application extracts stock data from IEX cloud, and stores the information into the PostgreSQL database to prevent data loss once the system crashes. Maven and SpringBoot are invoked to manage external and internal dependencies. Postman and Swagger are used to test Trading REST API during development.
+This application aims to develop an online stock trading REST API by using Microservice and MVC design architecture. This application extracts stock data from the IEX cloud, and stores the information into the PostgreSQL database to prevent data loss once the system crashes. Maven and SpringBoot are invoked to manage external and internal dependencies. Postman and Swagger are for testing Trading REST API during development.
 # Quick Start
 ### System Requirements
 Required system to deploy this application successfully:
@@ -18,34 +18,34 @@ Required system to deploy this application successfully:
 - Registration of an account on IEX cloud to get the API token
 
 ### Environmental Variables
-Four environment variables are needed to run the application. 
-+ `PSQL_URL:` It is the datasource URL of the PostgreSQL database and it is `jdbc:postgresql://localhost:5432/jrvstrading` in this application.
-+ `PSQL_USER:` It is user name when creating database, and it is `postgres`.
+Four environment variables are needed to run the application: 
++ `PSQL_URL:` It is the datasource URL of the PostgreSQL Database:\ `jdbc:postgresql://localhost:5432/jrvstrading` 
++ `PSQL_USER:` It is user name when creating a database, and it is `postgres`.
 + `PSQL_PASSWORD:` It is `password` in this application. 
-+ `IEX_PUB_TOKEN:` It is API token acquired from IEX cloud.
++ `IEX_PUB_TOKEN:` It is API token acquired from the IEX cloud.
 
 ### Docker setup 
-Make sure docker version is `17.05 or higher`\
++ Make sure docker version is `17.05 or higher`\
 `docker -v`
 
-Make sure docker is running by the following command:\
++ Make sure docker is running by the following command:\
 `systemctl status docker || systemctl start docker`
-Create a docker network which allows docker containers to communicate with each otherby the following command:\
++ Create a docker network which allows docker containers to communicate with each other by the command:\
 `docker network create --driver bridge trading-net`\
 Verify\
 `docker network ls`
 
-Build docker image `trading-psql`. It is for PostgreSQL database which contains all market data and user information.\
++ Build docker image `trading-psql`. It is for PostgreSQL database which contains all market data and user information.\
 `cd ./springboot/psql 
 docker build -t trading-psql .
 docker image ls -f reference=trading-psql`
 
-Build docker image `trading-app`. It is based on `openjdk:8-alpine` and `maven:3.6-jdk-8-slim`.\
++ Build docker image `trading-app`. It is based on `openjdk:8-alpine` and `maven:3.6-jdk-8-slim`.\
 `cd ..
 docker build -t trading-app . 
 docker image ls -f reference=trading-app`
 
-Build docker container `trading-psql-dev`\
++ Build docker container `trading-psql-dev`\
 `# container for the Postgres SQL database and attach it to the created network`\
 `docker run --name trading-psql-dev \`\
 `-e POSTGRES_PASSWORD=password \`\
@@ -54,7 +54,7 @@ Build docker container `trading-psql-dev`\
 `--network trading-net \`\
 `-d -p 5432:5432 trading-psql`
 
-Build docker container `trading-app-dev`\
++ Build docker container `trading-app-dev`\
 `# container for the application and attach it to the created network`\
 `docker run --name trading-app-dev \`\
 `-e "PSQL_URL=jdbc:postgresql://trading-psql-dev:5432/jrvstrading" \`\
@@ -67,34 +67,31 @@ Build docker container `trading-app-dev`\
 
 # MVC Architecture
 ![Diagram](./Asset/MVCArchitecturePattern.png)\
-As shown in the diagram above, this application consistss of three tiers: Client Tier, Application Tier and Database Tier.
-+ Client Tier: Users can use HTTP clients to consume the REST (such as Swagger, Chrome, Postman, curl). Tomcat servlet will receive requests from HTTP clients, process requests and send responses back to HTTP client.
-+ Application Tier: It is Springboot Java program in this project. Application Tier processes data only, and it consists thress layers: Controller Layer, Service Layer, and Data Access Layer.
+As shown in the diagram above, this application consists of three tiers: Client Tier, Application Tier, and Database Tier.
++ Client Tier: Users can use HTTP clients to consume the REST (such as Swagger, Chrome, Postman, curl). Tomcat servlet will receive requests from HTTP clients, process requests, and send responses back to the HTTP client.
++ Application Tier: It is the Springboot Java program in this project. Application Tier processes data only, and it consists of three layers: Controller Layer, Service Layer, and Data Access Layer.
 + Database Tier: Application data is stored in a PostgreSQL database instance. The advantage of this tier is that if the Java application failed, the data stored in the database will still be persisted.
 
 # Application Architecture
 As stated above, the Application Tier also consists of three layers: Controller Layer, Service Layer, and Data Access Layer. 
-+ Controller Layer: This layer contains the controller for each service, and is used to call corresponding method in each service. There are four controllers: Dashboard Controller, TraderAccount Controller, OrderController, and QuoteController.
-+ Service Layer: This layer handles the business logics and its methods are called by corresponding controller. It includes Dashboard sercive, TraderAccount service, OrderService, and QuoteService.
-+ Data Access Layer: This layer interacts with Database Tier and performs CRUD （create, read, update and delete) operations. In addition, MarketDataDao can retrieve data from IEX Cloud. 
++ Controller Layer: This layer contains the controller for each service, and is used to call corresponding methods in each service. There are four controllers: Dashboard Controller, TraderAccount Controller, OrderController, and QuoteController.
++ Service Layer: This layer handles the business logic and its methods are called by the corresponding controller. It includes Dashboard service, TraderAccount service, OrderService, and QuoteService.
++ Data Access Layer: This layer interacts with Database Tier and performs CRUD （create, read, update, and delete) operations. Besides, MarketDataDao can retrieve data from IEX Cloud. 
 
 # REST API Usage
 
-### Test with Swagger UI or Postman
+### Swagger UI and Postman
 1. Swagger UI
-Swagger is a set of open-source tools based on the OpenAPI Specification. It will help developers design, build, document and consume REST APIs. Swagger UI is the user interface generated by Swagger when trying to consume the REST API. To use Swagger UI, go to `http://localhost:8080/swagger-ui.html#/` on the host machine's internet browser. Below is a screenshot of what it should look like if everything is done correctly.
+Swagger is an open-source set of tools and helps developers to design, build, document, and consume REST APIs. It is automatically generated from OpenAPI specifications. To use Swagger UI, go to `http://localhost:8080/swagger-ui.html#/` on the host machine's web browser. It looks like the diagram below:
 ![Diagram](./Asset/Swagger.png)
 2. Postman
-Postman can also be used to interact with this application through HTTP requests. To do that, simply go to the link in the Swagger UI called `http://localhost:8080/v2/api-docs`, save the page to local machine and import this file using Postman. Or it can also be done by typing the URL manually. 
-
-## Swagger
-In the following description of the endpoints, the screenshot of Swagger UI is used. The same result can also be achieved using Postman or `curl` command in Linux. However, Swagger UI is used as an example in this case because it looks good. Each endpoint will be described in detail in the following sections with the order presented in screentshot of each controller.
+Postman can also be used to interact with Springboot application through HTTP requests. To use Postman, go to `http://localhost:8080/v2/api-docs`, save the page to the local machine, and import it to Postman.
 
 ### Quote Controller
 ![Diagram](./Asset/Quote Controller.png)
 
 __GET__ `/quote/dialyList`
-- Return all the tickers for on IEX cloud.
+- Return all tickers available on IEX cloud.
 
 __GET__ `/quote/iex/ticker/{ticker}`
 - Retrieve market data from the IEX cloud with the input ticker abd show IexQuote.
@@ -103,51 +100,48 @@ __POST__ `/quote/tickerId/{tickerId}`
 - Add a new ticker to dailyList and save it to the database.
 
 __PUT__ `/quote/`
-- Update a specified quote. It will only update the quotes that are currently in the database instead of creating new ones.
+- Update a specified quote in database
 
 __PUT__ `/quote/iexMarketData`
-- This endpoint will pull the most recent market data from the IEX cloud for every quote that exists in the database. It will only update the quotes that are currently in the database instead of creating new ones.
+- update quote talbe by using IEX data
 ### Trader Account Controller
 ![Diagram](./Asset/TraderAccountController.png)
 __DELETE__ `/trader/traderId/{traderId}`
-- This endpoint will delete a trader and the account associated with that trader. If the fund balance is not 0 or this trader is still holding securities, it will return bad HTTP status code. If the deletion succeeds, it will return good HTTP status code.
+- delete a trader and the asscociatedd account. If the fund balance is not 0 or this trader is still holding securities, it will show error code.
 
 __POST__ `/trader`
-- This endpoint will use the trader information in the HTTP request and create a trader and an associated account. All fields except the ID field should not be null. It will return the trader's profile and account.
+- create a trader and an associated account. All fields but the ID field should be non-null.
 
 __POST__`/trader/firstname/{firstname}/lastname/{lastname}/dob/{dob}/country/{country}/email/{email}`
-- This endpoint will do the same thing as the above endpoint. However, the information of the trader is included in the endpoint URL instead of the HTTP request header.
+- create a trader and an associated account. All fields but the ID field should be non-null.The trader information is in the endpoint URL instead of the HTTP request header.
 
 __PUT__`/trader/deposit/traderId/{traderId}/amount/{amount}`
-- This endpoint will deposit the specified amount of funds into a given trader's account and it will return the new account information.
+- deposit the given amount of fund in a specified trader's account. If the given fund is less than zeor, it will show error.
 
 __PUT__`/trader/withdraw/traderId/{traderId}/amount/{amount}`
-- This endpoint will withdraw the specified amount of fun from the given trader's account. It will return bad HTTP status code if there is an insufficient fund available. If it succeeds, it will return the new account information.
+- withdraw given amount of fund from the specified trader's account. If there is no enough balance in account, it will show error.
 ### Order controller
 ![Diagram](./Asset/OrderController.png)
 __POST__ `/order/marketOrder`
-- This endpoint will submit a market order. Based on the value given for the position of security, it will determine whether to buy or sell the security. In case of buying the security, a bad HTTP status code will be return if the ask size of this security is smaller than the position required or there is an insufficient fund to buy the security. In case of selling the security, a bad HTTP status code will be return if the owned position of this security is smaller than the given position. Otherwise, if the execution of the market order succeeds, it will return the executed security order.
+- execute a market order. If the size is positive, it is a buy order, and negative size means sell order.
 
 ### Dashboard controller
 ![Diagram](./Asset/DashboardController.png)
 __GET__ `/dashboard/portfolio/traderId/{traderId}`
-- This endpoint will return all the securities owned by the given trader. For each security owned, it will show its ticker, position, and current quote. It will return bad HTTP status code if the given trader ID cannot be found.
+- show portfolio of specified traderId.
 
 __GET__ `/dashboard/profile/traderId/{traderId}`
--  This endpoint will return the trader information along with the associated account information for the given trader ID. It will return bad HTTP status code if the given trader ID cannot be found.
-
+-  show trader profile of specified traderId.
 
 
 # Docker Deployment
 ![Diagram](./Asset/TradingAppDockerDiagram.png)
 
-As mentioned before, the database needs to be launched in a docker container to use this application. The above diagram illustrates what is going on by doing that. Initially, it will create a docker network for future use(it is shown at the bottom of the diagram). For the second step, it will build a PostgreSQL using the Dockerfile under `./springboot/psql/` directory. It will execute the `schema.ddl` to set up the database. It will also build an image using Dockerfile under `./springboot/` directory. It will package the java application using maven and build an image from it. The last step would be the creation of the container from the images and attached them to the `trading-net` created before.
+As mentioned before, the trading app and database need to be dockerized for deployment. The Trading App Docker diagram illustrates the process. First, trading-net, a docker network is created to allow Docker containers to communicate with each other. Second, it trading-psql docker image and trading-app docker image are created. The Dockerfile under `./psql/` directory is executed to initialize the database. The Dockerfile under `./springboot/` directory is executed to package the Java source using maven. Third, build containers from the images and attached them to the `trading-net` network.
 
 # Improvements
-1. Enrich the content of the quote to contain more information.
-2. Add a new function to delete a trader and return the balance. If this trader own securities, it will sell all of them, add fund to the balance, and return the new balance.
-3. Separate the function of the order controller into two smaller functions to avoid confusion.
-4. Add a function to let one trader buy security from another trader and make this service transactional to prevent error.
-5. Allow one trader to have multiple accounts so that the trader could open up multiple accounts for different reasons.
- 
-
++ Deploy the application on GCP
++ Allow transactions between traders
++ Allow multiple accounts under one trader's name
++ Generate a transaction statement for the trader monthly.
++ Show chart or graph of stock information so that traders can make better decisions.
