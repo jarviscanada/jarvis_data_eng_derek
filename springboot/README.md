@@ -2,6 +2,7 @@
 * Introduction
 * Quick Start
 * MVC Architecture
+* Application Architecture
 * REST API usage
 * Docker Deployment
 * Improvements
