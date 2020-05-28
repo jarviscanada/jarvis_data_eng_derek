@@ -1,7 +1,7 @@
 # Trading Application
 * Introduction
 * Quick Start
-* MVC Architecture
+* Project Architecture
 * Application Architecture
 * REST API usage
 * Docker Deployment
@@ -66,7 +66,7 @@ docker image ls -f reference=trading-app`
 `-p 5000:5000 -t trading-app`
 
 
-# MVC Architecture
+# Project Architecture
 ![Diagram](./Asset/MVCArchitecturePattern.png)\
 As shown in the diagram above, this application consists of three tiers: Client Tier, Application Tier, and Database Tier.
 + Client Tier: Users can use HTTP clients to consume the REST (such as Swagger, Chrome, Postman, curl). Tomcat servlet will receive requests from HTTP clients, process requests, and send responses back to the HTTP client.
