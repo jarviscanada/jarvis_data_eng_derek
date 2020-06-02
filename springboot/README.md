@@ -27,7 +27,7 @@ Four environment variables are needed to run the application:
 + PSQL_PASSWORD: It is `password` in this application. 
 + IEX_PUB_TOKEN: It is API token acquired from the IEX cloud.
 
-### Docker setup 
+### Docker Setup 
 ```
 #Make sure docker version is 17.05 or higher
 docker -v
