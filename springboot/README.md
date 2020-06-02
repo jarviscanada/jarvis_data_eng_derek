@@ -135,10 +135,10 @@ __POST__ `/order/marketOrder`
 ### Dashboard controller
 ![Diagram](./Asset/DashboardController.png)
 __GET__ `/dashboard/portfolio/traderId/{traderId}`
-- Show portfolio of specified traderId.
+- Show portfolio of specified traderId
 
 __GET__ `/dashboard/profile/traderId/{traderId}`
-- Show trader profile of specified traderId.
+- Show trader profile of specified traderId
 
 
 # Docker Deployment
