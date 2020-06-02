@@ -55,23 +55,18 @@ public class AccountDaoIntTest {
         savedAccount.setTrader_id(1);
         savedAccount.setAmount(100.0);
         accountDao.save(savedAccount);
-        //savedAccount.setId(accountDao.save(savedAccount).getId());
 
         savedAccountTwo = new Account();
         savedAccountTwo.setTrader_id(2);
         savedAccountTwo.setAmount(200.0);
         accountDao.save(savedAccountTwo);
-        //savedAccountTwo.setId(accountDao.save(savedAccountTwo).getId());
+
     }
 
     @Test
     public void findById() {
         assertEquals(savedAccount.getAmount(), accountDao.findById(1).get().getAmount());
-       /* System.out.println("Expected:" + savedTrader.getFirst_name());
-        System.out.println("Actual:" + traderDao.findById(1).get().getFirst_name());*/
         assertEquals(savedAccountTwo.getAmount(), accountDao.findById(2).get().getAmount());
-        /*System.out.println("Expected:" + savedTraderTwo.getFirst_name());
-        System.out.println("Actual:" + traderDao.findById(2).get().getFirst_name());*/
     }
 
     @Test
@@ -94,12 +89,6 @@ public class AccountDaoIntTest {
         Double balance = savedAccount.getAmount() + 10.0;
         newAccount = accountDao.deposit(savedAccount, +10.0);
         assertEquals(balance, newAccount.getAmount());
-
-        //Test when fund is less than zero
-//        Account newAccountTwo;
-//        Double balanceTwo = savedAccount.getAmount() - 10.0;
-//        newAccount = accountDao.deposit(savedAccount,-10.0);
-//        assertEquals(balance, newAccount.getAmount());
     }
 
     @Test
@@ -108,12 +97,6 @@ public class AccountDaoIntTest {
         Double newbalance = savedAccount.getAmount() - 10;
         withdrawAccount = accountDao.withdraw(savedAccount, 10.0);
         assertEquals(newbalance, withdrawAccount.getAmount());
-
-        //Test when the fund is less than zero
-//        Account withdrawAccountTwo;
-//        Double newbalanceTwo = savedAccount.getAmount() + 10;
-//        withdrawAccountTwo = accountDao.withdraw(savedAccount, -10.0);
-//        assertEquals(newbalanceTwo,withdrawAccountTwo.getAmount());
     }
 
     @Test

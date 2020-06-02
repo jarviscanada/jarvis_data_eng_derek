@@ -74,6 +74,6 @@ public class QuoteServiceIntTest {
     @Test
     public void findAllQuotes() {
         List<Quote> quotes = quoteService.findAllQuotes();
-        assertEquals(1,quoteDao.count());
+        assertEquals(1, quoteDao.count());
     }
 }

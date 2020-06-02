@@ -8,7 +8,9 @@ public class Quote implements Entity<String> {
     private Double ask_price;
     private Integer ask_size;
 
-    public String getTicker() {return ticker;}
+    public String getTicker() {
+        return ticker;
+    }
 
     public void setTicker(String ticker) {
         this.ticker = ticker;

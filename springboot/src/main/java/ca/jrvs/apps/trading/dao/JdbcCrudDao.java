@@ -1,7 +1,6 @@
 package ca.jrvs.apps.trading.dao;
 
 import ca.jrvs.apps.trading.model.domain.Entity;
-import ca.jrvs.apps.trading.model.domain.Position;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataRetrievalFailureException;
@@ -97,6 +96,7 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
         }
         return t;
     }
+
     public List<T> findByColumnId(String column, Integer id) {
         List<T> t = new ArrayList<>();
         String findByColumnIdSql = "SELECT * FROM " + getTableName() + " WHERE " + column + "=?";
@@ -108,6 +108,7 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
         }
         return t;
     }
+
     @Override
     public long count() {
         String countSql = "SELECT COUNT(*) FROM " + getTableName();

@@ -10,7 +10,6 @@ import ca.jrvs.apps.trading.model.domain.Quote;
 import ca.jrvs.apps.trading.model.domain.SecurityOrder;
 import ca.jrvs.apps.trading.model.domain.Trader;
 import ca.jrvs.apps.trading.model.view.TraderAccountView;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,12 +18,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.security.SecureRandom;
 import java.util.Date;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {TestConfig.class})
@@ -43,6 +40,7 @@ public class TraderAccountServiceIntTest {
     private SecurityOrderDao securityOrderDao;
     private Account savedAccount;
     private Quote savedQuote;
+
     @Before
     public void setup() {
         Trader savedTrader = new Trader();
@@ -57,8 +55,8 @@ public class TraderAccountServiceIntTest {
 
     @Test
     public void withdraw() {
-       Account savedAccountTwo = new Account();
-       savedAccountTwo = traderAccountService.withdraw(savedView.getTrader().getId(), 100.0);
+        Account savedAccountTwo = new Account();
+        savedAccountTwo = traderAccountService.withdraw(savedView.getTrader().getId(), 100.0);
         assertEquals((Double) 0.0, savedAccountTwo.getAmount());
     }
 
@@ -86,7 +84,7 @@ public class TraderAccountServiceIntTest {
         savedAccount.setAmount(0.0);
         accountDao.save(savedAccount);
         traderAccountService.deleteTraderById(savedView.getTrader().getId());
-        assertEquals(Optional.empty(),securityOrderDao.findById(id));
+        assertEquals(Optional.empty(), securityOrderDao.findById(id));
         assertEquals(Optional.empty(), accountDao.findById(1));
         assertEquals(Optional.empty(), traderDao.findById(1));
     }

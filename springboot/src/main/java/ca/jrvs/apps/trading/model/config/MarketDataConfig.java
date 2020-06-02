@@ -12,11 +12,11 @@ public class MarketDataConfig {
         this.host = host;
     }
 
-    public String getToken(){
+    public String getToken() {
         return token;
     }
 
-    public void setToken(String token){
+    public void setToken(String token) {
         this.token = token;
     }
 }

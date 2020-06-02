@@ -3,10 +3,8 @@ package ca.jrvs.apps.trading.dao;
 import ca.jrvs.apps.trading.model.config.MarketDataConfig;
 import ca.jrvs.apps.trading.model.domain.IexQuote;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
-
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,25 +32,18 @@ public class MarketDataDaoIntTest {
         String ticker = "AAPL";
         IexQuote iexQuote = dao.findById(ticker).get();
         assertEquals(ticker, iexQuote.getSymbol());
-//         System.out.println(iexQuote.getLatestPrice());
-//        System.out.println(iexQuote.getIexBidPrice());
-//        System.out.println(iexQuote.getIexBidSize());
-//        System.out.println(iexQuote.getIexAskPrice());
-//        System.out.println(iexQuote.getIexAskSize());
-//        System.out.println(iexQuote.getSymbol());
     }
 
     @Test
     public void findAllById() {
         List<IexQuote> quoteList = dao.findAllById(Arrays.asList("AAPL", "FB"));
-        //assertEquals(2, quoteList.size());
         assertEquals("AAPL", quoteList.get(0).getSymbol());
-        try{
+        try {
             dao.findAllById(Arrays.asList("AAPL", "FB2"));
             fail();
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             assertTrue(true);
-        }catch (Exception e){
+        } catch (Exception e) {
             fail();
         }
     }

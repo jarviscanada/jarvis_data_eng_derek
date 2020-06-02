@@ -1,13 +1,9 @@
 package ca.jrvs.apps.trading.model.domain;
 
+import com.fasterxml.jackson.annotation.*;
+
 import java.util.HashMap;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -67,15 +63,6 @@ public class IexQuote {
     private String calculationPrice;
     @JsonProperty("highTime")
     private Long highTime;
-
-    public Long getHighTime() {
-        return highTime;
-    }
-
-    public void setHighTime(Long highTime) {
-        this.highTime = highTime;
-    }
-
     @JsonProperty("open")
     private Integer open;
     //private Long open;
@@ -163,6 +150,14 @@ public class IexQuote {
     private Boolean isUSMarketOpen;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+    public Long getHighTime() {
+        return highTime;
+    }
+
+    public void setHighTime(Long highTime) {
+        this.highTime = highTime;
+    }
 
     @JsonProperty("symbol")
     public String getSymbol() {
@@ -595,7 +590,8 @@ public class IexQuote {
     }
 
     @JsonProperty("isUSMarketOpen")
-    public Boolean getIsUSMarketOpen() { return isUSMarketOpen;
+    public Boolean getIsUSMarketOpen() {
+        return isUSMarketOpen;
     }
 
     @JsonProperty("isUSMarketOpen")

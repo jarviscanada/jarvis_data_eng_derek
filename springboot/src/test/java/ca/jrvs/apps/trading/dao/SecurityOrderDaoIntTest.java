@@ -13,17 +13,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
+
 import java.util.Date;
 import java.util.Optional;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {TestConfig.class})
 @Sql({"classpath:schema.sql"})
 public class SecurityOrderDaoIntTest {
-   //There must be one @Autowired on top of each DAO
+    //There must be one @Autowired on top of each DAO
     @Autowired
     TraderDao traderDao;
     @Autowired
@@ -119,17 +119,18 @@ public class SecurityOrderDaoIntTest {
     }
 
     @Test
-    public void findById(){
+    public void findById() {
         assertEquals(securityOrder.getTicker(), securityOrderDao.findById(securityOrder.getId()).get().getTicker());
     }
 
     @Test
-    public void deleteById(){
+    public void deleteById() {
         securityOrderDao.deleteById(securityOrderTwo.getId());
         assertEquals(Optional.empty(), securityOrderDao.findById(securityOrderTwo.getId()));
     }
+
     @After
     public void deleteAll() {
-       securityOrderDao.deleteAll();
+        securityOrderDao.deleteAll();
     }
 }

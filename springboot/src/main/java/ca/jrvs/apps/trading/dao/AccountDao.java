@@ -97,7 +97,7 @@ public class AccountDao extends JdbcCrudDao<Account> {
             throw new IllegalArgumentException("You do have enough money!");
         } else {
             account.setAmount(balance);
-           updateOne(account);
+            updateOne(account);
             return account;
         }
     }

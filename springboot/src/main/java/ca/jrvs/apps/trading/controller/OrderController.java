@@ -13,8 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
-
 @Api(value = "Order", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @Controller
 @RequestMapping("/order")
@@ -22,7 +20,10 @@ public class OrderController {
     private OrderService orderService;
 
     @Autowired
-    public OrderController(OrderService orderService){this.orderService = orderService;}
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
+    }
+
     @ApiOperation(value = "Submit a market order", notes = "Submit a market order.")
     @ApiResponses(value = {
             @ApiResponse(code = 404, message = "accountId or ticker is not found"),
@@ -30,10 +31,10 @@ public class OrderController {
     @PostMapping(path = "marketOrder")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public SecurityOrder postMarketOrder(@RequestBody MarketOrderDto orderDto){
-        try{
+    public SecurityOrder postMarketOrder(@RequestBody MarketOrderDto orderDto) {
+        try {
             return orderService.executeMarketOrder(orderDto);
-        } catch (Exception e){
+        } catch (Exception e) {
             throw ResponseExceptionUtil.getResponseStatusException(e);
         }
     }

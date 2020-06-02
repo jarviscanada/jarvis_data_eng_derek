@@ -2,13 +2,11 @@ package ca.jrvs.apps.trading.dao;
 
 import ca.jrvs.apps.trading.model.config.MarketDataConfig;
 import ca.jrvs.apps.trading.model.domain.IexQuote;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.conn.HttpClientConnectionManager;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -19,45 +17,26 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static ca.jrvs.apps.trading.util.JsonUtil.toObjectFromJson;
 
 @Repository
 public class MarketDataDao implements CrudRepository<IexQuote, String> {
+    private static final Logger logger = LoggerFactory.getLogger(MarketDataDao.class);
     private static final String IEX_BATCH_PATH = "/stock/market/batch?symbols=%s&types=quote&token=";
     private static String IEX_BATCH_URL;
-
-    private Logger logger = LoggerFactory.getLogger(MarketDataDao.class);
     private HttpClientConnectionManager httpClientConnectionManager;
-    //private PoolingHttpClientConnectionManager httpClientConnectionManager;
-
-    //private String[] tickerFields = {"GOOGL", "FB", "AAPL", "MMM", "AMD", "APA"};
 
     @Autowired
     public MarketDataDao(HttpClientConnectionManager httpClientConnectionManager, MarketDataConfig marketDataConfig) {
         this.httpClientConnectionManager = httpClientConnectionManager;
         IEX_BATCH_URL = marketDataConfig.getHost() + IEX_BATCH_PATH + marketDataConfig.getToken();
-    }
-
-    public static void main(String[] args) {
-        PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
-        cm.setMaxTotal(50);
-        cm.setDefaultMaxPerRoute(50);
-        MarketDataConfig marketDataConfig = new MarketDataConfig();
-        marketDataConfig.setHost("https://cloud.iexapis.com/v1");
-        marketDataConfig.setToken(System.getenv("IEX_PUB_TOKEN"));
-        MarketDataDao dao = new MarketDataDao(cm, marketDataConfig);
-        String ticker = "FB";
-        IexQuote iexQuote = dao.findById(ticker).get();
-        //System.out.println(iexQuote.getSymbol());
-        List<IexQuote> quoteList = dao.findAllById(Arrays.asList("AAPL", "FB"));
-        for (int i = 0; i < quoteList.size(); i++) {
-            System.out.println(quoteList.get(i).getSymbol());
-        }
     }
 
     /**
@@ -81,36 +60,24 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
      * @throws DataRetrievalFailureException if HTTP failed or status code if unexpected
      */
     private Optional<String> executeHttpGet(String url) throws IOException, URISyntaxException {
-        HttpClient httpClient = getHttpClient();
-        HttpGet request = new HttpGet(url);
-        HttpResponse response;
-        try {
-            response = httpClient.execute(request);
-        } catch (IOException e) {
-            throw new MalformedURLException("Invalid URL" + e.getMessage());
-        }
-        int status = response.getStatusLine().getStatusCode();
-
-        Optional<String> jsonStr;
-
-        if (status != 200) {
-            try {
-                System.out.println(EntityUtils.toString(response.getEntity()));
-            } catch (IOException e) {
-                throw new RuntimeException("Failed to convert entity to String", e);
+        try (CloseableHttpClient httpClient = getHttpClient()) {
+            HttpGet httpGet = new HttpGet(url);
+            try (CloseableHttpResponse response = httpClient.execute(httpGet)) {
+                switch (response.getStatusLine().getStatusCode()) {
+                    case 200:
+                        //EntityUtils toString will also close inputStream in Entity
+                        String body = EntityUtils.toString(response.getEntity());
+                        return Optional.ofNullable(body);
+                    case 404:
+                        return Optional.empty();
+                    default:
+                        throw new DataRetrievalFailureException(
+                                "Unexpected status:" + response.getStatusLine().getStatusCode());
+                }
             }
-            throw new DataRetrievalFailureException("Unexpected HTTP status " + status);
-        }
-        if (response.getEntity() == null) {
-            throw new RuntimeException("Empty response body");
-        }
-
-        try {
-            jsonStr = Optional.of(EntityUtils.toString(response.getEntity()));
         } catch (IOException e) {
-            throw new RuntimeException("Failed to convert entity to String", e);
+            throw new DataRetrievalFailureException("Unable Http execution error", e);
         }
-        return jsonStr;
     }
 
     @Override
@@ -142,7 +109,6 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
      * @throws DataRetrievalFailureException if HTTP request failed
      */
     public List<IexQuote> findAllById(Iterable<String> tickers) {
-
         List<IexQuote> list = new ArrayList<>();
         List<String> tickerStr = new ArrayList<>();
         IexQuote iexQuote = null;
@@ -159,11 +125,10 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
         String result = tickerStr.stream().collect(Collectors.joining(","));
         //put tickers in the URL
         String url = String.format(IEX_BATCH_URL, result);
-
         try {
             str = executeHttpGet(url);
         } catch (IOException | URISyntaxException e) {
-            e.printStackTrace();
+            throw new DataRetrievalFailureException("Invalid URL" + e.getMessage());
         }
         //construct JSONObject from JSON String
         JSONObject jsonObject = new JSONObject(str.get());
@@ -173,7 +138,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
                 iexQuote = toObjectFromJson(singeJsonStr, IexQuote.class);
 
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error("Cannot convert JSON to quote");
             }
             list.add(iexQuote);
         }

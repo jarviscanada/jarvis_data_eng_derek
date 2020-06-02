@@ -11,10 +11,14 @@ import org.springframework.context.annotation.Configuration;
 import javax.sql.DataSource;
 
 @Configuration
-//@ComponentScan(basePackages = {"ca.jrvs.apps.trading.dao", "ca.jrvs.apps.trading.service"})
-//cannot see difference to comment out @ComponentScan
 @ComponentScan(basePackages = {"ca.jrvs.apps.trading.dao", "ca.jrvs.apps.trading.service"})
 public class TestConfig {
+    public static void main(String[] args) {
+        System.out.println(System.getenv("PSQL_URL"));
+        System.out.println(System.getenv("PSQL_USER"));
+        System.out.println(System.getenv("PSQL_PASSWORD"));
+    }
+
     @Bean
     public MarketDataConfig marketDataConfig() {
         MarketDataConfig marketDataConfig = new MarketDataConfig();
@@ -29,9 +33,6 @@ public class TestConfig {
         String url = System.getenv("PSQL_URL");
         String user = System.getenv("PSQL_USER");
         String password = System.getenv("PSQL_PASSWORD");
-//        String url = "jdbc:postgresql://localhost:5432/jrvstrading";
-//        String user = "postgres";
-//        String password = "password";
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setUrl(url);
         basicDataSource.setUsername(user);
@@ -45,11 +46,6 @@ public class TestConfig {
         cm.setMaxTotal(50);
         cm.setDefaultMaxPerRoute(50);
         return cm;
-    }
-    public static void main(String[] args) {
-        System.out.println(System.getenv("PSQL_URL"));
-        System.out.println(System.getenv("PSQL_USER"));
-        System.out.println(System.getenv("PSQL_PASSWORD"));
     }
 }
 

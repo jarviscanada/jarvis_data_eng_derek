@@ -31,8 +31,8 @@ public class TraderAccountService {
     }
 
     public TraderAccountView createTraderAndAccount(Trader trader) {
-        //validate user input (all fields must be non empty),
-        //trader cannot be null. All fields cannot be null except for id
+        /*validate user input (all fields must be non empty),
+        trader cannot be null. All fields cannot be null except for id*/
         validateTrader(trader);
         //create an account with 0 amount
         trader.setId(traderDao.save(trader).getId());

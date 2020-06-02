@@ -1,7 +1,6 @@
 package ca.jrvs.apps.trading.dao;
 
 import ca.jrvs.apps.trading.model.domain.Quote;
-import org.apache.commons.dbcp2.BasicDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,40 +28,11 @@ public class QuoteDao implements CrudRepository<Quote, String> {
     private static final Logger logger = LoggerFactory.getLogger(QuoteDao.class);
     private JdbcTemplate jdbcTemplate;
     private SimpleJdbcInsert simpleJdbcInsert;
-    //private String[] tickerFileds = {"GOOGL", "FB", "AAPL", "MMM", "AMD", "APA"};
 
     @Autowired
     public QuoteDao(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
         simpleJdbcInsert = new SimpleJdbcInsert(dataSource).withTableName(TABLE_NAME);
-    }
-
-    public static void main(String[] args) {
-//        String url = "jdbc:postgresql://localhost:5432/jrvstrading";
-//        String user = "postgres";
-//        String password = "password";
-        System.out.println("Creating apacheDataSource");
-        String url = System.getenv("PSQL_URL");
-        String user = System.getenv("PSQL_USER");
-        String password = System.getenv("PSQL_PASSWORD");
-        BasicDataSource basicDataSource = new BasicDataSource();
-        basicDataSource.setUrl(url);
-        basicDataSource.setUsername(user);
-        basicDataSource.setPassword(password);
-        QuoteDao quoteDao = new QuoteDao(basicDataSource);
-
-        Quote saveQuote = new Quote();
-        saveQuote.setTicker("70M");
-        saveQuote.setLastPrice(30.1);
-        saveQuote.setBidPrice(10.2);
-        saveQuote.setBidSize(10);
-        saveQuote.setAskPrice(20.0);
-        saveQuote.setAskSize(20);
-        quoteDao.save(saveQuote);
-        List<Quote> allQuotes = quoteDao.findAll();
-        for (int i = 0; i < allQuotes.size(); i++) {
-            System.out.println(allQuotes.get(i).getTicker());
-        }
     }
 
     @Override
@@ -174,6 +144,5 @@ public class QuoteDao implements CrudRepository<Quote, String> {
         String deleteAllSql = "DELETE FROM " + TABLE_NAME;
         jdbcTemplate.update(deleteAllSql);
     }
-
 }
 

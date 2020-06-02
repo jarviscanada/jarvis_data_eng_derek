@@ -44,7 +44,6 @@ public class OrderService {
         securityOrder.setStatus("CREATED");
         securityOrder.setSize(orderDto.getSize());
         securityOrder.setTicker(ticker);
-        //securityOrderDao.save(securityOrder);
 
         if (orderDto.getSize() > 0) {
             securityOrder.setPrice(quote.getAskPrice());
@@ -65,7 +64,6 @@ public class OrderService {
         account.setAmount(balance);
         accountDao.save(account);
         securityOrder.setStatus("Buy order");
-        //securityOrder.setId(securityOrderDao.save(securityOrder).getId());
         securityOrderDao.save(securityOrder);
     }
 
@@ -84,7 +82,6 @@ public class OrderService {
                 account.setAmount(balance);
                 accountDao.save(account);
                 securityOrder.setStatus("Sell order");
-                //securityOrder.setId(securityOrderDao.save(securityOrder).getId());
                 securityOrderDao.save(securityOrder);
             }
         }
