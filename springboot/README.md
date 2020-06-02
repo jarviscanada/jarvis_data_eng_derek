@@ -98,47 +98,47 @@ Postman can also be used to interact with Springboot application through HTTP re
 ![Diagram](./Asset/QuoteController.png)
 
 __GET__ `/quote/dialyList`
-- Return all tickers available on IEX cloud.
+- Return all tickers available on IEX cloud
 
 __GET__ `/quote/iex/ticker/{ticker}`
-- Retrieve market data from the IEX cloud with the input ticker abd show IexQuote.
+- Retrieve market data from the IEX cloud with the input ticker abd show IexQuote
 
 __POST__ `/quote/tickerId/{tickerId}`
-- Add a new ticker to dailyList and save it to the database.
+- Add a new ticker to dailyList and save it to the database
 
 __PUT__ `/quote/`
 - Update a specified quote in database
 
 __PUT__ `/quote/iexMarketData`
-- update quote talbe by using IEX data
+- Update quote talbe by using IEX data
 ### Trader Account Controller
 ![Diagram](./Asset/TraderAccountController.png)
 __DELETE__ `/trader/traderId/{traderId}`
-- delete a trader and the asscociatedd account. If the fund balance is not 0 or this trader is still holding securities, it will show error code.
+- Delete a trader and the asscociatedd account. If the fund balance is not 0 or this trader is still holding securities, it will show error code.
 
 __POST__ `/trader`
-- create a trader and an associated account. All fields but the ID field should be non-null.
+- Create a trader and an associated account. All fields but the ID field should be non-null.
 
 __POST__`/trader/firstname/{firstname}/lastname/{lastname}/dob/{dob}/country/{country}/email/{email}`
-- create a trader and an associated account. All fields but the ID field should be non-null.The trader information is in the endpoint URL instead of the HTTP request header.
+- Create a trader and an associated account. All fields but the ID field should be non-null.The trader information is in the endpoint URL instead of the HTTP request header.
 
 __PUT__`/trader/deposit/traderId/{traderId}/amount/{amount}`
-- deposit the given amount of fund in a specified trader's account. If the given fund is less than zeor, it will show error.
+- Deposit the given amount of fund in a specified trader's account. If the given fund is less than zeor, it will show error.
 
 __PUT__`/trader/withdraw/traderId/{traderId}/amount/{amount}`
-- withdraw given amount of fund from the specified trader's account. If there is no enough balance in account, it will show error.
+- Withdraw given amount of fund from the specified trader's account. If there is no enough balance in account, it will show error.
 ### Order controller
 ![Diagram](./Asset/OrderController.png)
 __POST__ `/order/marketOrder`
-- execute a market order. If the size is positive, it is a buy order, and negative size means sell order.
+- Execute a market order. If the size is positive, it is a buy order, and negative size means sell order.
 
 ### Dashboard controller
 ![Diagram](./Asset/DashboardController.png)
 __GET__ `/dashboard/portfolio/traderId/{traderId}`
-- show portfolio of specified traderId.
+- Show portfolio of specified traderId.
 
 __GET__ `/dashboard/profile/traderId/{traderId}`
--  show trader profile of specified traderId.
+- Show trader profile of specified traderId.
 
 
 # Docker Deployment
