@@ -3,7 +3,7 @@
 * Quick Start
 * Project Architecture
 * Application Architecture
-* REST API usage
+* REST API Usage
 * Docker Deployment
 * Improvements
 
@@ -41,12 +41,12 @@ docker network create --driver bridge trading-net
 #Verify network
 docker network ls
 
-#Build docker image trading-psql. It is for PostgreSQL database.
+#Build docker image trading-psql. It is for PostgreSQL database
 cd ./springboot/psql 
 docker build -t trading-psql .
 docker image ls -f reference=trading-psql
 
-#Build docker image trading-app. It is based on openjdk:8-alpine and maven:3.6-jdk-8-slim.
+#Build docker image trading-app. It is based on openjdk:8-alpine and maven:3.6-jdk-8-slim
 cd ..
 docker build -t trading-app . 
 docker image ls -f reference=trading-app
