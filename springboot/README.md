@@ -29,14 +29,9 @@ Four environment variables are needed to run the application:
 
 ### Docker setup 
 + Make sure docker version is 17.05 or higher
-```
-docker -v
-```
-
+```docker -v```
 + Make sure docker is running by the following command:\
-```
-systemctl status docker || systemctl start docker
-```
+```systemctl status docker || systemctl start docker```
 + Create a docker network which allows docker containers to communicate with each other and verify by the command:
 ```
 docker network create --driver bridge trading-net
