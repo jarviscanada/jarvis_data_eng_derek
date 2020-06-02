@@ -47,13 +47,15 @@ docker build -t trading-app .
 docker image ls -f reference=trading-app`
 
 + Build docker container `trading-psql-dev`\
-`# container for the Postgres SQL database and attach it to the created network`\
-`docker run --name trading-psql-dev \`\
-`-e POSTGRES_PASSWORD=password \`\
-`-e POSTGRES_DB=jrvstrading \`\
-`-e POSTGRES_USER=postgres \`\
-`--network trading-net \`\
-`-d -p 5432:5432 trading-psql`
+```
+# container for the Postgres SQL database and attach it to the created network`
+`docker run --name trading-psql-dev \
+`-e POSTGRES_PASSWORD=password \
+`-e POSTGRES_DB=jrvstrading \
+`-e POSTGRES_USER=postgres \
+`--network trading-net \
+`-d -p 5432:5432 trading-psql
+```
 
 + Build docker container `trading-app-dev`\
 `# container for the application and attach it to the created network`\
