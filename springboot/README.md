@@ -11,7 +11,7 @@
 This application aims to develop an online stock trading REST API by using Microservice and MVC design architecture. This application extracts stock data from the IEX cloud, and stores the information into the PostgreSQL database to prevent data loss once the system crashes. Maven and SpringBoot are invoked to manage external and internal dependencies. Postman and Swagger are used for testing Trading REST API during development.
 # Quick Start
 ### System Requirements
-Required system to deploy this application successfully:
+System required to deploy the application successfully:
 - CentOS 7
 - Docker (version 17.05 or higher)
 - JDK (version 1.8)
