@@ -32,10 +32,8 @@ Four environment variables are needed to run the application:
 ```
 docker -v
 ```
-+ Make sure docker is running by the following command:\
-```
-systemctl status docker || systemctl start docker
-```
++ Make sure docker is running by the following command:
+`systemctl status docker || systemctl start docker`
 + Create a docker network which allows docker containers to communicate with each other and verify by the command:
 ```
 docker network create --driver bridge trading-net
