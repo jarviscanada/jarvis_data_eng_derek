@@ -29,15 +29,18 @@ Four environment variables are needed to run the application:
 
 ### Docker setup 
 + Make sure docker version is 17.05 or higher
-```docker -v```
+```
+docker -v
+```
 + Make sure docker is running by the following command:\
-```systemctl status docker || systemctl start docker```
+```
+systemctl status docker || systemctl start docker
+```
 + Create a docker network which allows docker containers to communicate with each other and verify by the command:
 ```
 docker network create --driver bridge trading-net
 docker network ls
 ```
-
 + Build docker image `trading-psql`. It is for PostgreSQL database which contains all market data and user information.
 ```
 cd ./springboot/psql 
@@ -50,7 +53,6 @@ cd ..
 docker build -t trading-app . 
 docker image ls -f reference=trading-app
 ```
-
 + Build docker container `trading-psql-dev`
 ```
 # container for the Postgres SQL database and attach it to the created network`
@@ -61,7 +63,6 @@ docker image ls -f reference=trading-app
 `--network trading-net \
 `-d -p 5432:5432 trading-psql
 ```
-
 + Build docker container `trading-app-dev`
 ```
 # container for the application and attach it to the created network
@@ -73,7 +74,6 @@ docker run --name trading-app-dev \
 --network trading-net \
 -p 5000:5000 -t trading-app
 ```
-
 
 # Project Architecture
 ![Diagram](./Asset/MVCArchitecturePattern.png)\
