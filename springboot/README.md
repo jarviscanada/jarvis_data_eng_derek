@@ -28,19 +28,18 @@ Four environment variables are needed to run the application:
 + IEX_PUB_TOKEN: It is API token acquired from the IEX cloud.
 
 ### Docker setup 
-+ Make sure docker version is `17.05 or higher`\
-`docker -v`
++ Make sure docker version is 17.05 or higher
+```
+docker -v
+```
 
 + Make sure docker is running by the following command:\
 ```
 systemctl status docker || systemctl start docker
 ```
-+ Create a docker network which allows docker containers to communicate with each other by the command:
++ Create a docker network which allows docker containers to communicate with each other and verify by the command:
 ```
 docker network create --driver bridge trading-net
-```
-Verify
-```
 docker network ls
 ```
 
@@ -68,7 +67,7 @@ docker image ls -f reference=trading-app
 `-d -p 5432:5432 trading-psql
 ```
 
-+ Build docker container `trading-app-dev`\
++ Build docker container `trading-app-dev`
 ```
 # container for the application and attach it to the created network
 docker run --name trading-app-dev \
