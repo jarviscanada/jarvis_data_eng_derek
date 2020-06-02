@@ -22,7 +22,7 @@ Required system to deploy this application successfully:
 Four environment variables are needed to run the application: 
 ```
 PSQL_URL:It is the datasource URL of the PostgreSQL Database:
-   jdbc:postgresql://localhost:5432/jrvstrading 
+jdbc:postgresql://localhost:5432/jrvstrading 
 PSQL_USER: It is user name when creating a database, and it is postgres.
 PSQL_PASSWORD: It is password in this application. 
 IEX_PUB_TOKEN: It is API token acquired from the IEX cloud.
