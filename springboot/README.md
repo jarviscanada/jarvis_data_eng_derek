@@ -33,36 +33,27 @@ Four environment variables are needed to run the application:
 docker -v
 #Make sure docker is running by the following command:
 systemctl status docker || systemctl start docker
-#Create a docker network which allows docker containers to communicate with each other and verify by the command:
-```
+#Create a docker network which allows docker containers to communicate with each other by the command:
 docker network create --driver bridge trading-net
+#Verify
 docker network ls
-```
-+ Build docker image `trading-psql`. It is for PostgreSQL database which contains all market data and user information.
-```
+#Build docker image `trading-psql`. It is for PostgreSQL database.
 cd ./springboot/psql 
 docker build -t trading-psql .
 docker image ls -f reference=trading-psql
-```
-+ Build docker image `trading-app`. It is based on `openjdk:8-alpine` and `maven:3.6-jdk-8-slim`.
-```
+#Build docker image `trading-app`. It is based on openjdk:8-alpine and maven:3.6-jdk-8-slim.
 cd ..
 docker build -t trading-app . 
 docker image ls -f reference=trading-app
-```
-+ Build docker container `trading-psql-dev`
-```
-# container for the Postgres SQL database and attach it to the created network`
-`docker run --name trading-psql-dev \
-`-e POSTGRES_PASSWORD=password \
-`-e POSTGRES_DB=jrvstrading \
-`-e POSTGRES_USER=postgres \
-`--network trading-net \
-`-d -p 5432:5432 trading-psql
-```
-+ Build docker container `trading-app-dev`
-```
-# container for the application and attach it to the created network
+#Build docker container trading-psql-dev for the Postgres SQL database and attach it to the created network`
+docker run --name trading-psql-dev \
+-e POSTGRES_PASSWORD=password \
+-e POSTGRES_DB=jrvstrading \
+-e POSTGRES_USER=postgres \
+--network trading-net \
+-d -p 5432:5432 trading-psql
+#Build docker container `trading-app-dev`
+#container for the application and attach it to the created network
 docker run --name trading-app-dev \
 -e "PSQL_URL=jdbc:postgresql://trading-psql-dev:5432/jrvstrading" \
 -e "PSQL_USER=postgres" \
