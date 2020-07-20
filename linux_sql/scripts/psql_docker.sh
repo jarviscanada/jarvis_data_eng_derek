@@ -55,7 +55,8 @@ case $mode in
 		#psql -h localhost -U postgres -W 
 		;;
 	stop)	
-		#If the number of CLI arguments not equal to 2 (we need both "stop" and "password"), then     	 		display fault information and exit 1, which means exit with error
+		#If the number of CLI arguments not equal to 2 (we need both "stop" and "password"), 
+		#then display fault information and exit 1, which means exit with error
 		if [ "$#" -ne 2 ]; then
 		  echo "Wrong input, please follow the format: ./psql_docker start|stop|delete [db_password]"
 		  exit 1
