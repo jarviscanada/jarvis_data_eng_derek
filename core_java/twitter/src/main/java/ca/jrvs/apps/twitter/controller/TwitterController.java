@@ -51,15 +51,10 @@ public class TwitterController implements Controller {
 
     @Override
     public Tweet showTweet(String[] args) throws URISyntaxException, OAuthExpectationFailedException, OAuthCommunicationException, OAuthMessageSignerException, IOException {
-//        if (args.length != 3) {
-//            throw new IllegalArgumentException("USAGE: TwitterCLIApp show \"tweet_id\" \"[field1, field2]\"");
-//        }
+
         String tweet_id = args[1];
         Tweet tweet = new Tweet();
-//        String field= args[2];
-//        String[] fields = field.split(COMMA);
-//        return service.showTweet(tweet_id, fields);
-//        return service.showTweet(tweet_id);
+
         if (args.length == 2) {
             return tweet = service.showTweet(tweet_id);
         }

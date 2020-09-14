@@ -88,36 +88,3 @@ public class TwitterService implements Service {
         return delete;
     }
 }
-
-//    public static void main(String[] args) throws Exception {
-//        String consumerKey = System.getenv("consumerKey");
-//        String consumerSecret = System.getenv("consumerSecret");
-//        String accessToken = System.getenv("accessToken");
-//        String tokenSecret = System.getenv("tokenSecret");
-//        HttpHelper httpHelper = new TwitterHttpHelper(consumerKey, consumerSecret, accessToken, tokenSecret);
-//        TwitterDao dao = new TwitterDao(httpHelper);
-//        TwitterService service = new TwitterService(dao);
-//
-//        String hashTag = "#happycoding";
-//        String text = "@Hello April" + hashTag + " " + System.currentTimeMillis();
-//        Double lat = 10d;
-//        Double lon = 10d;
-//        Tweet postTweet = TwitterUtil.buildTweet(text, lon, lat);
-//        Tweet testPostTweet = service.postTweet(postTweet);
-//        System.out.println(JsonUtil.toJson(testPostTweet, true, true));
-//        System.out.println("Successfully post tweet!");
-//
-//        //test showTweet
-//        String[] fields = {"id_str"};
-//        Tweet testShowTweet = service.showTweet("1251658310891208704", fields);
-//        System.out.println(JsonUtil.toJson(testShowTweet, true, true));
-//        System.out.println("Successfully show tweet!");
-//
-//        //test deleteTweets
-//        String[] ids = {"1251658310891208704"};
-//        List<Tweet> list = new ArrayList<>();
-//        List<Tweet> testDeleteTweets = service.deleteTweets(ids);
-//        System.out.println(JsonUtil.toJson(testDeleteTweets, true, true));
-//        System.out.println("Successfully delete tweet!");
-//    }
-
